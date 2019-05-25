@@ -1,0 +1,27 @@
+<s-header  bindtap='back'>
+    <view class="header_container">
+    <i-icon type="return" size="16"></i-icon>
+    <view class="header_title">写日记</view>
+    </view>
+</s-header>
+
+<view class="dairy_container">
+    <view class="camera" bindtap="takePhoto">
+       <image wx:if="{{!hasImage}}" src="/images/dairyCamera.png" class="camera_icon"></image>
+       <image wx:if="{{hasImage}}" mode='aspectFill' src="{{image}}" class="remote_Image"></image>
+    </view>
+
+    <view class="content">
+        <input value="{{emotionTitle || ''}}"
+               placeholder='标题'
+               bindinput="changeTitle"
+               class="title"></input>
+        <textarea value="{{emotionText || ''}}"
+                  placeholder="请输入正文"
+                  class="text"
+                  bindinput="changeText"></textarea>
+              
+              <view bindtap="submit"
+                    class="submit">保存</view>
+    </view>
+</view>

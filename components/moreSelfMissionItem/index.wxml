@@ -1,0 +1,13 @@
+<i-swipeout i-class="container" actions="{{actions}}" bindchange="handlerSwiperButton" 
+            wx:if="{{isShow}}">
+  <view slot="content">
+   <view class="content">
+    <view class="bgColor" style="background:{{thingColor}}"></view>
+    <view class="thingName">{{thingName}}</view>
+    <view class="isLove" bindtap="onTapLove" data-thingid="{{thingId}}">
+      <i-icon wx:if="{{isLove}}" type="like_fill" size="25" color="#80848f" data-thingid="{{thingId}}" />
+      <i-icon wx:else type="like" size="25" color="#80848f" data-thingid="{{thingId}}" />
+    </view>
+    </view>
+  </view>
+</i-swipeout>

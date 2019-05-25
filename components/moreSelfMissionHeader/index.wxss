@@ -1,0 +1,48 @@
+/* components/moreSelfMissionHeader/index.wxss *//* components/moreSelfMissionHeader/index.wxss *//* components/planHeader/index.wxss */
+.container {
+  height: 120rpx;
+  box-sizing: border-box;
+  padding-top:40rpx;
+  background: #f3f3f3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom:1px solid #b3b3b3;
+  position: fixed;
+  top:0rpx;
+  z-index:10;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 500;
+  width:280rpx;
+  text-align:right;
+  color:#646e89;
+  margin-left:40rpx;
+}
+
+.add, .option, .back {
+  height: 40rpx;
+  width: 40rpx;
+  margin-left:40rpx;
+}
+
+
+.add image {
+  height:100%;
+  width:100%;
+  display:block;
+}
+
+.option image {
+  height:100%;
+  width:100%;
+  display:block;
+}
+
+.back image {
+  height:100%;
+  width:100%;
+  display:block;
+}

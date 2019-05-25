@@ -1,0 +1,55 @@
+
+<view class="container">
+  <view class="searchFriend_container">
+    <input type="text" placeholder="发现你的朋友ε = = (づ′▽`)づ" class="searchFriend_input" bindconfirm="submitAddInfo" bindchange="changeInputAddInfo" />
+    <image src="/images/search_icon.png" class="searchFriend_button" size="24" bindtap="submitAddInfo"></image>
+  </view>
+
+  <view wx:if="{{isMyFriendsShow}}">
+    <view class="tip">
+      <image src="/images/friend_icon.png" class="tip_icon"></image>
+      <text class="tip_text">好友列表</text>
+    </view>
+
+    <view wx:if="{{friendsList.length === 0}}" class="myFriendTip">
+      暂无好友
+    </view>
+
+    <scroll-view class="showFriend_container">
+      <block wx:for="{{friendsList}}">
+        <view class="friendsList_item" bindtap="tapFriend" data-userid="{{item.userId}}">
+          <i-swipeout actions="{{friendsActions}}" bindchange="swiperFriendItem" i-class="swipeout" data-userid="{{item.userId}}">
+            <view slot="content">
+              <view class="friend_item_content">
+                <image src="{{item.head}}" class="friend_item_head"></image>
+                <view class="friend_item_username">{{item.username}}</view>
+              </view>
+            </view>
+          </i-swipeout>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+
+
+  <scroll-view wx:if="{{isApplyShow}}">
+    <view wx:if="{{applyList.length === 0}}" class="notice_tip">
+      暂无好友申请
+    </view>
+
+
+    <block wx:for="{{applyList}}">
+      <view class="applyList_item">
+        <view class="applyList_item_username">{{item.username}}</view>
+        <view bindtap="applySomeone" data-userid="{{item.userId}}">同意</view>
+        <view bindtap="refuseSomeone" data-userid="{{item.userId}}">拒绝</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="notice_container" bindtap="applyPage">
+    <image src="/images/HomeLinDang.png" class="notice_icon" />
+    <view class="myId">我的ID：{{myUserId}}</view>
+  </view>
+</view>

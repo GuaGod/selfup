@@ -1,0 +1,30 @@
+/* components/moreSelfMissionItem/index.wxss *//* components/moreSelfMission/moreSelfMissionItem/index.wxss */
+
+
+.content {
+  overflow: hidden;
+  box-sizing:border-box;
+  display: flex;
+  align-items: center;
+  padding:20rpx 30rpx 20rpx 30rpx;
+}
+
+.thingName {
+  font-size:34rpx;
+  color:#646e89;
+  text-indent:30rpx;
+  width:620rpx;
+}
+
+.bgColor {
+  width:40rpx;
+  height:40rpx;
+  border-radius:50%;
+  background:blue;
+}
+
+.isLove {
+  height:50rpx;
+  width:50rpx;
+}
+

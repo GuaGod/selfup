@@ -1,0 +1,180 @@
+/* pages/createSelf/createSelf.wxss */
+page {
+  box-sizing: border-box;
+}
+
+.container {
+  height:100%;
+}
+
+.chooseSex_container {
+   width:100%;
+   height:100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.chooseSex_container .title {
+  margin-bottom:120rpx;
+  color:rgb(156, 155, 155);
+  font-size:40rpx;
+  font-weight:600;
+}
+
+.chooseSex_bg {
+   width:100%;
+   height:100%;
+   position: absolute;
+   top:0rpx;
+   left:0rpx;
+   z-index: -100;
+}
+
+.chooseSex{
+   margin-bottom:260rpx;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   width: 100%;
+}
+
+.sexBox {
+   height:220rpx;
+   width:220rpx;
+   background-size:cover;
+   background-repeat: no-repeat;
+   border-radius: 50%;
+   text-align: center;
+   font-weight: 600;
+}
+
+
+.sexBox_male {
+   color:rgb(210, 210, 210);
+}
+
+.sexBox_female {
+  color:rgb(210, 210, 210);
+}
+
+.sexBox .sexBox_content {
+  display: block;
+  height:210rpx;
+  width:220rpx;
+}
+
+.sexBox:nth-of-type(1) {
+  margin-left:90rpx;
+}
+
+.sexBox:nth-of-type(2) {
+  margin-right:90rpx;
+}
+
+/*
+   问问题，创建人物
+*/
+
+.quesBox {
+  width:431rpx;
+  height:329rpx;
+  position:fixed;
+  top: 269rpx;
+  right:258rpx;
+}
+
+.quesBox image {
+  width: 100%;
+  height: 100%;
+}
+
+.answerBox {
+  width:300rpx;
+  position:fixed;
+  top:629rpx;
+  left: 102rpx;
+}
+  
+ 
+.quesAnswer_box {
+   background-color:rgb(245, 245, 245);
+   color: rgb(107, 106, 109);
+   width:224rpx;
+   height:70rpx;
+   line-height:70rpx;
+   text-align: center;
+   border-radius: 20rpx;
+   font-size:31rpx;
+   word-spacing: 30rpx;
+   margin-bottom:10rpx;
+}
+
+.person_container {
+   width:320rpx;
+   height:824rpx;
+   position:fixed;
+   right:40rpx;
+   bottom:50rpx;
+}
+
+.hair, .body, .cloth, .head, .background{
+   position: absolute;
+   width:100%;
+   height:100%;
+   top:0rpx;
+   left:0rpx;
+}
+
+.person_created_container {
+   width: 694rpx;
+   height: 982rpx;
+   position: absolute;
+   top:0rpx;
+   left:0rpx;
+   bottom:0rpx;
+   right:0rpx;
+   margin: auto;
+}
+
+.background {
+  z-index: 1;
+}
+
+.body {
+  z-index: 2;
+}
+
+.cloth {
+   z-index: 3;
+}
+
+.head {
+  z-index: 4;
+}
+
+.hair {
+  z-index: 5;
+}
+
+.home {
+   position: fixed;
+   bottom: 40rpx;
+   left: 325rpx;
+   margin-left: -50rpx;
+}
+
+.completeCreate{
+  position: absolute;
+  z-index: 10000;
+}
+
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}

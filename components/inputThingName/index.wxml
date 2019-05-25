@@ -1,0 +1,3 @@
+<view class="container">
+  <input type="text" placeholder="名称" focus="true" bindinput="onInputThingName"/>
+</view>

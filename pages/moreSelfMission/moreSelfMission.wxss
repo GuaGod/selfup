@@ -1,0 +1,64 @@
+/* pages/plan/moreSelfMission/moreSelfMission.wxss */
+page {
+  height:100%;
+}
+
+.container {
+  padding-top:120rpx;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height:1200rpx;
+  width:750rpx;
+  box-sizing: border-box;
+}
+
+.arrow {
+  height:40rpx;
+  position:fixed;
+  bottom:10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+
+.arrow image {
+  height:40rpx;
+  width:120rpx;
+}
+
+.i-swipeout-item{
+    border-bottom:#333 solid 1px;
+}
+ 
+.i-swipeout-item-content {
+  overflow: hidden;
+  box-sizing:border-box;
+  display: flex;
+  align-items: center;
+}
+
+.thingName {
+  font-size:34rpx;
+  color:#646e89;
+  text-indent:30rpx;
+  width:620rpx;
+}
+
+.bgColor {
+  width:40rpx;
+  height:40rpx;
+  border-radius:50%;
+  background:blue;
+}
+
+.isLove {
+  height:50rpx;
+  width:50rpx;
+}
+
+.isLove image {
+  height:100%;
+  width:100%;
+  display: block;
+}

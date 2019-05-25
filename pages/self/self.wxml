@@ -1,0 +1,71 @@
+<view class="header_container_outer" style="{{isNewMan && helpStep === 3 ? 'z-index:1000' : ''}}"  bindtap="{{isNewMan ? 'nextHelp' : ''}}">
+  <s-header>
+    <view class="header_container" bindtap="toggleDrawer">
+      <image src="/images/friends_icon.png" class="friends_icon"></image>
+      <view class="header_title">好友列表</view>
+    </view>
+  </s-header>
+</view>
+
+<view class="self_container">
+  <view class="person_container" style="{{isNewMan && helpStep === 0 ? 'z-index:1000' : ''}}"  bindtap="{{isNewMan ? 'nextHelp' : 'changeWord'}}">
+    <image src="{{hair}}" class="hair"></image>
+    <image src="{{head}}" class="head"></image>
+    <image src="{{cloth}}" class="cloth"></image>
+    <image src="{{body}}" class="body"></image>
+  </view>
+
+</view>
+<image src="{{backdrop}}" class="background"></image>
+
+<view class="powerTable_container" style="{{isNewMan && helpStep === 1 ? 'z-index:1000' : ''}}"
+      bindtap="{{isNewMan ? 'nextHelp' : ''}}">
+  <s-powerTable powerList="{{powerList}}"></s-powerTable>
+</view>
+
+<i-spin custom fix wx:if="{{loading}}">
+  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <view>Loading</view>
+</i-spin>
+
+<i-drawer mode="left" visible="{{isDrawerShow}}" bind:close="toggleDrawer">
+  <s-goodFriends isGoodFriendShow="{{isDrawerShow}}"></s-goodFriends>
+</i-drawer>
+
+<view class="calendar_container" style="{{isNewMan && helpStep === 2 ? 'z-index:1000' : ''}}"  bindtap="{{isNewMan ? 'nextHelp' : 'onTapCalendar'}}">
+  <image src="/images/calendar_self.png" />
+</view>
+
+<view class="dairy_container" style="{{isNewMan && helpStep === 2 ? 'z-index:1000' : ''}}"  bindtap="{{isNewMan ? 'nextHelp' : 'onTapDairy'}}">
+  <image src="/images/dairy_self.png" />
+</view>
+
+<view class="communicate_container" wx:if="{{isCommunicateShow}}" bindtap="changeWord">
+   <image src="/images/communicate.png"/>
+   <view class="communicate_content">
+       {{communicateWord}}
+   </view>
+</view>
+<!--帮助-->
+<view wx:if="{{isNewMan}}" class="helpStep_mask" bindtap="nextHelp">
+  <view wx:if="{{isNewMan && helpStep === 0}}" class="helpStep_container step0_container"
+                                               >
+    <image src="/images/personArrow.png" class="mask_image"></image>
+  </view>
+
+  <view wx:if="{{isNewMan && helpStep === 1}}" class="helpStep_container step1_container">
+    <image src="/images/attributeArrow.png" class="mask_image"></image>
+  </view>
+
+  <view wx:if="{{isNewMan && helpStep === 2}}" class="helpStep_container step21_container">
+    <image src="/images/dairyArrow.png" class="mask_image"></image>
+  </view>
+
+  <view wx:if="{{isNewMan && helpStep === 2}}" class="helpStep_container step22_container">
+    <image src="/images/planArrow.png" class="mask_image"></image>
+  </view>
+
+  <view wx:if="{{isNewMan && helpStep === 3}}" class="helpStep_container step3_container">
+     轻按结束指引，开始你的<text class="name">绘时光</text>之旅吧！
+  </view>
+</view>

@@ -1,0 +1,11 @@
+<view class="container"> 
+   <view class="back">
+    <image src="/images/back-icon.png"
+           bindtap="onTapBack"/>
+   </view>
+   <view class="title">事件类别</view>
+   <view class="add">
+      <image src="/images/add-icon.png"
+           bindtap="onTapAdd"/>
+   </view>
+</view>

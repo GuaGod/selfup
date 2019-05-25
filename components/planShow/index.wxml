@@ -1,0 +1,24 @@
+<scroll-view class="container" scroll-y="true">
+  <block wx:for="{{plan}}" wx:key="{{index}}">
+    <view class="mission_item">
+      <view class="title">{{item.jobName || ''}}</view>
+      <view class="mission_box {{item.thingList[0].thingState === 1 ? 'completed' : 'notCompleted'}} {{planChoosedState[index][0] ? 'choosed' : ''}}"
+            style="background:{{item.thingList[0].thingColor}}"
+            data-y="{{index}}"
+            data-x="{{0}}"
+            bindtap="chooseMission"
+            bindlongtap='completeAMission'
+            >{{item.thingList[0].thingName || ''}}
+      </view>
+      <view class="mission_box {{item.thingList[1].thingState === 1 ? 'completed' : 'notCompleted'}} {{planChoosedState[index][1] ? 'choosed' : ''}}"
+            style="background:{{item.thingList[1].thingColor}}"
+            data-y="{{index}}"
+            data-x="{{1}}"
+            bindtap="chooseMission"
+            bindlongtap='completeAMission'
+            >{{item.thingList[1].thingName || ''}}
+      </view>
+    </view>
+  </block>
+ 
+</scroll-view> 

@@ -1,0 +1,30 @@
+<s-header>
+  <view class="header_container" bindtap="back">
+    <image src="/images/home_icon.png" class="home_icon"></image>
+    <view class="header_title">HOME</view>
+  </view>
+</s-header>
+
+<view class="container">
+<view class="thingData_container chart_container">
+  <ec-canvas id="thingData-dom" canvas-id="thingData" ec="{{ thingData }}"></ec-canvas>
+</view>
+<view class="emotion_container chart_container">
+  <ec-canvas id="emotion-dom" canvas-id="emotion" ec="{{ emotion }}"></ec-canvas>
+</view>
+<view class="mostThing_container chart_container">
+  <ec-canvas id="mostThing-dom" canvas-id="mostThing" ec="{{ mostThing }}"></ec-canvas>
+</view>
+<view class="thingFinish_container chart_container">
+  <ec-canvas id="thingFinish-dom" canvas-id="thingFinish" ec="{{thingFinish}}"></ec-canvas>
+</view>
+</view>
+
+<i-spin custom fix wx:if="{{loading}}">
+  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <view>Loading</view>
+</i-spin>
+
+<!--遮罩层 1.定义父元素，阻止捕获，就可以阻止子元素的事件
+          2.定义元素覆盖上去
+          3.微信小程序canvas层级极高。。。-->

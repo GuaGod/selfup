@@ -1,0 +1,150 @@
+/* components/goodFriends/index.wxss */
+.container {
+  width: 460rpx;
+	height: 100vh;
+	background:rgba(247, 247, 247, 0.97);
+  border-radius: 0 16rpx 16rpx 0;
+  overflow: hidden;
+}
+
+.searchFriend_container{
+  position: relative;
+  border:4rpx solid rgb(91, 91, 91);
+  height: 66rpx;
+  width: 412rpx;
+  margin:138rpx auto 0;
+  display: flex;
+  border-radius: 66rpx;
+  line-height: 66rpx;
+  justify-content: center;
+  align-items: center;
+  padding-left:34rpx;
+  box-sizing: border-box;
+}
+
+.searchFriend_input {
+  height: 100%;
+  width:100%;
+  display: block;
+  font-size: 22rpx;
+  padding-right: 90rpx;
+  box-sizing: border-box;
+}
+
+.searchFriend_button {
+  width:54rpx;
+  height:44rpx;
+  position: absolute;
+  right:30rpx;
+  z-index:20;
+}
+
+.tip {
+    display: flex;
+    margin-left: 56rpx;
+    margin-top:66rpx;
+    overflow: hidden;
+}
+
+.tip_icon {
+    width:56rpx;
+    height:56rpx;
+    margin-right:24rpx;
+    position: relative;
+    bottom:4rpx;
+}
+
+.tip_text {
+    font-size: 40rpx;
+    color:rgb(156, 156, 156);
+}
+
+.swipeout {
+  background:transparent;
+  border: none;
+}
+
+.showFriend_container {
+  margin-top:64rpx;
+  height: 700rpx;
+  overflow: auto;
+}
+
+.friendsList_item {
+  width:100%;
+  padding-left: 54rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+
+.friend_item_content {
+  display: flex;
+  align-items: center;
+}
+
+.friend_item_head {
+   width: 30rpx;
+   height: 30rpx;
+   display: block;
+   margin-right:12rpx;
+}
+
+
+.friend_item_username {
+   font-size: 38rpx;
+   color: rgb(156, 155, 155);
+}
+
+.myFriendTip {
+   width:100%;
+   text-align: center;
+   color:rgb(156, 155, 155);
+   height: 100rpx;
+   line-height:100rpx;
+}
+
+.notice_container {
+   height:50rpx;
+   padding-left: 62rpx;
+   box-sizing: border-box;
+   position: fixed;
+   bottom:20rpx;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.myId {
+   color: rgb(156, 155, 155);
+   font-size: 34rpx;
+   margin-right:40rpx;
+}
+
+.notice_icon {
+   height:50rpx;
+   width:56rpx;
+   display: block;
+}
+
+.notice_tip {
+   width:100%;
+   color: rgb(156, 155, 155);
+   text-align: center;
+   margin-top:40rpx;
+}
+
+.applyList_item {
+  display: flex;
+  color:rgb(156, 155, 155);
+  margin-top:30rpx;
+  justify-content: space-around;
+}
+
+.applyList_item_username {
+  width:200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align:center;
+}

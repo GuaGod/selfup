@@ -1,0 +1,72 @@
+/* components/calendar/index.wxss */
+.head {
+  background:#ffffff;
+}
+
+.headContainer {
+  width:100%;
+  height:60rpx;
+  line-height: 60rpx;
+  font-size:34rpx;
+  color:#6d768f;
+  font-weight:500;
+  display: flex;
+  justify-content: center;
+
+}
+
+.container {
+   border-bottom:2rpx solid rgba(33,33,33,.3);
+   box-shadow: 0 2rpx 2rpx rgba(7, 17, 27, .3);
+   background:#ffffff; 
+}
+
+.day-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-bottom:40rpx;
+}
+
+.forbidBox {
+    width:70rpx;
+    height:60rpx;
+    margin-left:19rpx;
+    margin-right:18rpx;
+    box-sizing: border-box;
+    line-height:60rpx;
+    text-align:center;
+}
+
+.weekContainer {
+  height:40rpx;
+  line-height: 40rpx;
+  display: flex;
+}
+
+.weekHead {
+  width:70rpx;
+  margin-left:19rpx;
+  margin-right:18rpx;
+  height:40rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color:#6d768f;
+}
+
+.planBox {
+    width:70rpx;
+    height:60rpx;
+    box-sizing: border-box;
+    color:#646e89;
+    margin-left:19rpx;
+    margin-right:18rpx;
+    line-height:60rpx;
+    text-align:center;
+    font-size:30rpx;
+}
+
+.hasPlan{
+    background:#6097c7;
+    color:white;
+}

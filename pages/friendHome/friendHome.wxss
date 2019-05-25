@@ -1,0 +1,71 @@
+/* pages/friendHome/friendHome.wxss */
+.header_container {
+   height: 32rpx;
+   line-height: 32rpx;
+   display: flex;
+   align-items: center;
+}
+
+
+.header_title {
+   height:32rpx;
+   margin-top:4rpx;
+   color: rgb(137, 137, 137);
+   font-size:38rpx;
+}
+
+.hair, .body, .cloth, .head{
+   position: absolute;
+   width:100%;
+   height:100%;
+   top:0rpx;
+   left:0rpx;
+}
+
+.background {
+  width:100%;
+  position:absolute;
+  height:1025rpx;
+  bottom: 0rpx;
+}
+
+.person_container {
+   width: 626rpx;
+   height: 883rpx;
+   position: absolute;
+   top:0rpx;
+   left:0rpx;
+   bottom:0rpx;
+   right:0rpx;
+   margin: auto;
+   transform: translate(-30rpx, 186rpx);
+   z-index: 2;
+}
+
+.background {
+  z-index: 1;
+}
+
+.body {
+  z-index: 2;
+}
+
+.cloth {
+   z-index: 3;
+}
+
+.head {
+  z-index: 4;
+}
+
+.hair {
+  z-index: 5;
+}
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}

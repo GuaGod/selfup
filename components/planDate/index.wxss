@@ -1,0 +1,37 @@
+/* components/planDate/index.wxss */
+
+.container {
+  width: 96rpx;
+  margin-left: 17rpx;
+  margin-right: 17rpx;
+  color: #546e89;
+  font-size: 28rpx;
+}
+
+.monthDay_container {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 4rpx solid rgb(210, 210, 210);
+  height: 114rpx;
+  width: 100%;
+  justify-content: center;
+}
+
+.month {
+  font-size: 40rpx;
+  color: rgb(160, 160, 160);
+  font-weight: 600;
+  width: 40rpx;
+}
+
+.day {
+  font-size: 28rpx;
+  color: rgb(143, 134, 134);
+  height: 38rpx;
+  line-height: 38rpx;
+}
+
+.week {
+  color: rgb(210, 210, 210);
+  text-align: center;
+}

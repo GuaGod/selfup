@@ -1,0 +1,43 @@
+/* components/missionChoose/index.wxss */
+.missionList_container {
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: rgb(248, 248, 248);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.more {
+  font-size:24rpx;
+  margin-top: 20rpx;
+  color:#666;
+  width:168rpx;
+  text-align: center;
+}
+
+.add {
+  width: 84rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  margin-top:6rpx;
+  text-align: center;
+  margin-bottom:6rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  font-size:60rpx;
+  font-weight:600;
+  color:rgb(248, 248, 248);
+  margin-left:6rpx;
+  margin-right:6rpx;
+  background-color:rgba(220, 220, 220, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add image {
+   display: block;
+   height:40rpx;
+   width:40rpx;
+}

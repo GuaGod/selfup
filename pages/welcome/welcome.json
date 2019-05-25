@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "s-myImage": "../../components/myImage/index",
+    "i-progress": "../../dist/progress/index",
+    "i-button": "../../dist/button/index"
+  },
+  "disableScroll": true
+}

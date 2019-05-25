@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "s-myImage": "../../components/myImage/index",
+    "s-planHeader": "../../components/planHeader/index",
+    "s-calendar": "../../components/calendar/index",
+    "s-planDate": "../../components/planDate/index",
+    "s-planShow": "../../components/planShow/index",
+    "s-planChoose": "../../components/missionChoose/index",
+    "i-spin": "../../dist/spin/index",
+    "i-icon": "../../dist/icon/index"
+  },
+  "disableScroll": true
+}

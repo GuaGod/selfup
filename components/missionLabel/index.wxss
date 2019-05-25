@@ -1,0 +1,26 @@
+/* components/mission/missionLabel/index.wxss */
+.container {
+  width: 84rpx;
+  height: 84rpx;
+  font-size: 20rpx;
+  text-indent: 16rpx;
+  color:white;
+  line-height: 84rpx;
+  margin-top:6rpx;
+  margin-bottom:6rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left:6rpx;
+  margin-right:6rpx;
+}
+
+.container::first-letter{
+  font-size:34rpx;
+}
+
+.container .content {
+  height:100%;
+  width: 100%;
+}

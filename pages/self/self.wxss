@@ -1,0 +1,258 @@
+/* pages/self/self.wxss */
+.header_container_outer {
+  position: absolute;
+  top:0rpx;
+  width:100%;
+  z-index: 100;
+}
+
+.header_container {
+   height: 38rpx;
+   line-height: 38rpx;
+   display: flex;
+   align-items: center;
+}
+
+.friends_icon {
+  height:38rpx;
+  width:53rpx;
+  display: block;
+  margin-left: 10rpx;
+  margin-right:14rpx;
+  margin-bottom:2rpx;
+}
+
+
+.header_title {
+   height:38rpx;
+   margin-top:-4rpx;
+   color: rgb(137, 137, 137);
+   font-size:38rpx;
+}
+
+.leftTool_container {
+   height:100%;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   position:fixed;
+   left:0rpx;
+}
+
+.powerTable_container {
+   position:fixed;
+   right:40rpx;
+   top:200rpx;
+   width:220rpx;
+   z-index: 6;
+}
+
+.self_container {
+  width:100%;
+  height:100%;
+}
+
+.bottomNav_container {
+   position:fixed;
+   height:120rpx;
+   bottom:0rpx;
+   width:100%;
+}
+
+.bg {
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0rpx;
+  left:0rpx;
+  z-index:-100;
+}
+
+.hair, .body, .cloth, .head{
+   position: absolute;
+   width:100%;
+   height:100%;
+   top:0rpx;
+   left:0rpx;
+}
+
+.background {
+  width:100%;
+  position:absolute;
+  height:1025rpx;
+  bottom: 0rpx;
+}
+
+.person_container {
+   width: 626rpx;
+   height: 883rpx;
+   position: absolute;
+   top:0rpx;
+   left:0rpx;
+   bottom:0rpx;
+   right:0rpx;
+   margin: auto;
+   transform: translate(-30rpx, 186rpx);
+   z-index: 2;
+}
+
+.background {
+  z-index: 1;
+}
+
+.body {
+  z-index: 2;
+}
+
+.cloth {
+   z-index: 3;
+}
+
+.head {
+  z-index: 4;
+}
+
+.hair {
+  z-index: 5;
+}
+
+.goodFriends {
+   position:fixed;
+   bottom:0rpx;
+   right:0rpx;
+   z-index: 1000;
+}
+
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}
+
+.calendar_container {
+   width: 190rpx;
+   height: 158rpx;
+   position: absolute;
+   z-index: 6;
+   top: 212rpx;
+   left: 60rpx;
+}
+
+.calendar_container image {
+   display: block;
+   height:100%;
+   width:100%;
+}
+
+.dairy_container {
+   width: 160rpx;
+   height: 104rpx;
+   position: absolute;
+   z-index: 6;
+   right: 54rpx;
+   bottom: 166rpx;
+}
+
+.dairy_container image {
+  height:100%;
+  width:100%;
+  display: block;
+}
+
+.communicate_container {
+  width: 470rpx;
+  height: 223rpx;
+  position: absolute;
+  z-index: 7;
+  bottom: 500rpx;
+  left: 90rpx;
+}
+
+.communicate_container image {
+  height:100%;
+  width:100%;
+  display: block;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+
+.communicate_content {
+  position: absolute;
+  z-index: 1;
+  width: 340rpx;
+  height: 300rpx;
+  font-size: 24rpx;
+  top:84rpx;
+  left: 78rpx;
+  color: rgb(137, 137, 137);
+}
+
+
+.helpStep_mask {
+  height:100%;
+  width:100%;
+  position: absolute;
+  background: rgba(0,0,0,.75);
+  z-index:100;
+  top:0rpx;
+  left:0rpx;
+}
+
+.mask_image {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.helpStep_container {
+  z-index: 101;
+  position:absolute;
+}
+
+.step0_container {
+  right: 30rpx;
+  bottom: 367rpx;
+  width: 288rpx;
+  height: 251rpx;
+}
+
+.step1_container {
+  width:421rpx;
+  height:186rpx;
+  right: 277rpx;
+  top: 366rpx;
+}
+
+
+.step21_container {
+   width: 309rpx;
+   height: 166rpx;
+   right: 23rpx;
+   bottom: 259rpx;
+}
+
+.step22_container {
+    width:178rpx;
+    height:156rpx;
+    top: 303rpx;
+    left: 243rpx;
+}
+
+.step3_container {
+   width: 100%;
+   height: 50rpx;
+   line-height: 50rpx;
+   text-align: center;
+   bottom:410rpx;
+   font-size: 28rpx;
+   margin: auto;
+   color: white;
+}
+
+.step3_container .name{
+    color: #feac0d;
+}

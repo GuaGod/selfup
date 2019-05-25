@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "s-header": "../../components/header/index",
+    "i-spin": "../../dist/spin/index",
+    "i-icon": "../../dist/icon/index"
+  },
+  "disableScroll": false
+}

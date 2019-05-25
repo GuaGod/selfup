@@ -1,0 +1,18 @@
+<view class="container">
+  <block wx:for="{{_powerList}}">
+    <view class="item">
+      <view class="statement">
+        <image src="{{item.icon}}" />
+      </view>
+
+      <view class="progress_container">
+        <i-progress percent="{{item.percent}}" status="blue" i-class="my_progress" 
+                    hideInfo stroke-width='9'></i-progress>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="moreInformation" bindtap="moreInformation">
+    详情数据 ...
+</view>

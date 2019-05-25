@@ -1,0 +1,20 @@
+/* components/addSelfMission/inputThinName/index.wxss */
+
+.container {
+  width:680rpx;
+  margin:20rpx auto 0;
+  border-radius: 20rpx;
+  height:70rpx;
+  border:1px solid #e4e4e4;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.container input {
+  height:60rpx;
+  display: block;
+  padding-left:30rpx;
+  font-size:28rpx;
+  width: 100%;
+}

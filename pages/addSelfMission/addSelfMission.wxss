@@ -1,0 +1,24 @@
+/* pages/plan/addSelfMission/addSelfMission.wxss */
+.chooseThing_container {
+   margin-top:30rpx;
+}
+
+.inputThingName_container {
+  margin-top:30rpx;
+}
+
+.submit {
+  position:absolute;
+  right: 30rpx;
+  margin-top:50rpx;
+  width:150rpx;
+  height:62rpx;
+  text-align:center;
+  line-height:62rpx;
+  overflow: hidden;
+  color:white;
+  background:linear-gradient(to top right, #ffcdcb, #bfcefe);
+  box-shadow:0 8rpx 16rpx #bfcefe;
+  border-radius:16rpx;
+  font-size:32rpx;
+}

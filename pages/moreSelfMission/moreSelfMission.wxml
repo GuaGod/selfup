@@ -1,0 +1,14 @@
+<s-moreSelfMissionHeader>
+
+</s-moreSelfMissionHeader>
+
+<scroll-view class="container" id="container" lower-threhold="50" scroll-y="true" scroll-x="false" bindscrolltolower="onScrollLower">
+  <block wx:for="{{missionList}}">
+    <s-moreSelfMissionItem selfMission="{{item}}">
+    </s-moreSelfMissionItem>
+  </block>
+</scroll-view>
+
+<view wx:if="{{isArrowShow}}" class="arrow">
+  <image src="/images/doubleArrow-icon.png"></image>
+</view>

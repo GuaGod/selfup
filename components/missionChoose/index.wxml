@@ -1,0 +1,14 @@
+<view class="container">
+    <view class="missionList_container">
+    <block wx:for="{{missionList}}">
+        <s-missionLabel missionData="{{item}}" class="missionList_item"></s-missionLabel>
+    </block>
+        <view class="add" bindtap="addMissionPage">
+           <image src="/images/add_plan.png"></image>
+        </view>
+    </view>
+    <view class="more"
+          bindtap="onGetMoreSelfMission">
+       管理事件类别
+    </view>
+</view>

@@ -1,0 +1,40 @@
+<s-header>
+    <view class="header_container" bindtap="back">
+    <image src="/images/home_icon.png" class="home_icon"></image>
+    <view class="header_title">HOME</view>
+    </view>
+</s-header>
+
+<scroll-view class="container" 
+             id="container"
+             lower-threhold="50"
+             scroll-y="true"
+             scroll-x="false"
+            bindscrolltolower="onScrollLower">
+
+      <view class="wrap" wx:if="{{!todayHasDariy}}">
+       <view class="box add_container"
+             bindtap="add">
+          <image src="/images/dairyAdd.png"
+                 class="add"></image>
+       </view>
+      </view>
+
+      <block wx:for="{{dairyData}}" wx:key="{{item.id}}">
+      <view class="wrap">
+       <view class="box"
+             data-dairyid="{{item.id}}"
+             bindtap="getDetail">
+           <view class="title">{{item.title}}</view>
+           <view class="content">{{item.content}}</view>
+
+           <view class="statement">
+            <view class="emotion"><text style="color:{{item.emotionValue < 50 ? '#bfcefe': '#ffcdcb'}};">情绪值：{{item.emotionValue}}</text></view>
+            <view class="time">{{item.time}}</view>
+           </view>
+       </view>
+      </view>
+       </block>
+</scroll-view>
+
+

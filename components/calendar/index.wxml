@@ -1,0 +1,34 @@
+<view class="container" bindtouchstart="handlerTouchstart"
+                        bindtouchmove="handlerTouchmove"
+                        >
+  <view class="head">
+    <view class="headContainer">
+      {{month}},{{year}}
+    </view>
+
+    <view class="weekContainer">
+      <block wx:for="{{weekHead}}">
+        <view class="weekHead">
+          {{item}}
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <view 
+        class="day-container">
+    <block wx:for="{{forbidBoxs}}">
+      <view class="forbidBox"></view>
+    </block>
+    
+    <block wx:for="{{planList}}" wx:key="{{index}}">
+       <view class="planBox {{item.hasPlan ? 'hasPlan' : ''}}"
+             bindtap="changeNowDate"
+             data-day="{{index + 1}}">
+          {{index + 1}}
+       </view>
+    </block>
+  </view>
+
+</view>

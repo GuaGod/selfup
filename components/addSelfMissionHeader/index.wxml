@@ -1,0 +1,10 @@
+<view class="container"> 
+   <view class="back">
+    <image src="/images/back-icon.png"
+           bindtap="onTapBack"/>
+   </view>
+   <view class="title">添加事件类别</view>
+ 
+</view>
+
+ 

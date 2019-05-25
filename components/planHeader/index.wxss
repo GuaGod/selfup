@@ -1,0 +1,62 @@
+/* components/planHeader/index.wxss */
+.container {
+  height: 120rpx;
+  box-sizing: border-box;
+  padding-top:40rpx;
+  padding-right:200rpx;
+  background: #fcfcfc;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  
+  z-index:200;
+  position:relative;
+}
+
+
+.home {
+  margin-left: 40rpx;
+  font-size: 32rpx;
+  color: rgb(131, 131, 131);
+  height:42rpx;
+  line-height:42rpx;
+}
+
+.home_icon {
+  height: 42rpx;
+  width: 42rpx;
+}
+
+
+.title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color:rgb(137, 137, 137);
+  margin-left:130rpx;
+  width:160rpx;
+  text-align: right;
+}
+
+.calendar-icon, .expand-icon, .close-icon {
+  height: 40rpx;
+  width: 40rpx;
+  padding:20rpx;
+}
+
+.calendar-icon image {
+  height:40rpx;
+  width:40rpx;
+  display:block;
+}
+
+.expand-icon image {
+  height:100%;
+  width:100%;
+  display:block;
+}
+
+.close-icon image {
+  height:100%;
+  width:100%;
+  display:block;
+}

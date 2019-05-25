@@ -1,0 +1,125 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.6",
+	"appid": "wxf15f55548925965d",
+	"projectname": "%E5%85%BB%E6%88%90%E8%87%AA%E6%88%91",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 8,
+			"list": [
+				{
+					"id": -1,
+					"name": "日记",
+					"pathName": "pages/dairy/dairy",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "写日记",
+					"pathName": "pages/writeDairy/writeDairy",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "数据可视化",
+					"pathName": "pages/analyse/analyse",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建自我",
+					"pathName": "pages/createSelf/createSelf",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "自我",
+					"pathName": "pages/self/self",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "计划",
+					"pathName": "pages/plan/plan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的事件",
+					"pathName": "pages/moreSelfMission/moreSelfMission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加事件",
+					"pathName": "pages/addSelfMission/addSelfMission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "日记详情",
+					"pathName": "pages/dairyDetail/dairyDetail",
+					"query": "dairyId=54",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "更多任务",
+					"pathName": "pages/moreSelfMission/moreSelfMission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "朋友家",
+					"pathName": "pages/friendHome/friendHome",
+					"query": "userid=19",
+					"scene": null
+				}
+			]
+		}
+	}
+}

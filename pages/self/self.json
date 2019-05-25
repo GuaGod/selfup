@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+"s-powerTable": "../../components/powerTable/index",
+    "s-myImage": 
+"../../components/myImage/index",
+"i-drawer": "../../dist/drawer/index",
+    "s-goodFriends": "../../components/goodFriends/index",
+    "i-spin": "../../dist/spin/index",
+    "i-icon": "../../dist/icon/index",
+    "s-header": "../../components/header/index"
+  },
+  "disableScroll": true
+}

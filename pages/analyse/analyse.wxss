@@ -1,0 +1,71 @@
+page {
+  overflow-y: auto !important;
+}
+
+s-header {
+  z-index: 7;
+}
+
+.header_container {
+   height: 38rpx;
+   line-height: 38rpx;
+   display: flex;
+   align-items: center;
+}
+
+.home_icon {
+  height:42rpx;
+  width:42rpx;
+  display: block;
+  margin-left:10rpx;
+  margin-right:14rpx;
+}
+
+.header_title {
+   height:38rpx;
+   margin-top:4rpx;
+   color: rgb(137, 137, 137);
+   font-size:38rpx;
+}
+
+.container {
+   height:auto;
+   width:100%;
+   box-sizing: border-box;
+   overflow: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+ 
+ .chart_container {
+   width:92%;
+   height: 567rpx;
+ }
+
+
+
+ .emotion_container {
+   margin-top: 40rpx;
+   height:547rpx;
+ }
+
+ .mostThing_container {
+   margin-top:46rpx;
+   height: 547rpx;
+ }
+
+ .thingFinish_container  {
+   height:600rpx;
+   width: 500rpx;
+ } 
+ 
+
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}

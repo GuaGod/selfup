@@ -1,0 +1,45 @@
+<s-planHeader bindtapCalendar="onTapCalendar" bindtapExpand="onTapExpand" bindtapClose="onTapClose" planHeaderTag="{{planHeaderTag}}" isCalendarShow="{{isHeaderCalendarShow}}" isCloseShow="{{isHeaderCloseShow}}" lock="{{lock}}"></s-planHeader>
+
+<view class="container">
+  <view class="top_container" style="{{hasEditorMission ? 'height:calc(100% - 100rpx);' : 'height:100%;'}}">
+  <view class="left-date">
+    <s-planDate date="{{date}}"></s-planDate>
+  </view>
+  <view class="middle-content">
+    <s-planShow plan="{{plan}}" clearChooseTag="{{clearChooseTag}}" bindchooseMission="chooseMission" bindcancelChooseMission="cancelChooseMission" bindcompleteAMission="completeAMission" ></s-planShow>
+  </view>
+  <view class="right-missions">
+    <s-planChoose bindcompleteChoose="completeChoose"></s-planChoose>
+  </view>
+
+  </view>
+
+  <view class="editorTip" wx:if="{{hasEditorMission}}">
+  <view class="chooseTime">当前已选中{{chooseTime}}</view>
+  <view class="completeChoosedMission" bindtap="completeChoosedMission" class="editor_icon">
+    <image src="/images/duihao.png" ></image>
+  </view>
+  <view class="cancelChoose" bindtap="cancelChoose" class="editor_icon">
+    <image src="/images/quxiao.png"></image>
+  </view>
+  <view class="deleteChoose" bindtap="deleteChoose" class="editor_icon">
+    <image src="/images/shanchu.png" ></image>
+  </view>
+</view>
+</view>
+
+
+<view hidden="{{!isCalendarShow}}" class="calendar">
+  <view class="calendar-container">
+    <s-calendar bindchangeNowDate="onChangeNowDate"></s-calendar>
+  </view>
+  <view class="shadow" bindtap="onTapShadow">
+  </view>
+</view>
+
+
+
+<i-spin custom fix wx:if="{{loading}}">
+  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <view>Loading</view>
+</i-spin>

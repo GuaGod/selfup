@@ -1,0 +1,17 @@
+@import './static/ui/animation.wxss';
+
+page {
+  font-family: "微软雅黑";
+  height:100%;
+  width:100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+ 
+
+
+

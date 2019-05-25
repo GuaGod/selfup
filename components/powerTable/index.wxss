@@ -1,0 +1,44 @@
+/* components/powerTable/index.wxss */
+.container {
+  width:300rpx;
+}
+
+.item {
+  width:300rpx;
+  height:50rpx;
+  display: flex;
+}
+
+.item .statement {
+  height:40rpx;
+  width:40rpx;
+  margin-right:22rpx;
+}
+
+.item .statement image {
+  height:100%;
+  width:100%;
+  display: block;
+}
+
+.item .progress_container {
+  height:40rpx;
+  width:167rpx;
+  overflow: hidden;
+  padding-bottom: 14rpx !important;
+  line-height: 40rpx;
+  display: inline-block;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.moreInformation {
+  width: 218rpx;
+  height: 54rpx;
+  background: rgba(241, 241, 241, 1);
+  font-size: 24rpx;
+  color:rgb(156, 156, 156);
+  text-align:center;
+  line-height:54rpx;
+  border-radius: 10rpx;
+}

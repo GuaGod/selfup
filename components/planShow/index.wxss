@@ -1,0 +1,67 @@
+/* components/planShow/index.wxss */
+.container {
+  width:500rpx;
+  height:100%;
+  box-sizing: border-box;
+  overflow:auto;
+  padding-bottom:132rpx;
+}
+
+.mission_item {
+  width:500rpx;
+  height:auto;
+  box-sizing: border-box;
+  overflow:auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mission_item .title {
+  width:40rpx;
+  text-align: right;
+  height:64rpx;
+  line-height:64rpx;
+  color:rgb(190, 186, 203);
+}
+
+
+.mission_box {
+  width:180rpx;
+  height:60rpx;
+  margin-left:6rpx;
+  margin-right:6rpx;
+  background: rgb(230, 230, 230);
+  border-radius: 6rpx;
+  color:white;
+  line-height:60rpx;
+  text-align: center;
+  font-size:30rpx;
+  border-top:2rpx solid #ffffff;
+   border-left:2rpx solid #ffffff;
+   border-bottom:2rpx solid #ffffff;
+   border-right:10rpx solid #ffffff;
+   text-overflow:ellipsis;
+   overflow:hidden;
+   white-space:nowrap;
+}
+
+.completed {
+  opacity: 1;
+  color:white;
+  box-shadow: 0 4rpx 8rpx rgba(7, 17, 27, .3);
+}
+
+.notCompleted {
+  background: rgb(230, 230, 230) !important;
+  color:rgba(255, 255, 255, 1);
+  box-shadow: 0 4rpx 8rpx rgba(7, 17, 27, .3);
+}
+
+.choosed {
+   background:#b0d6ec !important;
+   border-top:2rpx solid #bde4fa;
+   border-left:2rpx solid #bde4fa;
+   border-bottom:2rpx solid #bde4fa;
+   border-right:10rpx solid #bde4fa;
+}
+

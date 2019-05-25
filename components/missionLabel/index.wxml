@@ -1,0 +1,6 @@
+<view class="container">
+     <view class="content"
+           style="background:{{missionData.thingColor}}"
+           bindtap="onTapMission"
+           data-thingid="{{missionData.thingId}}">{{missionData.thingName}}</view>
+</view>

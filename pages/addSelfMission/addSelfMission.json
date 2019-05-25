@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "s-addSelfMissionHeader" : "../../components/addSelfMissionHeader/index",
+    "s-inputThingName" : "../../components/inputThingName/index",
+    "s-chooseThingColor" : "../../components/chooseThingColor/index",
+    "i-modal": "../../dist/modal/index"
+  },
+  "disableScroll": true
+}

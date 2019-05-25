@@ -1,0 +1,7 @@
+<view style="background:{{bgColor}}"
+               class="box"
+               bindtap="onTapColorBox"
+               >
+    <image wx:if="{{isShow}}"
+           src="/images/duihaowhite-icon.png"/>               
+</view>

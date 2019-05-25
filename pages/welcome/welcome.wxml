@@ -1,0 +1,23 @@
+<view class="container">
+  <image src="../../images/welcome_bg.png" class="bg" mode="aspectFill"/>
+
+  <view class="content-container">
+    <view class="loading_icon">
+
+    </view>
+
+    <view class="progress {{isCompletedLoad ? ' animation-slide-top-out' : ''}}">
+      <view class="progress_bar">
+        <i-progress percent="{{progress}}" hide-info="{{true}}" stroke-width="5" status="active"></i-progress>
+      </view>
+      <view class="progress_num">{{progress}}%</view>
+    </view>
+
+    <view>
+
+    <button open-type="getUserInfo"
+            bindgetuserinfo="bindGetUserInfo"
+            class="button {{isCompletedLoad ? 'animation-fade' : 'button-hide'}}">进入</button> 
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<s-header bindtap="back">
+ <view class="header_container">
+    <i-icon type="return" size="16"></i-icon>
+    <view class="header_title">写日记</view>
+    </view>
+</s-header>
+
+<view class="container">
+<view class="image_container" style="background-image:url({{image}})">
+     
+</view>
+
+<view class="title">
+  {{title}}
+</view>
+
+<view class="content">
+  {{content}}
+</view>
+
+<view class="time">
+  {{time}}
+</view>
+
+</view>
+
+

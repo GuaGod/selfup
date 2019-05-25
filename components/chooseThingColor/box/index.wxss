@@ -1,0 +1,17 @@
+/* components/addSelfMission/chooseThingColor/box/index.wxss */
+
+.box {
+  width:80rpx;
+  margin:10rpx;
+  border-radius: 50%;
+  height:80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 16rpx rgba(7, 17, 27, .3);
+}
+
+.box image{
+  width:40rpx;
+  height:40rpx;
+}

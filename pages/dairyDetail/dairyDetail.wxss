@@ -1,0 +1,69 @@
+/* pages/dairyDetail/dairyDetail.wxss */
+page {
+  overflow:auto;
+}
+
+.container {
+  position: relative;
+  padding-bottom: 40rpx;
+}
+
+.header_container {
+   height: 32rpx;
+   line-height: 32rpx;
+   display: flex;
+   align-items: center;
+}
+
+
+.header_title {
+   height:32rpx;
+   margin-top:4rpx;
+   color: rgb(137, 137, 137);
+   font-size:38rpx;
+}
+
+.image_container {
+  width:750rpx;
+  height: 552rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+image {
+  height:1000rpx;
+  width:750rpx;
+  display: block;
+}
+
+
+.title {
+  margin-top: 40rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: rgb(143, 134, 134);
+  font-size:60rpx;
+  border-bottom:2rpx solid rgb(232, 231, 232);
+  box-sizing: border-box;
+  margin-left:40rpx;
+  margin-right:40rpx;
+}
+
+.content {
+  margin-top:20rpx;
+  margin-left:40rpx;
+  margin-right:40rpx;
+  color: rgb(181, 175, 175);
+  font-size:30rpx;
+  text-indent: 84rpx;
+  min-height:400rpx;
+}
+
+.time {
+  text-align: right;
+  margin-left:40rpx;
+  margin-right:40rpx;
+  color: rgb(181, 175, 175);
+}
+

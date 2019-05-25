@@ -1,0 +1,24 @@
+<s-addSelfMissionHeader bindsubmit="onTapSubmit">
+
+</s-addSelfMissionHeader> 
+<view class="inputThingName_container">
+<s-inputThingName bindinputThingName="onInputThingName">
+
+</s-inputThingName>
+</view>
+
+<view class="chooseThing_container">
+ <s-chooseThingColor bindchooseThingColor="onChooseThingColor">
+</s-chooseThingColor>
+</view>
+
+<view class="submit" bindtap="submit">
+   完成
+</view>
+
+<i-modal title="选择事件类型"
+         visible="{{isClassVisible}}"
+         actions="{{actions}}"
+         action-mode="{{ vertical }}"
+         bind:click="handleModal">
+</i-modal>

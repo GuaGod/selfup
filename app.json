@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/createSelf/createSelf",
+    "pages/self/self",
+    "pages/analyse/analyse",
+    "pages/plan/plan",
+    "pages/dairy/dairy",
+    "pages/writeDairy/writeDairy",
+    "pages/moreSelfMission/moreSelfMission",
+    "pages/addSelfMission/addSelfMission",
+    "pages/dairyDetail/dairyDetail",
+    "pages/friendHome/friendHome"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "permission":{
+  "scope.userLocation": {
+      "desc": "获取地理位置"
+  }
+  },
+  "sitemapLocation": "sitemap.json"
+}

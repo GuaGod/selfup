@@ -1,0 +1,7 @@
+<view class="container">
+   <view class="monthDay_container">
+      <view class="month">{{month}}</view>
+      <view class="day">{{day}}</view>
+   </view>
+   <view class="week">{{week}}</view>
+</view>

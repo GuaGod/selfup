@@ -1,0 +1,22 @@
+<s-header>
+ <view class="header_container" bindtap="returnHome">
+    <i-icon type="return" size="16"></i-icon>
+    <view class="header_title">回家</view>
+    </view>
+</s-header>
+
+<view class="self_container">
+  <view class="person_container">
+    <image src="{{hair}}" class="hair"></image>
+    <image src="{{head}}" class="head"></image>
+    <image src="{{cloth}}" class="cloth"></image> 
+    <image src="{{body}}" class="body"></image>
+  </view>
+  
+</view>
+<image src="{{backdrop}}" class="background"></image>
+
+<i-spin custom fix wx:if="{{loading}}">
+  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <view>Loading</view>
+</i-spin>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "s-header": "../../components/header/index",
+    "i-icon": "../../dist/icon/index",
+    "i-spin": "../../dist/spin/index"
+  },
+  "disableScroll": false
+}
