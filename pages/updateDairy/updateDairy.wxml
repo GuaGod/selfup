@@ -7,8 +7,7 @@
 
 <view class="dairy_container">
     <view class="camera" bindtap="takePhoto">
-       <image wx:if="{{!hasImage}}" src="/images/dairyCamera.png" class="camera_icon"></image>
-       <image wx:if="{{hasImage}}" src="{{image}}"  class="remote_image"/>
+       <image  mode='aspectFill' src="{{image}}" class="remote_image"></image>
     </view>
 
     <view class="content">
@@ -22,8 +21,12 @@
                   class="text"
                   bindinput="changeText"
                   maxlength='{{200}}'></textarea>
-              
-              <view bindtap="submit"
+              <view>
+              <view class="bottom">
+               <view class="time">{{emotionTime}}</view>
+               <view bindtap="submit"
                     class="submit">保存</view>
+              </view>
+             </view>
     </view>
 </view>

@@ -43,8 +43,8 @@ Page({
   },
 
   back: function () {
-     wx.switchTab({
-       url: '../dairy/dairy',
+     wx.navigateBack({
+       delta: 1
      })
   },
 
@@ -94,6 +94,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

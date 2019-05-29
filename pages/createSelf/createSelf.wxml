@@ -1,18 +1,18 @@
 <swiper class="container" bindchange="changeStep" current="{{currentStep}}">
   <!--选择男女-->
-  <swiper-item>
+  <swiper-item catchtouchmove='catchTouchMove'>
     <view class="chooseSex_container">
       <view class="title">
-         让我们来了解一下你ヾ(´･ω･｀)ﾉ
+        让我们来了解一下你ヾ(´･ω･｀)ﾉ
       </view>
 
       <view class="chooseSex">
         <view class="sexBox sexBox_male" bindtap="chooseSex" data-sex="1">
-          <image src="https://www.steins.club/selfup/imgs/element/male.png" class="sexBox_content" />
+          <s-myImage img="male_icon" class="sexBox_content" />
           <text>男生♂</text>
         </view>
         <view class="sexBox sexBox_female" bindtap="chooseSex" data-sex="0">
-          <image src="https://www.steins.club/selfup/imgs/element/female.png" class="sexBox_content" />
+          <s-myImage img="female_icon" class="sexBox_content" />
           <text>女生♀</text>
         </view>
       </view>
@@ -20,15 +20,30 @@
   </swiper-item>
 
   <!--创建出人物-->
-  <swiper-item class="createPerson_container">
+  <swiper-item class="createPerson_container" catchtouchmove='catchTouchMove'>
     <view class="quesBox">
       <image src="{{question}}"></image>
     </view>
 
-    <view class="answerBox">
+    <view class="answerBox" wx:if="{{questionNum === 0}}">
+      <view class="answerBox_item" data-ques="0" bindtap="answerFirstQuestion">
+        <view data-answer="A" class="{{choosed[0]['A'] ? 'choosed' : ''}} answer">外向</view>
+        <view data-answer="B" class="{{choosed[0]['B'] ? 'choosed' : ''}} answer">内向</view>
+      </view>
+      <view class="answerBox_item" data-ques="1" bindtap="answerFirstQuestion">
+        <view data-answer="A" class="{{choosed[1]['A']  ? 'choosed' : ''}} answer">思考</view>
+        <view data-answer="B" class="{{choosed[1]['B']  ? 'choosed' : ''}} answer">情感</view>
+      </view>
+      <view class="answerBox_item" data-ques="2" bindtap="answerFirstQuestion">
+        <view data-answer="A" class="{{choosed[2]['A']  ? 'choosed' : ''}} answer">判断</view>
+        <view data-answer="B" class="{{choosed[2]['B']  ? 'choosed' : ''}} answer">感知</view>
+      </view>
+
+    </view>
+    <view class="tip" wx:if="{{questionNum === 0}}">每行都要选一个标签哦~</view>
+    <view class="answerBox" wx:if="{{questionNum === 1|| questionNum === 2}}">
       <block wx:for="{{answerList}}">
-        <view data-answer="{{item.value}}" bindtap="answerQuestion"
-              class="quesAnswer_box">{{item.name}}</view>
+        <view data-answer="{{item.value}}" bindtap="answerQuestion" class="quesAnswer_box">{{item.name}}</view>
       </block>
     </view>
 
@@ -40,7 +55,7 @@
   </swiper-item>
 
   <!--完成创建-->
-  <swiper-item>
+  <swiper-item catchtouchmove='catchTouchMove'>
     <view class="self_container">
 
       <view class="person_created_container">
@@ -48,15 +63,15 @@
         <image src="{{head}}" class="head"></image>
         <image src="{{cloth}}" class="cloth"></image>
         <image src="{{body}}" class="body"></image>
-        <image src="{{background}}" class="background"></image>
+        <image src="/images/createPerson_bg.png" class="background"></image>
       </view>
 
-      <button bindtap="completeCreate" class="completeCreate" class="home">进入主页</button>
+      <view bindtap="completeCreate" class="completeCreate home">进入主页</view>
     </view>
 
     <i-spin custom fix wx:if="{{!isCreateComplete}}">
-      <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
-      <view>人物生成中</view>
+      <image src="/images/loading.png" class="icon-load"></image>
+      <view>生成人物中</view>
     </i-spin>
 
   </swiper-item>

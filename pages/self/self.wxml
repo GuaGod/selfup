@@ -24,7 +24,7 @@
 </view>
 
 <i-spin custom fix wx:if="{{loading}}">
-  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <image src="/images/loading.png" class="icon-load"/>
   <view>Loading</view>
 </i-spin>
 

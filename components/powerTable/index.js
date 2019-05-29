@@ -8,13 +8,14 @@ Component({
        type: Array,
        value: [],
        observer: function(newValue, oldValue ){
+          
            let _powerList = [];
            newValue.forEach(item => {
               let _obj  = item;
               let percent = item.percent || 0;
               percent = parseInt(percent);
-              if(item.statement === 'heart') {
-                 percent = Math.ceil((percent + 6) * 8.3);
+              if(item.statement === '情绪') {
+                 percent = Math.ceil((percent + 8) * 6.25);
               }
               
               _obj.percent = percent; 
@@ -23,11 +24,14 @@ Component({
            })
 
            
-
            this.setData({
              _powerList
            })
        }
+     },
+     isFriend: {
+       type: Boolean,
+       value: false
      }
   },
 
@@ -35,7 +39,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-     _powerList: []
+     _powerList: [],
+     isImageShow: true
   },
 
   /**
@@ -46,6 +51,11 @@ Component({
          wx.navigateTo({
            url: '../analyse/analyse',
          })
-      }
+      },
+    toggle: function () {
+      this.setData({
+        isImageShow: !this.data.isImageShow
+      })
+    },
   }
 })

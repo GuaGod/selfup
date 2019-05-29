@@ -11,6 +11,10 @@ let assetsPath = new Map([
   ['plan_icon', `${publicPath}/imgs/icon/plan_icon.png`],
   ['dairy_icon', `${publicPath}/imgs/icon/dairy_icon.png`],
   ['anaylse_icon', `${publicPath}/imgs/icon/anaylse_icon.png`],
+  ['femaleQues', `${publicPath}/imgs/person/female/femaleQues.png`],
+  ['maleQues', `${publicPath}/imgs/person/male/maleQues.png`],
+  ['female_icon', `${publicPath}/imgs/element/female.png`],
+  ['male_icon', `${publicPath}/imgs/element/male.png`],
 ])
 
 

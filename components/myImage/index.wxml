@@ -1,4 +1,5 @@
 <image src="{{src}}"
-       class="image">
+       class="image s-class"
+       mode="{{mode}}">
 
 </image>

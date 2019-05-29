@@ -7,7 +7,12 @@ Component({
   /**
    * 组件的属性列表
    */
+  externalClasses: ['s-class'],
   properties: {
+      mode: {
+        type: String,
+        value: ''
+      },
       img: {
         type: String,
         value: '',

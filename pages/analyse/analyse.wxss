@@ -11,6 +11,7 @@ s-header {
    line-height: 38rpx;
    display: flex;
    align-items: center;
+   padding:20rpx;
 }
 
 .home_icon {
@@ -36,6 +37,7 @@ s-header {
    display: flex;
    flex-direction: column;
    align-items: center;
+   -webkit-overflow-scrolling: touch
 }
  
  .chart_container {
@@ -54,10 +56,16 @@ s-header {
    margin-top:46rpx;
    height: 547rpx;
  }
+ 
+ .thingFinish_title {
+   width:100%;
+   font-size: 34rpx;
+   text-align: center;
+   color: #8d8d8d;
+ }
 
  .thingFinish_container  {
-   height:600rpx;
-   width: 500rpx;
+   height: 547rpx;
  } 
  
 
@@ -67,5 +75,9 @@ s-header {
     to   { transform: rotate(360deg);}
 }
 .icon-load{
-    animation: ani-demo-spin 1s linear infinite;
+    animation: ani-demo-spin 5s linear infinite;
+    height:80rpx;
+    width:80rpx;
+    margin:0 auto;
+    display:block;
 }

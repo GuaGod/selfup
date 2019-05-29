@@ -38,9 +38,17 @@ Page({
   onLoad: function(options) {
     let that = this;
 
+    setTimeout(() => {
+      that.setData({
+        isCompletedLoad: true
+      })
+    }, 4000);
+     
+
+    //检验是否有校验新手的缓存，如果没有则说明用户初次登录，且是新手，后期提供新手帮助
     MyStorage.getItem('isNewMan')
              .then(data => {
-                               
+                              
              }, () => {
                 MyStorage.setItem('isNewMan', true);
              })
@@ -92,11 +100,17 @@ Page({
     let encryptedData = detail.encryptedData;
     let iv = detail.iv;
 
+    setTimeout(() => {
+       wx.hideLoading();
+       wx.hideToast();
+    }, 5000);
+
     this._login(encryptedData, iv)
       .then(data => {
         let isExist = data.isExist;
          
         if (isExist === false) {
+          MyStorage.setItem('isNewMan', true);
           wx.redirectTo({
             url: '../createSelf/createSelf',
           })
@@ -111,7 +125,11 @@ Page({
         }
         
       }).catch(err => {
-        console.error(err);
+        wx.showToast({
+          title: '出错啦，重新点击试试',
+        })
+        wx.hideLoading();
+        wx.hideToast();
       })
   },
 
@@ -143,7 +161,7 @@ Page({
                   getApp().globalData.LOGIN_COOKIE = loginCookie;
 
                   let data = res.data;
-                  if (data.status === 1) {
+                  if (data.success) {
                     resolve({
                       isExist: data.isExist,
                       figure: data.figure,
@@ -160,11 +178,11 @@ Page({
           })
         },
         fail: function(err) {
-          reject(err);
           wx.hideLoading();
           wx.showToast({
             title: '登录失败！',
           })
+          reject(err);
         }
       });
     })
@@ -184,6 +202,7 @@ Page({
   },
 
   _changeWeather(data) {
+    //从高德获取天气，暂时只有这三种天气
     let sunny = /晴/;
     let rain = /雨/;
     let cloudy = /云|阴/;
@@ -213,6 +232,10 @@ Page({
    */
   onReady: function() {
 
+  },
+
+  onError: function() {
+    
   },
 
   /**
@@ -256,6 +279,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

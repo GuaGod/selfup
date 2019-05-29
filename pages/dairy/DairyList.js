@@ -18,16 +18,7 @@ class DairyList {
     this.pageIndex = 1;
     this.pageSize = 6;
     this.dairyList = [];
-  }
-
-  isTodayHasDairy() {
-     return MyHttp.request({
-       url: dairyAPI.isEmotionExist,
-       header: {
-         'content-type': 'application/x-www-form-urlencoded',
-         'Cookie': getApp().globalData.LOGIN_COOKIE
-       },
-     })
+    this.hasMoreDairy = true;
   }
 
   getMoreDairys() {
@@ -71,7 +62,7 @@ class DairyList {
           tmp.title = item.title || '无标题';
           
           tmp.emotionValue = Number(item.emotionValue) || 0;
-          tmp.emotionValue = parseInt((tmp.emotionValue + 6) * 8.33);
+          tmp.emotionValue = parseInt((tmp.emotionValue + 8) * 6.25);
 
 
           tmp.id = item.emotionId;
@@ -91,6 +82,20 @@ class DairyList {
       });
 
       return operatedData;
+  }
+
+  deleteDairy(dairyId) {
+    
+    return MyHttp.request({
+      url: dairyAPI.deleteEmotion,
+      data: {
+        emotionId: dairyId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE
+      }
+    })
   }
     
 }

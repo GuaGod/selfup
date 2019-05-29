@@ -10,6 +10,7 @@ page {
   height:1200rpx;
   width:750rpx;
   box-sizing: border-box;
+  -webkit-overflow-scrolling: touch
 }
 
 .arrow {

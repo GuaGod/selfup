@@ -10,7 +10,8 @@
     "pages/moreSelfMission/moreSelfMission",
     "pages/addSelfMission/addSelfMission",
     "pages/dairyDetail/dairyDetail",
-    "pages/friendHome/friendHome"
+    "pages/friendHome/friendHome",
+    "pages/updateDairy/updateDairy"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,10 +20,10 @@
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
-  "permission":{
-  "scope.userLocation": {
+  "permission": {
+    "scope.userLocation": {
       "desc": "获取地理位置"
-  }
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

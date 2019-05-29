@@ -58,6 +58,7 @@ class Person {
               return false;
             }
         })
+        
         Promise.resolve({
           success: true
         })
@@ -76,7 +77,7 @@ class Person {
 
   setAnswer(answerStr) {
     let that = this;
-
+    console.log(answerStr);
     let answerMap = Number(this.sex) === 0 ? femaleAnswerMap : maleAnswerMap;
     let hairAndClothCode = answerMap.get(answerStr);
     let hairCode = Math.floor(hairAndClothCode / 10);
@@ -134,11 +135,10 @@ class Person {
    * @return Promise
    */
 
-  downloadPersonImg() {
+  downloadPersonImg(imgMap) {
       let that = this;
-      let imgArr = [that.hair.imgAddrGood, that.cloth.imgAddrGood, that.body.imgAddrGood, that.head.imgAddrGood];
-      
-      return AssertLoader.download(imgArr);              
+ 
+      return AssertLoader.download(imgMap);              
   }
 
 

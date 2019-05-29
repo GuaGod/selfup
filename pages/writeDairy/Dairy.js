@@ -22,15 +22,6 @@ class Dairy {
 
   }
 
-  hasDairy() {
-     return MyHttp.request({
-       url: dairyAPI.isEmotionExist,
-       header: {
-         'content-type': 'application/x-www-form-urlencoded',
-         'Cookie': getApp().globalData.LOGIN_COOKIE
-       },
-     })
-  }
 
   save(obj) {
     return MyStorage.setItem('dairy', obj);
@@ -64,8 +55,6 @@ class Dairy {
   update(obj, imagePath) {
     
     obj = Object.assign(dairyObj, obj);
-    console.log(JSON.stringify(obj));
-    console.log(obj.emotionId);
     return new Promise((resolve, reject) => {
       wx.uploadFile({
         url: dairyAPI.updateEmotionText,

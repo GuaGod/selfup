@@ -28,6 +28,10 @@ class AssertLoader {
           data: {
              imgSex: sex
           },
+         header: {
+           'content-type': 'application/x-www-form-urlencoded',
+           'Cookie': getApp().globalData.LOGIN_COOKIE
+         },
        })
     }
 
@@ -48,12 +52,12 @@ class AssertLoader {
      * return {Promise}
      */
 
-    static download(imgArr) {
+    static download(imgMap) {
        let downloadQueue = [];
 
-       imgArr.forEach((imgPath) => {
-          downloadQueue.push(AssertLoader.downloadAFile(imgPath));
-       })
+       for(let [key, value] of imgMap) {
+          downloadQueue.push(AssertLoader.downloadAFile(value));
+       }
 
        return Promise.all(downloadQueue);
     }

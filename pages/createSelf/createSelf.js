@@ -11,6 +11,8 @@ let person = new Person();
 let globalData = getApp().globalData;
 const MyStorage = globalData.MyStorage;
 const MyHttp = globalData.MyHttp;
+const Loader = globalData.Loader;
+const imageLoader = new Loader();
 
 const selfAPI = globalData.selfAPI;
 
@@ -24,54 +26,122 @@ Page({
     hasPrev: false,
     currentStep: 0,
     sex: 0, //用户选择的性别
-    question: maleQues[0].ques, //问题
-    answerList: maleQues[0].answerList, //答案列表
+    question: femaleQues[0].ques, //问题
+    answerList: femaleQues[0].answerList, //答案列表
     questionNum: 0, //第几个问题
-    answerStr: '', //答案字符串
+    answerArr: [], //答案数组
     hair: '',
     head: '',
     body: '',
     cloth: '',
-    isCreateComplete: true
+
+    isCreateComplete: false,
+    choosed: [{
+        'A': false,
+        'B': false,
+      },
+      {
+        'A': false,
+        'B': false,
+      },
+      {
+        'A': false,
+        'B': false,
+      },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let context = {};
+    let that = this;
+    imageLoader.init(context);
 
+    context.on('loadSuccess', function (loadNum, total) {
+      that.loadSuccess(loadNum, total);
+    });
+
+    context.on('completeLoad', function (filepathMap) {
+      that.completeLoad(filepathMap);
+    });
+  },
+
+  loadSuccess(loadNum, total) {
+  },
+
+  completeLoad(filepathMap) {
+    this.setData({
+      hair: filepathMap.get('hair'),
+      body: filepathMap.get('body'),
+      cloth: filepathMap.get('cloth'),
+      head: filepathMap.get('head'),
+      isCreateComplete: true,
+    });
+  },
+
+  answerFirstQuestion: function(data) {
+    let that = this;
+    let quesNum = data.currentTarget.dataset.ques;
+    let answer = data.target.dataset.answer;
+    this.data.answerArr[quesNum] = answer;
+    let choosed = this.data.choosed;
+    choosed[quesNum]['A'] = false;
+    choosed[quesNum]['B'] = false;
+    choosed[quesNum]['C'] = false;
+    choosed[quesNum]['D'] = false;
+
+    choosed[quesNum][answer] = true;
+    this.setData({
+      choosed: choosed
+    })
+
+    let isCompleted = true;
+    for(let i = 0; i < 3; i++) {
+      let item = this.data.answerArr[i];
+      if(item === undefined) {
+        isCompleted = false;
+      } 
+    }
+
+   
+    if(isCompleted) {
+ 
+      this.setData({
+        questionNum: 1,
+        question: that.data.sex === 0 ? femaleQues[1].ques : maleQues[1].ques, //问题
+
+        answerList: that.data.sex === 0 ? femaleQues[1].answerList : maleQues[1].answerList, //答案列表
+      })
+    }
   },
 
   answerQuestion: function(data) {
     let that = this;
     let answer = data.target.dataset.answer;
-    let answerStr = this.data.answerStr;
-    answerStr += answer;
-    this.setData({
-      answerStr
-    })
-
-    let quesNum = this.data.questionNum;
+    let questionNum = this.data.questionNum;
+    this.data.answerArr[questionNum + 2] = answer; 
     let questionType = this.data.sex === 0 ? femaleQues : maleQues;
     let quesSize = questionType.length;
 
     //如果不是最后一个问题，就下一个问题，否则设置回答之后到下一步
-    if (quesNum === quesSize - 1) {
-      person.setAnswer(this.data.answerStr);
+    if (questionNum === quesSize - 1) {
+      person.setAnswer(this.data.answerArr.join(''));
+      imageLoader.load(new Map([
+        ['hair', person.hair.imgAddrGood],
+        ['head', person.head.imgAddrGood],
+        ['cloth', person.cloth.imgAddrGood],
+        ['body', person.body.imgAddrGood]
+      ]))
       person.createPerson()
-            .then((data) => {
-              this.setData({
-                hair: person.hair.imgAddrGood,
-                head: person.head.imgAddrGood,
-                cloth: person.cloth.imgAddrGood,
-                body: person.body.imgAddrGood,
-                isCreateComplete: true
-              })
+            .then((data) => {     
+              getApp().globalData.userInfo.userId = data.userId;
             }, (err) => {
               return Promise.reject(err);
             })
- 
-      
+
+
       this.nextStep();
     } else {
       this.nextQuestion();
@@ -161,11 +231,13 @@ Page({
   },
 
   completeCreate: function() {
-      wx.redirectTo({
-        url: '../self/self',
-      })
+    wx.redirectTo({
+      url: '../self/self',
+    })
   },
-
+  catchTouchMove: function (res) {
+    return false;
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -212,6 +284,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

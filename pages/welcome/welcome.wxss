@@ -46,9 +46,9 @@
 }
 
 .button {
-  width:250rpx;
-  height:100rpx;
-  line-height:100rpx;
+  width:230rpx;
+  height:86rpx;
+  line-height:86rpx;
   color:#fff;
   background:#19be6b;
   

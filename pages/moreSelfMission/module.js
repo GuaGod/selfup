@@ -40,8 +40,11 @@ class MoreSelfMission{
     if(!this.hasMoreMission) {
       return;
     }
+    if (this._lock) {
+      return;
+    }
     this._getMoreMissions().then((data) => {
-
+      this._lock = false;
       let _list_ = data.daylist;
       that.pageIndex = that.pageIndex + _list_.length;
       
@@ -62,9 +65,6 @@ class MoreSelfMission{
   }
 
   _getMoreMissions() {
-     if(this._lock) {
-       return;
-     }
      let that = this;
      this._lock = true;
      return MyHttp.request({

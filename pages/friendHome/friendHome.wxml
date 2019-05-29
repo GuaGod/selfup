@@ -1,10 +1,11 @@
+<view class="header_container_outer">
 <s-header>
- <view class="header_container" bindtap="returnHome">
-    <i-icon type="return" size="16"></i-icon>
-    <view class="header_title">回家</view>
+    <view class="header_container" bindtap="returnHome">
+    <image src="/images/home_icon.png" class="home_icon"></image>
+    <view class="header_title">HOME</view>
     </view>
 </s-header>
-
+</view>
 <view class="self_container">
   <view class="person_container">
     <image src="{{hair}}" class="hair"></image>
@@ -16,7 +17,11 @@
 </view>
 <image src="{{backdrop}}" class="background"></image>
 
+<view class="powerTable_container">
+  <s-powerTable powerList="{{powerList}}" isFriend="{{true}}"></s-powerTable>
+</view>
+
 <i-spin custom fix wx:if="{{loading}}">
-  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+  <image src="/images/loading.png" class="icon-load"/>
   <view>Loading</view>
 </i-spin>

@@ -4,7 +4,8 @@ const API = {
   insertEmotionText: REMOTE_ROOT.selfup +'/selfup/emotion/insertEmotionText',
   findEmotionContent: REMOTE_ROOT.selfup +'/selfup/emotion/findEmotionContent',
   getEmotionDetail: REMOTE_ROOT.selfup +'/selfup/emotion/getEmotionDetail',
-  updateEmotionText: REMOTE_ROOT.selfup +'/selfup/emotion/updateEmotionText'
+  updateEmotionText: REMOTE_ROOT.selfup +'/selfup/emotion/updateEmotionText',
+  deleteEmotion: REMOTE_ROOT.selfup + '/selfup/emotion/deleteEmotion'
 }
 
 export default API

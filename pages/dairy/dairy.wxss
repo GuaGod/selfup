@@ -1,91 +1,97 @@
 /* pages/dairy/dairy.wxss */
+
 page {
   height: 100%;
   overflow: auto;
 }
 
-s-header {
-  position: relative;
-  z-index: 7;
+.header_container_outer {
+  /* position: fixed;
+  top: 0rpx; */
+  width: 100%;
+  z-index: 10;
+  background: white;
 }
 
 .header_container {
-   height: 38rpx;
-   line-height: 38rpx;
-   display: flex;
-   align-items: center;
+  height: 38rpx;
+  line-height: 38rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
 }
 
 .home_icon {
-  height:42rpx;
-  width:42rpx;
+  height: 42rpx;
+  width: 42rpx;
   display: block;
-  margin-left:10rpx;
-  margin-right:14rpx;
+  margin-left: 10rpx;
+  margin-right: 14rpx;
 }
 
-
 .header_title {
-   height:38rpx;
-   margin-top:4rpx;
-   color: rgb(137, 137, 137);
-   font-size:38rpx;
+  height: 38rpx;
+  margin-top: 4rpx;
+  color: rgb(137, 137, 137);
+  font-size: 38rpx;
 }
 
 .container {
   overflow-y: auto;
   overflow-x: hidden;
-  height:1200rpx;
-  width:750rpx;
+  height: 1350rpx;
+  width: 750rpx;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
 
 .add_container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add {
-   width:50rpx;
-   height: 50rpx;
-   display:block;
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
 }
 
 .wrap {
   padding: 17rpx 30rpx 17rpx 30rpx;
+  position: relative;
 }
 
 .box {
-  width:100%;
-  height:344rpx;
+  width: 100%;
+  height: 344rpx;
   border-radius: 40rpx;
-  background:white;
+  background: white;
   box-shadow: 0 8px 16px #bfcefe;
-  padding:10rpx;
+  padding: 10rpx;
   box-sizing: border-box;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .title {
-  height:110rpx;
-  line-height:110rpx;
+  height: 110rpx;
+  line-height: 110rpx;
   font-size: 48rpx;
-  color:rgb(165, 158, 158);
-  font-weight:500;
+  color: rgb(165, 158, 158);
+  font-weight: 500;
   text-overflow: ellipsis;
   text-indent: 34rpx;
   white-space: nowrap;
   overflow: hidden;
-  width:80%;
+  width: 80%;
 }
 
 .content {
-  height:144rpx;
-  font-size:32rpx;
-  color:rgb(143, 134, 134);
+  height: 144rpx;
+  font-size: 32rpx;
+  color: rgb(143, 134, 134);
   text-indent: 66rpx;
+  white-space: normal;
 }
 
 .statement {
@@ -97,13 +103,59 @@ s-header {
 }
 
 .emotion {
-  color:rgb(183, 212, 240);
+  color: rgb(183, 212, 240);
   font-size: 28rpx;
 }
 
 .time {
   color: rgb(171, 166, 188);
   font-size: 28rpx;
-  margin-right:10rpx;
+  margin-right: 10rpx;
 }
 
+@keyframes ani-demo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-load {
+  animation: ani-demo-spin 5s linear infinite;
+  height: 80rpx;
+  width: 80rpx;
+  display: block;
+  margin:0 auto;
+}
+
+.noMore {
+  width:100%;
+  text-align: center;
+  height:50rpx;
+  color: rgb(137, 137, 137);
+  position: fixed;
+  top: 600rpx;
+}
+
+.delete_container {
+  height: 40rpx;
+  width: 40rpx;
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
+  position: absolute;
+  right: 60rpx;
+  top:40rpx;
+}
+
+.delete_container image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

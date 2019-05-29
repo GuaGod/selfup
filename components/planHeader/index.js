@@ -17,10 +17,6 @@ Component({
       type: Boolean,
       value: false
     },
-    lock: {
-      type: Boolean,
-      value: true,
-    }
   },
 
   /**
@@ -67,10 +63,6 @@ Component({
     },
 
     back: function() {
-      let lock = this.data.lock;
-      if(lock) {
-        return ;
-      }
       wx.navigateBack({
         delta: 1
       })

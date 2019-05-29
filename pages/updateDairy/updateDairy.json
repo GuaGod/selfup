@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+        "s-header": "../../components/header/index",
+        "i-icon": "../../dist/icon/index"
+  }
+}

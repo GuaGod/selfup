@@ -1,7 +1,7 @@
-<s-header bindtap="back">
- <view class="header_container">
+<s-header>
+ <view class="header_container"  bindtap="back">
     <i-icon type="return" size="16"></i-icon>
-    <view class="header_title">写日记</view>
+    <view class="header_title">日记列表</view>
     </view>
 </s-header>
 

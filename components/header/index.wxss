@@ -4,9 +4,8 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
-  padding-left:20rpx;
   box-sizing: border-box;
-  padding-bottom:34rpx;
+  padding-bottom:14rpx;
   font-weight:500;
   color:rgb(137, 137, 137);
 }

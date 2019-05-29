@@ -31,7 +31,11 @@ Page({
     plan: [],
     isHeaderCalendarShow: true,
     isHeaderCloseShow: false,
-    lock: true,
+    canChooseShow: true,
+    canEditorShow: true,            //是否可以有下栏的编辑器
+    completeProgress: 0,
+    isNewMan: true,
+    helpStep: 0,
   },
 
   /**
@@ -41,7 +45,6 @@ Page({
     let that = this;
     let dateStr = MyDate.createTodayDateStr();
     let view = {};
-
     createObserver(view);
     view.on('updateView', (data) => {
       let plan = data.plan;
@@ -55,10 +58,11 @@ Page({
         hasEditorMission: false,
       });
 
-    view.on('deblockView', () => {
-       that.setData({
-         lock: false
-       })
+    view.on('updateProgress', (data) => {
+      let completeProgress = data.completeProgress;
+      that.setData({
+        completeProgress: completeProgress
+      })
     })
 
     });
@@ -102,9 +106,18 @@ Page({
     detail
   }){
     let dateStr = detail.dateStr;
-                            
+    this.toggleChooseShow(dateStr);  //过往的计划不可改
+    if (dateStr !== planController.date) {
+      this.setData({
+        completeProgress: 0,
+      })
+    }
+    planController.submitPlanData();
     planController.changeDate(dateStr);
 
+    
+     
+    
     this.setData({
       isCalendarShow: false,
       date: dateStr,
@@ -112,10 +125,25 @@ Page({
       isHeaderCalendarShow: true,
       isHeaderCloseShow: false,
       hasEditorMission: false,
-      lock: true,
     })
 
   },
+
+  toggleChooseShow: function(dateStr) {
+    let tmpDate = dateStr.replace(/-/g, '');
+    let todayDate = MyDate.createTodayDateStr().replace(/-/g, '');
+    if (tmpDate < todayDate) {
+      this.setData({
+        canChooseShow: false,
+        canEditorShow: false,
+      })
+    } else {
+      this.setData({
+        canChooseShow: true,
+        canEditorShow: true
+      })
+    }
+  }, 
 
   //选中一个任务，要对其进行操作
   chooseMission: function({
@@ -130,10 +158,11 @@ Page({
     } else {
       chooseTime = `${Math.floor(length / 2)}小时30分钟`
     }
-
+    
+    let canEditorShow = this.data.canEditorShow;
 
     this.setData({
-      hasEditorMission: true,
+      hasEditorMission: canEditorShow,
       chooseTime: chooseTime
     })
   },
@@ -181,8 +210,10 @@ Page({
     }
 
     planController.updatePlan(this.data.choosedMissions, detail.missionData);
+    let progress = planController.comunicateProgress();
     this.setData({
-      hasEditorMission: false
+      hasEditorMission: false,
+      completeProgress: progress,
     })
   },
 
@@ -197,17 +228,23 @@ Page({
 
   deleteChoose: function() {
     planController.deletePlan(this.data.choosedMissions);
+    console.log(planController.plan);
+    let progress = planController.comunicateProgress();
+    
     this.setData({
       clearChooseTag: !this.data.clearChooseTag,
-      hasEditorMission: false
+      hasEditorMission: false,
+      completeProgress: progress
     });
   },
 
   completeChoosedMission: function() {
     planController.completeChoosedMission(this.data.choosedMissions);
+    let progress = planController.comunicateProgress();
     this.setData({
       clearChooseTag: !this.data.clearChooseTag,
-      hasEditorMission: false
+      hasEditorMission: false,
+      completeProgress: progress
     });
   },
   /**
@@ -237,7 +274,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    planController.submitPlanData();
+    planController.submitPlanData()
   },
 
   /**
@@ -258,6 +295,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

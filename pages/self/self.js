@@ -1,6 +1,7 @@
 // pages/self/self.js
 import Person from './person.js'
 import {defineLevel} from './wordData.js' 
+import {femaleImageMap, maleImageMap} from './personDefaultData.js'
 const QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js')
 const AMapWX = require('../../libs/amap-wx.js');
 
@@ -33,13 +34,13 @@ Page({
     head: '',
     background: '',
     isDrawerShow: false,
-    loading: true,
+    loading: true, //记得改回true
     isInit: false,
     helpStep: 0,
     finalStep: 3,
     isNewMan: false,
-    isCommunicateShow: true,
-    communicateWord: ''
+    isCommunicateShow: true, //会时光
+    communicateWord: '',
   },
 
   /**
@@ -53,20 +54,59 @@ Page({
     if (!this.data.isInit) {
       return;
     }
-
+ 
+    let that = this;
+ 
     person.getPersonImg()
       .then(data => {
         let figure = data.figure;
         let changeImgs = {};
         for (let [key, value] of remotePathMap.entries()) {
-          if (figure[key] !== value) {
+          if (!!(figure[key]) && figure[key] !== value) {
             changeImgs[key] = figure[key];
           }
         }
-
+          
         this.setData(changeImgs);
       })
+
+    person.getPowerList()
+      .then(data => {
+        let attribute = data.attribute;
+        if (attribute === null || attribute === undefined) {
+          return;
+        }
+
+        getWord = defineLevel(attribute.emotion);
+
+        this.setData({
+          communicateWord: getWord(),
+          powerList: [{
+            statement: "体力",
+            icon: '/images/HomeHuo.png',
+            percent: attribute.strength,
+          },
+          {
+            statement: "情绪",
+            icon: '/images/HomeXin.png',
+            percent: attribute.emotion,
+          },
+          {
+            statement: "能力",
+            icon: '/images/HomeZuanShi.png',
+            percent: attribute.skill,
+          },
+          {
+            statement: "自律",
+            icon: '/images/HomeLinDang.png',
+            percent: attribute.selfDiscipline,
+          },
+          ]
+        })
+      })
   },
+
+
 
 
   /**
@@ -100,8 +140,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (options) {
+       return {
+         title: '用色彩渲染一天 用数据倾诉成长',
+         path: 'pages/welcome/welcome',
+         imageUrl: '/images/share.png',
+       }
   },
 
   /**
@@ -109,19 +153,10 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+
     qqmapsdk = new QQMapWX({
       key: 'SAJBZ-JU6EX-XUN44-ZCSEY-2DFDQ-X6FAB'
     });
-    
-    MyStorage.getItem('isNewMan')
-             .then(res => {
-                //是否是新人，如果是，则提供帮助
-                let isNewMan = res.data; 
-                
-                this.setData({
-                  isNewMan
-                })
-             })
     
     //观察者模式，当完成加载时会trigger context的completeLoad方法
     let context = {};
@@ -144,15 +179,15 @@ Page({
       //     url: '../createSelf/createSelf',
       //   })
       // }
-
+      getApp().globalData.userInfo.userId = data.userId;
       remotePathMap.set('hair', data.hair);
       remotePathMap.set('cloth', data.cloth);
       remotePathMap.set('body', data.body);
       remotePathMap.set('head', data.head);
       remotePathMap.set('backdrop', data.backdrop);
-      remotePathMap.set('weather', data.weather);
+      let fixRemotePathMap = this.fixImageMap(remotePathMap);
 
-      imageLoader.load(remotePathMap);
+      imageLoader.load(fixRemotePathMap);
     }, (err) => {
       return Promise.reject(err);
     }).catch(err => {
@@ -174,22 +209,22 @@ Page({
         this.setData({
           communicateWord: getWord(),
           powerList: [{
-              statement: "fire",
+              statement: "体力",
               icon: '/images/HomeHuo.png',
               percent: attribute.strength,
             },
             {
-              statement: "heart",
+              statement: "情绪",
               icon: '/images/HomeXin.png',
               percent: attribute.emotion,
             },
             {
-              statement: "skill",
+              statement: "能力",
               icon: '/images/HomeZuanShi.png',
               percent: attribute.skill,
             },
             {
-              statement: "control",
+              statement: "自律",
               icon: '/images/HomeLinDang.png',
               percent: attribute.selfDiscipline,
             },
@@ -228,6 +263,16 @@ Page({
       loading: false,
       isInit: true
     });
+
+    MyStorage.getItem('isNewMan')
+      .then(res => {
+        //是否是新人，如果是，则提供帮助
+        let isNewMan = res.data;
+
+        this.setData({
+          isNewMan
+        })
+      })
     
   },
 
@@ -355,6 +400,20 @@ Page({
      })
 
      MyStorage.setItem('isNewMan', false);
+  },
+  
+  /**
+   * 检查人物的图片是否出现丢失情况，防止因程序漏洞而出现人物形象不全的问题，返回修理后的结果
+   */
+  fixImageMap: function(imageMap) {
+     let sex = getApp().globalData.userInfo.sex;
+     let fixImageMap = sex === 1 ? maleImageMap : femaleImageMap; 
+     for(let [imageName, imageUrl] of imageMap.entries()) {
+       if(!(imageUrl)) {
+           imageMap.set(imageName, fixImageMap.get(imageName));
+       }
+     }
+     
+     return imageMap;
   }
- 
 })

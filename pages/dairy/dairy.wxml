@@ -1,18 +1,22 @@
+<view class="header_container_outer">
 <s-header>
     <view class="header_container" bindtap="back">
     <image src="/images/home_icon.png" class="home_icon"></image>
     <view class="header_title">HOME</view>
     </view>
 </s-header>
+</view>
 
+ 
 <scroll-view class="container" 
              id="container"
              lower-threhold="50"
              scroll-y="true"
              scroll-x="false"
+             bindscrolltoupper="onScrollTop"
             bindscrolltolower="onScrollLower">
 
-      <view class="wrap" wx:if="{{!todayHasDariy}}">
+      <view class="wrap">
        <view class="box add_container"
              bindtap="add">
           <image src="/images/dairyAdd.png"
@@ -25,6 +29,9 @@
        <view class="box"
              data-dairyid="{{item.id}}"
              bindtap="getDetail">
+           <view catchtap="handleDelete" data-dairyid="{{item.id}}" class="delete_container">
+             <image src="/images/delete_icon.png"></image>
+           </view>
            <view class="title">{{item.title}}</view>
            <view class="content">{{item.content}}</view>
 
@@ -36,5 +43,17 @@
       </view>
        </block>
 </scroll-view>
+ 
 
+<i-spin custom fix wx:if="{{loading}}">
+  <image src="/images/loading.png" class="icon-load"/>
+  <view>Loading</view>
+</i-spin>
 
+<view class="noMore" wx:if="{{todayHasDariy && (dairyData.length === 0)}}">
+    暂无日记，下拉刷新试试吧。
+</view>
+
+<i-modal title="删除确认" visible="{{ deleteVisible }}" actions="{{ actions }}" bind:click="deleteDairy">
+    <view>删除后无法恢复哦</view>
+</i-modal>

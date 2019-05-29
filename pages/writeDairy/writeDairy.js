@@ -16,55 +16,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isTodayHasDairy: false,
     emotionId: null,
     emotionText: null,
     emotionTitle: null,
-    hasImage: true,
+    hasImage: false,
+    isChangeMode: false,
     image: '',
-    isRemoteImage: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    dairy.hasDairy()
-      .then((data) => {
-        let isExist = data.isExist;
-        this.setData({
-          isTodayHasDairy: isExist         //设置今天是否有日记
-        })
 
-        if (isExist) {
-          let emotion = data.emotion;
-
-          let hasImage = emotion.emotionImg !== undefined && emotion.image !== null;
-          let imagePath = hasImage ? 'https://www.steins.club' + emotion.emotionImg.replace(/\\/g, '\/') : '';
-
-          this.setData({
-            emotionId: emotion.emotionId,
-            emotionText: emotion.content,
-            emotionTitle: emotion.title,
-            image: imagePath,
-            hasImage: hasImage,
-            isRemoteImage: true,
-          })
-
-          return;
-        }
-
-        //如果没有日记
-        this.setData({
-          emotionId: null,
-          emotionText: null,
-          emotionTitle: null,
-          hasImage: false,
-          isRemoteImage: false,
-        })
-      }, (err) => {
-        console.error(err);
-      })
   },
 
   changeTitle: function({
@@ -86,12 +50,6 @@ Page({
     })
   },
 
-  update: function(data) {
-    this.setData({
-
-    })
-  },
-
   takePhoto: function() {
     let that = this;
     
@@ -105,7 +63,6 @@ Page({
         that.setData({
           image: imageUrl,
           hasImage: true,
-          isRemoteImage: false,
         })
  
       }
@@ -131,7 +88,6 @@ Page({
   submit: function() {
     let that = this;
     let imagePath = this.data.image || null;  
-    let isExist = this.data.isTodayHasDairy;
     
     //校验是否写了标题和内容
     let result = this._isPassDataRight();
@@ -147,13 +103,15 @@ Page({
       mask: true
     })
     
-    //如果今天存在日记则更新
-    if(isExist) {
-      this._update();
-      return;
+   setTimeout(() => {
+     wx.hideLoading();
+   }, 5000);
+   
+    let isChangeMode = this.data.isChangeMode;
+    if(isChangeMode) {
+       this._update();
+       return ;
     }
-    
-    //如果今天不存在日记创建
     this._create();
   },
 
@@ -178,45 +136,6 @@ Page({
       tip: '',
       right: true,
     }
-  },
-
-  _update() {
-      
-      let that = this;
-      let dataObj = {
-        content: that.data.emotionText,
-        title: that.data.emotionTitle,
-        emotionId: that.data.emotionId,
-      }
-      
-      //如果是远程拉回来的图片，即用户没有设置新的图片，先下载，再川汇区
-      if (this.data.isRemoteImage) {
-        MyDownload.download(that.data.image)
-          .then(data => {
-            let imagePath = data.tempFilePath;
-            this._submitUpdateData(dataObj, imagePath);
-          });
-        return;
-      }
-      
-      this._submitUpdateData(dataObj, this.data.image);
-      
-  },
-
-  _submitUpdateData: function(dataObj, imagePath) {
-    dairy.update(dataObj, imagePath)
-      .then((res) => { 
-        let data = JSON.parse(res.data);
-        if (data.success) {
-          this._passSuccess();
-          return;
-        }
-        this._passFail();
-      }, (err) => {
-        this._passFail();
-      }).catch((err) => {
-        this._passFail();
-      })
   },
 
   _passSuccess: function() {
@@ -246,6 +165,10 @@ Page({
       MyDownload.download('https://www.steins.club/selfup/imgs/element/dairyDefault.png')
                 .then(res => {
                   let imagePath = res.tempFilePath;
+                  this.setData({
+                    hasImage: true, 
+                    image: imagePath
+                  })
                   this._submitCreateData(dataObj, imagePath);
                 })
        return ;
@@ -257,33 +180,56 @@ Page({
   
   },
 
+  _update() {
+     let that = this;
+     let dataObj = {
+       content: that.data.emotionText,
+       title: that.data.emotionTitle,
+       emotionId: that.data.emotionId,
+     }
+
+     
+     
+     let imagePath = this.data.image;
+     this._submitUpdateData(dataObj, imagePath);
+  },
+
   _submitCreateData: function(dataObj, imagePath) {
     dairy.write(dataObj, imagePath)
       .then((res) => {
       
         let data = JSON.parse(res.data);
         if (data.success) {
+          
           this._passSuccess();
           this.setData({
-            isTodayHasDairy: true,
+             isChangeMode: true,
+             emotionId: data.emotionId
           })
           return;
         }
 
         this._passFail();
         this.setData({
-          isTodayHasDairy: false,
+          isChangeMode: false
         })
 
       }, (err) => {
         this._passFail();
 
         this.setData({
-          isTodayHasDairy: false,
+          isChangeMode: false,
         })
       }).catch(err => {
         this._passFail();
       })
+  },
+
+  _submitUpdateData: function(dataObj, imagePath) {
+     dairy.update(dataObj, imagePath)
+          .then(data => {
+
+          })
   },
 
   /**
@@ -325,6 +271,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

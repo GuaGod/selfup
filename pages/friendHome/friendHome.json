@@ -2,6 +2,7 @@
   "usingComponents": {
     "i-spin": "../../dist/spin/index",
     "i-icon": "../../dist/icon/index",
-    "s-header": "../../components/header/index"
+    "s-header": "../../components/header/index",
+    "s-powerTable": "../../components/powerTable/index"
   }
 }

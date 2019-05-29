@@ -16,6 +16,7 @@ Page({
     head: '',
     backdrop: '',
     loading: true,
+    powerList: [],
   },
 
   /**
@@ -37,7 +38,31 @@ Page({
     this.getFriendImg(userId)
       .then((res) => {
         let imageMap = new Map();
-         let data = res.figure;
+        let data = res.figure;
+        let attribute = res.attribute;
+         
+        this.setData({powerList: [{
+          statement: "体力",
+          icon: '/images/HomeHuo.png',
+          percent: attribute.strength,
+        },
+        {
+          statement: "情绪",
+          icon: '/images/HomeXin.png',
+          percent: attribute.emotion,
+        },
+        {
+          statement: "能力",
+          icon: '/images/HomeZuanShi.png',
+          percent: attribute.skill,
+        },
+        {
+          statement: "自律",
+          icon: '/images/HomeLinDang.png',
+          percent: attribute.selfDiscipline,
+        },
+        ]});
+
         imageMap.set('hair', data.hair || '');
         imageMap.set('cloth', data.cloth || '');
         imageMap.set('body', data.body || '');
@@ -128,6 +153,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
+    }
   }
 })

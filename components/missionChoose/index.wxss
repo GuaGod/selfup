@@ -10,7 +10,7 @@
 
 .more {
   font-size:24rpx;
-  margin-top: 20rpx;
+  padding: 20rpx 0 20rpx 0;
   color:#666;
   width:168rpx;
   text-align: center;

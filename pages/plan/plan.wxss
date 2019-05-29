@@ -9,6 +9,7 @@ page {
    line-height: 32rpx;
    display: flex;
    align-items: center;
+   padding:20rpx;
 }
 
 
@@ -83,6 +84,14 @@ page {
   z-index:3;
 }
 
+.completeProgress {
+   width: 160rpx;
+   color: rgb(171, 171, 171);
+   position: fixed;
+   font-size: 28rpx;
+   right: 0rpx;
+   bottom:100rpx;
+}
 
 .editorTip {
    height:100rpx;
@@ -119,6 +128,14 @@ page {
   display: block;
 }
 
+.powerTable_container {
+   position:fixed;
+   right:40rpx;
+   top:200rpx;
+   width:220rpx;
+   z-index: 6;
+}
+
 @keyframes ani-demo-spin {
     from { transform: rotate(0deg);}
     50%  { transform: rotate(180deg);}
@@ -126,4 +143,14 @@ page {
 }
 .icon-load{
     animation: ani-demo-spin 1s linear infinite;
+}
+
+.helpStep_mask {
+  height:100%;
+  width:100%;
+  position: fixed;
+  background: rgba(0,0,0,.75);
+  z-index:100;
+  top:0rpx;
+  left:0rpx;
 }

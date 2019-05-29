@@ -26,12 +26,10 @@ App({
                   },
                 })
              });
-    
-    
-    
+       
   },
   globalData: {
-    userInfo: null,              //用户基本信息
+    userInfo: {},              //用户基本信息
     phoneInfo: null,             //手机机型信息
     MyHttp: MyHttp,
     MyDate: MyDate,
@@ -45,6 +43,6 @@ App({
     createObserver: createObserver,
     goodFriendsAPI: goodFriendsAPI,
     Loader: Loader,
-    LOGIN_COOKIE: ''
+    LOGIN_COOKIE: '',
   }
 })

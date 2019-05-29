@@ -11,6 +11,7 @@
    line-height: 38rpx;
    display: flex;
    align-items: center;
+   padding:20rpx;
 }
 
 .friends_icon {
@@ -79,7 +80,7 @@
 .background {
   width:100%;
   position:absolute;
-  height:1025rpx;
+  height:1350rpx;
   bottom: 0rpx;
 }
 
@@ -87,12 +88,8 @@
    width: 626rpx;
    height: 883rpx;
    position: absolute;
-   top:0rpx;
-   left:0rpx;
-   bottom:0rpx;
-   right:0rpx;
-   margin: auto;
-   transform: translate(-30rpx, 186rpx);
+   left:40rpx;
+   bottom:40rpx;
    z-index: 2;
 }
 
@@ -128,8 +125,13 @@
     50%  { transform: rotate(180deg);}
     to   { transform: rotate(360deg);}
 }
+
 .icon-load{
-    animation: ani-demo-spin 1s linear infinite;
+    animation: ani-demo-spin 5s linear infinite;
+    height:80rpx;
+    width:80rpx;
+    display:block;
+    margin:0 auto;
 }
 
 .calendar_container {

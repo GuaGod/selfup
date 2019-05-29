@@ -7,5 +7,6 @@
     "i-spin": "../../dist/spin/index",
     "i-icon": "../../dist/icon/index"
   },
-  "disableScroll": false
+  "disableScroll": false,
+  "enablePullDownRefresh": true
 }

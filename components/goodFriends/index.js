@@ -26,10 +26,9 @@ Component({
     friendsList: [], //我的朋友的列表
     friendsActions: [{ //又滑好友列表删除好友
       name: '删除',
-      width: 60,
+      width: 80,
       color: 'white',
       fontsize: '25',
-      icon: 'delete',
       background: '#ed3f14',
     }, ],
     isFindPeopleShow: false,

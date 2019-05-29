@@ -13,6 +13,7 @@ page {
    line-height: 32rpx;
    display: flex;
    align-items: center;
+   padding:20rpx;
 }
 
 

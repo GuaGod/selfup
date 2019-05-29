@@ -5,6 +5,7 @@ function createPlanDefaultData() {
       "jobId": null,
       "jobName": i + '',
       "dayId": null,
+      "jobClass": null,
       "thingList": [{
         "thingId": null,
         "thingName": null,

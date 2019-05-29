@@ -7,7 +7,7 @@ const planAPI = globalData.planAPI;
  * @property plan 当前显示的计划的数据
  * @property date 当前计划是第几天的计划 
  * @property hasPlanInServer 在服务器是否创建了当前这一天的计划 
- * @property oldPlan 初始页面时的表，用于校验离开页面时，新旧表是否相同，如果相同，则不上传表
+ * @property oldPlan 初始页面时的表，用于校验离开页面时，新旧表是否相同，如果相同，则不上传表，减少http请求
  */
 
 class PlanController {
@@ -17,13 +17,14 @@ class PlanController {
       this.date;
       this.dayId;
       this.hasPlanInServer; 
-      this.oldPlan; 
+      this.isChanged;
   }
 
   init(view, date) {
     this.view = view;
     this.plan = [];
     this.date = '';
+    this.isChanged = false;
     this.hasPlanInServer = false;
     this.changeDate(date);
   }
@@ -32,7 +33,6 @@ class PlanController {
    * 切换当前显示的计划  如果date有计划，则拉取服务器端的计划，如果没有，则在本地新建一个空表
    */
   changeDate(date) {
-     this.lock = true;
      if(date === undefined || date === null || date === '') {
        return ;
      }
@@ -40,7 +40,7 @@ class PlanController {
      if(date === this.date) {
        return ;
      }
-
+    
     this.plan = createPlanDefaultData();
     this.dayId = null;
     this.hasPlanInServer = false;
@@ -56,7 +56,6 @@ class PlanController {
            if(isHas) {
              return this._getSomedayPlan(date);
            } 
-           this._deblockView();
            return Promise.reject({
                notRealErr: true
            })
@@ -65,20 +64,11 @@ class PlanController {
          })
          .then(data => {  
            this.plan = data.jobList;
-           console.log(`获取的plan是否`);
-           let hasNull = false;
-           for (let i = 0, len = this.plan.length; i < len; i++) {
-             let item = this.plan[i];
-             if (item.thingList.length < 2) {
-               hasNull = true;
-             }
-           }
-           console.log(hasNull);
            this.dayId = data.dayId;
            this.hasPlanInServer = true;
            this.date = date;      
            this._updateView();
-           this._deblockView();
+           this._updateProgress();
          }, (err) => {
             return Promise.reject(err);
          }).catch(err => {
@@ -95,17 +85,21 @@ class PlanController {
    */
 
   updatePlan(choosedMissions, missionData) {
-     
      let dayId = this.dayId;
      let plan = this.plan;
      choosedMissions.forEach((item) => {
       let obj = plan[item.y].thingList[item.x];
+      if(Number(item.x) === 0) {
+          plan[item.y].jobClass = missionData.thingClass
+      } else if(Number(item.x) === 1 && (plan[item.y].jobClass === null || plan[item.y].jobClass === undefined)) {
+          plan[item.y].jobClass = missionData.thingClass;
+      }
       obj.thingName = missionData.thingName;
       obj.thingColor = missionData.thingColor;
       obj.thingClass = missionData.thingClass;
       obj.thingState = 0;
      });     
-      
+     this.isChanged = true;
      this._updateView();
   }
 
@@ -115,16 +109,11 @@ class PlanController {
 
   submitPlanData() {
     let that = this;
-    console.log(`传输过去的plan是否`);
-    let hasNull = false;
-    for(let i = 0, len = this.plan.length; i < len; i++) {
-      let item = this.plan[i];
-      if(item.thingList.length < 2) {
-        hasNull = true;
-      }
-    }
-    console.log(hasNull);
-    
+    if(!this.isChanged) {          //如果没有改过数据，则不提交数据
+      return ;
+    } 
+    this.isChanged = false;       //每一次提交都会重置
+    getApp().globalData.hasPlanSubmit = true;
     if(this.hasPlanInServer) {
       return MyHttp.request({
         url: planAPI.updatePlan,
@@ -155,7 +144,7 @@ class PlanController {
       },
       method: 'POST'
     }).then(data => {
-      that.dayId = data.dayId;
+      // that.dayId = data.dayId;
     })
   }
 
@@ -167,6 +156,7 @@ class PlanController {
          obj.thingState = obj.thingState === 0 ? 1 : 0;
        }
      })
+     this.isChanged = true;
 
      this._updateView();
   }
@@ -175,11 +165,12 @@ class PlanController {
     let plan = this.plan;
     choosedMissions.forEach((item) => {
       let obj = plan[item.y].thingList[item.x];
-      obj.thingName = "";
-      obj.thingColor = "";
-      obj.thingClass = "";
+      obj.thingName = null;
+      obj.thingColor = null;
+      obj.thingClass = null;
+      obj.thingState = 0;
     })
-
+    this.isChanged = true;
     this._updateView();
   }
 
@@ -227,16 +218,49 @@ class PlanController {
 
   _updateView() {
       let that = this;
-    
       this.view.triggerEvent('updateView', {
         date: that.date,
-        plan: that.plan
+        plan: that.plan,
       });
   }
+
+  _updateProgress() {
+      let that = this;
+      let progress = this.comunicateProgress();
+      this.view.triggerEvent('updateProgress', {
+        completeProgress: progress
+      })
+  }
+  /**
+   * @return progress
+   */
   
-  _deblockView( ){
-     let that = this;
-     this.view.triggerEvent('deblockView');
+  comunicateProgress() {
+     let plan = this.plan;
+     let totalMissions = 0;
+     let completeMissions = 0;
+     for(let i = 0, len = plan.length; i < len; i++) {
+       let job = plan[i];
+       let thingList = job.thingList;
+       if(thingList[0].thingName !== null && thingList[0].thingName !== '') {
+          totalMissions++;
+       }
+
+       if(thingList[1].thingName !== null && thingList[1].thingName !== '') {
+         totalMissions++;
+       }
+
+       if(Number(thingList[0].thingState) === 1) {
+         completeMissions++;
+       }
+
+       if (Number(thingList[1].thingState) === 1) {
+         completeMissions++;
+       }
+     }
+
+     let progress = Math.ceil(completeMissions / totalMissions * 100);
+     return progress;
   }
 }
 

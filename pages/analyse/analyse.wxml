@@ -15,13 +15,15 @@
 <view class="mostThing_container chart_container">
   <ec-canvas id="mostThing-dom" canvas-id="mostThing" ec="{{ mostThing }}"></ec-canvas>
 </view>
+<view class="thingFinish_title">任务完成度</view>
 <view class="thingFinish_container chart_container">
   <ec-canvas id="thingFinish-dom" canvas-id="thingFinish" ec="{{thingFinish}}"></ec-canvas>
 </view>
 </view>
 
 <i-spin custom fix wx:if="{{loading}}">
-  <i-icon type="refresh" size="40" i-class="icon-load"></i-icon>
+   <image src="/images/loading.png" class="icon-load"/>
+ 
   <view>Loading</view>
 </i-spin>
 

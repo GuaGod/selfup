@@ -52,12 +52,13 @@ class Emotion {
         let xAxis = [];
         //存放日期对应的情绪值
         let series = [];
+
         data.emotionList.forEach((item) => {
           xAxis.push(item.createTime);
-          //-6 到 6的情绪值 映射到 0 100 
-          series.push(Math.ceil((Number(item.emotionValue) + 6) * 8.33));
+          //-8 到 8的情绪值 映射到 0 100 
+          series.push(Math.ceil((Number(item.emotionValue) + 8) * 6.25));
         });
-
+        series.reverse();
         xAxis = operateCreateTimeArr(xAxis);
 
         let option = {
@@ -74,7 +75,7 @@ class Emotion {
             silent: true,
             axisTick: {
               show: false
-            }, 
+            },
             axisLine: {
               lineStyle: {
                 color: '#bbbbbb'
@@ -89,6 +90,8 @@ class Emotion {
           yAxis: {
             type: 'value',
             silent: true,
+            min: 0,
+            max: 100,
             axisLine: { //轴线
               show: false,
               lineStyle: {
@@ -123,7 +126,7 @@ class Emotion {
                 }]),
                 barBorderRadius: [8, 8, 8, 8],
               },
-              
+
             },
             barWidth: 12
 
@@ -193,6 +196,16 @@ class ThingData {
           series.push(aSerie);
         })
 
+        if (data.thingDataList.length === 0) {
+          series = [{
+            value: 100,
+            name: '未记录',
+          }]
+          legend = ['未记录'];
+        }
+
+
+
         let option = {
 
           title: {
@@ -225,26 +238,25 @@ class ThingData {
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               },
-              
-                normal: {
-                  color: function (params) {
-                    //自定义颜色
-                    let thingClass = params.data.name;
-                    let strategy = {
-                      '学习': '#b8d8eb',
-                      '娱乐': '#fff992',
-                      '杂事': '#C2CEFC',
-                      '运动': '#FFCD91',
-                      '睡眠': '#FCCDCD',
-                      '吃饭': '#c2e7d4',
-                      '锻炼': '#FFCD91',
-                    }
 
-
-                    return strategy[thingClass];
+              normal: {
+                color: function(params) {
+                  //自定义颜色
+                  let thingClass = params.data.name;
+                  let strategy = {
+                    '学习': '#c9e7fd',
+                    '娱乐': '#fdcdcd',
+                    '杂事': '#fbc4f8',
+                    '运动': '#c3f5c5',
+                    '睡眠': '#dbd3fd',
+                    '吃饭': '#fbdfae',
+                    '未记录': '#cdcdcd',
                   }
+
+                  return strategy[thingClass];
                 }
-              
+              }
+
             }
           }]
         };
@@ -318,6 +330,7 @@ class MostThing {
 
         mostThingList.forEach((item) => {
           xAxis.push(item.createTime);
+
           let aSerie = {};
           aSerie.value = item.countTime;
           aSerie.name = item.thingName;
@@ -325,12 +338,13 @@ class MostThing {
           mostThingSeries.push(aSerie);
         })
 
-
+        mostThingSeries.reverse();
 
         emotionList.forEach((item) => {
           emotionSeries.push(item.emotionValue);
         })
 
+        emotionSeries.reverse();
         xAxis = operateCreateTimeArr(xAxis);
 
         let option = {
@@ -342,7 +356,11 @@ class MostThing {
             }
           },
           legend: {
-            data: [{name: '最多做的事'}, {name: '情绪值'}],
+            data: [{
+              name: '最多做的事',
+            }, {
+              name: '情绪值'
+            }],
             y: '30rpx',
           },
           xAxis: [{
@@ -371,20 +389,20 @@ class MostThing {
               name: '最多做的事',
               silent: true,
               axisLabel: {
-                formatter: '{value} h'
+                formatter: '{value}'
               },
-            axisLine: { //轴线
-              show: false,
-              lineStyle: {
-                color: 'transparent'
+              axisLine: { //轴线
+                show: false,
+                lineStyle: {
+                  color: 'transparent'
+                }
+              },
+              splitLine: { //网格中的横线
+                show: true,
+                lineStyle: {
+                  color: '#e9e9e9',
+                }
               }
-            },
-            splitLine: { //网格中的横线
-              show: true,
-              lineStyle: {
-                color: '#e9e9e9',
-              }
-            }
             },
             {
               type: 'value',
@@ -407,6 +425,40 @@ class MostThing {
               symbolSize: 10,
               data: mostThingSeries,
               clickable: false,
+              itemStyle: { //数据的颜色
+                normal: {
+                  color: function(params) {
+                    //自定义颜色
+                    let thingClass = params.data.name;
+
+
+                    let strategy = {
+                      '学习': '#c9e7fd',
+                      '娱乐': '#fdcdcd',
+                      '杂事': '#fbc4f8',
+                      '运动': '#c3f5c5',
+                      '睡眠': '#dbd3fd',
+                      '吃饭': '#fbdfae',
+                      '未记录': '#cdcdcd',
+                    }
+
+
+                    return strategy[thingClass];
+                  }
+                }
+
+              },
+              label: {
+                normal: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{b}',
+                  textStyle: {
+                    fontSize: 10,
+                    color: '#000'
+                  }
+                }
+              },
             },
             {
               name: '情绪值',
@@ -434,7 +486,7 @@ class MostThing {
 
         return Promise.reject(err);
       }).catch(err => {
-        console.err(err);
+        console.error(err);
       });
   }
 
@@ -459,7 +511,11 @@ class MostThing {
       url: analyseAPI.emotionList,
       data: {
         dayNum: dayNum
-      }
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE
+      },
     })])
 
   }
@@ -485,54 +541,49 @@ class ThingFinish {
         }
 
 
-        let xAxis = [];
         let series = [];
+        let createTimeArr = [];
         data.thingFinishList.forEach((item) => {
-          xAxis.push(item.createTime);
           series.push(Number(item.finishedDegree) * 100);
+          let timeItem = {};
+          timeItem.name = item.createTime.replace(/-/g, '').slice(4);
+          timeItem.max = 100;
+          createTimeArr.push(timeItem);
         })
-      
-
-        xAxis = operateCreateTimeArr(xAxis);
 
         let option = {
-          title: {
-            text: '任务完成度',
-            left: 'center',
-            textStyle: {
-               color: '#bbbbbb'
-            },
-          },
-          
           radar: {
             name: {
               textStyle: {
                 color: '#bbbbbb',
               }
             },
-            indicator: (function() {
-               let arr = [];
-               for(let i = 1; i <= 7; i++) {
-                 arr.push({name: `第${i}天`, max: 100});
-               }
-
-               return arr;
-            })(), 
+            itemStyle: {
+              borderColor: '#bbb',
+            },
+            indicator: createTimeArr,
           },
           series: [{
             name: '任务完成度',
             label: {
               show: false
             },
-            itemStyle: { normal: { areaStyle: { type: 'default' } } },
-            type: 'radar',
-            data: [
-              {
-                value: series,
-                name: '完成度'
+            itemStyle: {
+              normal: {
+                areaStyle: {
+                  type: 'default',
+                  color: '#c7cef7',
+                },
+                color: 'rgb(210, 210, 210)'
               },
-            ]
-          }]  
+
+            },
+            type: 'radar',
+            data: [{
+              value: series,
+              name: '完成度'
+            }, ]
+          }]
         };
 
         return Promise.resolve(option);

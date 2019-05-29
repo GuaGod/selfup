@@ -35,10 +35,9 @@ function createChart(option) {
 Page({
   onShareAppMessage: function(res) {
     return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function() {},
-      fail: function() {}
+      title: '用色彩渲染一天 用数据倾诉成长',
+      path: 'pages/welcome/welcome',
+      imageUrl: '/images/share.png',
     }
   },
   data: {
@@ -84,12 +83,12 @@ Page({
     
     Promise.all([Emotion.createOption(7), ThingData.createOption(7)])
            .then(([emotionOption, thingDataOption]) => {
-               this.setData({
-                 loading: false
-               })
+               
                this.loadChart(emotionOption, 'emotion');
                this.loadChart(thingDataOption, 'thingData');     
-               
+               this.setData({
+               loading: false
+               })
                return Promise.resolve();
            }) 
            .then(() => {
@@ -104,6 +103,10 @@ Page({
               })
            })
     
+  },
+  
+  onPullDownRefresh: function() {
+
   },
 
   back: function() {
@@ -130,8 +133,6 @@ Page({
         case 'mostThing': ecComponent = that.mostThingEcComponet; break;
         case 'thingFinish': ecComponent = that.thingFinishEcComponent; break;
     }
-
-    console.log(option);
 
     ecComponent.init((canvas, width, height) => {
       // 获取组件的 canvas、width、height 后的回调函数
