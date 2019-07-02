@@ -50,8 +50,9 @@
   height:86rpx;
   line-height:86rpx;
   color:#fff;
-  background:#19be6b;
-  
+  background:rgb(191, 206, 254);
+  box-shadow: 0 8rpx 16rpx rgba(191, 206, 254, 0.8);
+  border: none;
 }
 
 .button-hide {

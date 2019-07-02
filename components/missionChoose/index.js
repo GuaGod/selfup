@@ -5,9 +5,6 @@ const createObserver = globalData.createObserver;
 let missionChoose = new MissionChoose();
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },

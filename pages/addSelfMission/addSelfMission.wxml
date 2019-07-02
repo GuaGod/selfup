@@ -2,9 +2,24 @@
 
 </s-addSelfMissionHeader> 
 <view class="inputThingName_container">
+<view class="inputThingName_title">事件的名称(｡･∀･)ﾉﾞ</view>
 <s-inputThingName bindinputThingName="onInputThingName">
 
 </s-inputThingName>
+</view>
+
+<view class="thingClass_container">
+    <view class="thingClass_title">选择事件类别(｡･∀･)ﾉﾞ</view>
+    <view class="thingClass">
+     <block wx:for="{{thingClassList}}"> 
+        <view class="thingClass_item" bindtap="onChooseThingClass" data-thingclass="{{item.name}}" data-index="{{index}}">
+          <view class="thingClass_item_icon_con {{item.choosed ? 'choosed' : ''}}">
+          <image src="{{item.icon}}" class="thingClass_item_icon"></image>
+          </view>
+          <view data-thingclass="{{item.name}}" class="thingClass_item_name">{{item.name}}</view>
+        </view>
+     </block>
+    </view>
 </view>
 
 <view class="chooseThing_container">
@@ -12,13 +27,14 @@
 </s-chooseThingColor>
 </view>
 
+
 <view class="submit" bindtap="submit">
    完成
 </view>
 
-<i-modal title="选择事件类型"
+<!-- <i-modal title="选择事件类型"
          visible="{{isClassVisible}}"
          actions="{{actions}}"
          action-mode="{{ vertical }}"
          bind:click="handleModal">
-</i-modal>
+</i-modal> -->

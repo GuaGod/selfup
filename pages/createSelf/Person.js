@@ -53,11 +53,13 @@ class Person {
             if(item.imgPart === 'body') {
               that.body = item;
             }
-            if(item.imgPart === 'head') {
+            if(item.imgPart === 'head' && item.imgPartClass === 'ljDefault') {
               that.head = item;
               return false;
             }
         })
+
+ 
         
         Promise.resolve({
           success: true

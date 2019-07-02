@@ -65,7 +65,7 @@ s-header {
  }
 
  .thingFinish_container  {
-   height: 547rpx;
+   height: 600rpx;
  } 
  
 

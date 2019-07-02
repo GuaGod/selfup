@@ -15,7 +15,7 @@
 <view class="mostThing_container chart_container">
   <ec-canvas id="mostThing-dom" canvas-id="mostThing" ec="{{ mostThing }}"></ec-canvas>
 </view>
-<view class="thingFinish_title">任务完成度</view>
+<!-- <view class="thingFinish_title">任务完成度</view> -->
 <view class="thingFinish_container chart_container">
   <ec-canvas id="thingFinish-dom" canvas-id="thingFinish" ec="{{thingFinish}}"></ec-canvas>
 </view>

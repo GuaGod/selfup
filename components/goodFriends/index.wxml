@@ -1,13 +1,13 @@
 
 <view class="container">
   <view class="searchFriend_container">
-    <input type="text" placeholder="发现你的朋友ε = = (づ′▽`)づ" class="searchFriend_input" bindconfirm="submitAddInfo" bindchange="changeInputAddInfo" />
+    <input type="text" placeholder="发现你的朋友ε = = (づ′▽`)づ" class="searchFriend_input" bindconfirm="confirmAddInfo" bindinput="changeInputAddInfo" maxlength="8"/>
     <image src="/images/search_icon.png" class="searchFriend_button" size="24" bindtap="submitAddInfo"></image>
   </view>
 
   <view wx:if="{{isMyFriendsShow}}">
     <view class="tip">
-      <image src="/images/friend_icon.png" class="tip_icon"></image>
+      <image src="/images/friends_icon.png" class="tip_icon"></image>
       <text class="tip_text">好友列表</text>
     </view>
 
@@ -18,7 +18,7 @@
     <scroll-view class="showFriend_container">
       <block wx:for="{{friendsList}}">
         <view class="friendsList_item" bindtap="tapFriend" data-userid="{{item.userId}}">
-          <i-swipeout actions="{{friendsActions}}" bindchange="swiperFriendItem" i-class="swipeout" data-userid="{{item.userId}}">
+          <i-swipeout actions="{{friendsActions}}" catchchange="swiperFriendItem" i-class="swipeout" data-userid="{{item.userId}}">
             <view slot="content">
               <view class="friend_item_content">
                 <image src="{{item.head}}" class="friend_item_head"></image>
@@ -31,16 +31,17 @@
     </scroll-view>
   </view>
 
-
-
   <scroll-view wx:if="{{isApplyShow}}">
-    <view wx:if="{{applyList.length === 0}}" class="notice_tip">
-      暂无好友申请
+  <view class="tip">
+      <image src="/images/friends_icon.png" class="tip_icon"></image>
+      <text class="tip_text">申请列表</text>
     </view>
-
-
+    <view wx:if="{{applyList.length === 0}}" class="notice_tip">
+        暂无好友申请
+    </view>
     <block wx:for="{{applyList}}">
       <view class="applyList_item">
+        <image src="{{item.avatarUrl}}" class="applyList_item_head"/>
         <view class="applyList_item_username">{{item.username}}</view>
         <view bindtap="applySomeone" data-userid="{{item.userId}}">同意</view>
         <view bindtap="refuseSomeone" data-userid="{{item.userId}}">拒绝</view>
@@ -48,8 +49,27 @@
     </block>
   </scroll-view>
 
-  <view class="notice_container" bindtap="applyPage">
-    <image src="/images/HomeLinDang.png" class="notice_icon" />
+  <scroll-view wx:if="{{isFriendWordsShow}}">
+    <view class="tip">
+      <image src="/images/friends_icon.png" class="tip_icon"></image>
+      <text class="tip_text">好友留言</text>
+    </view>
+    <view wx:if="{{friendWordsList.length === 0}}" class="notice_tip">
+      暂无好友留言
+    </view>
+    <block wx:for="{{friendWordsList}}">
+      <view class="wordList_item">
+          <image src="{{item.senderUrl}}" class="wordList_item_head"/>
+          <view class="messageContent">{{item.messageContent}}</view>
+          <view class="senderName">{{item.senderName}}</view>
+          <view class="deleteMessage" bindtap="deleteMessage" data-messageid="{{item.messageId}}">删除</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="notice_container" >
+    <image src="/images/lingdang.png" class="notice_icon" bindtap="applyPage"/>
+    <image src="/images/liuyan.png" class="notice_icon" bindtap="friendWordsPage" />
     <view class="myId">我的ID：{{myUserId}}</view>
   </view>
 </view>

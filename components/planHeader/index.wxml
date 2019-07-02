@@ -1,9 +1,9 @@
 <view class="container">
     <view bindtap="back" class="home">
         <image src="/images/home_icon.png" class="home_icon"></image></view>
-    <view class="title">我的日程</view>
+    <view class="title" bindtap="{{isCalendarShow ? 'onTapCalendar' : 'onTapClose'}}">{{_date}}</view>
 
-    <view wx:if="{{isCalendarShow}}"
+    <!-- <view wx:if="{{isCalendarShow}}"
     class="calendar-icon" bindtap="onTapCalendar">
       <image src="/images/calendar-icon.png"
       />
@@ -13,5 +13,5 @@
            class="close-icon" bindtap="onTapClose">
     <image src="/images/close-icon.png"
       />
-    </view>
+    </view> -->
 </view>

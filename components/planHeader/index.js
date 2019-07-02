@@ -3,6 +3,7 @@
 import { PlanHeader } from './PlanHeader.js'
 let globalData = getApp().globalData;
 const createObserver = globalData.createObserver;
+const MyDate = globalData.MyDate;
 let planHeader = new PlanHeader();
 Component({
   /**
@@ -17,12 +18,24 @@ Component({
       type: Boolean,
       value: false
     },
+    date: {
+      type: String, 
+      value: MyDate.createTodayDateStr().replace(/-/g, '/'),
+      observer: function(newValue) {
+         newValue = newValue.replace(/-/g, '');
+         newValue = newValue.slice(0, 4) + '/' + newValue.slice(4, 6) + '/' + newValue.slice(6);
+         this.setData({
+           _date: newValue
+         })
+      }
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    _date: MyDate.createTodayDateStr().replace(/-/g, '/')
   },
 
   ready: function () {

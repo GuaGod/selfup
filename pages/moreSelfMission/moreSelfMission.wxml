@@ -4,8 +4,10 @@
 
 <scroll-view class="container" id="container" lower-threhold="50" scroll-y="true" scroll-x="false" bindscrolltolower="onScrollLower">
   <block wx:for="{{missionList}}">
-    <s-moreSelfMissionItem selfMission="{{item}}">
-    </s-moreSelfMissionItem>
+    <view class="missionItem_container">
+      <s-moreSelfMissionItem selfMission="{{item}}">
+      </s-moreSelfMissionItem>
+    </view>
   </block>
 </scroll-view>
 

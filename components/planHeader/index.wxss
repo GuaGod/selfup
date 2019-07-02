@@ -33,7 +33,7 @@
   font-weight: 500;
   color:rgb(137, 137, 137);
   margin-left:130rpx;
-  width:160rpx;
+  width:240rpx;
   text-align: right;
 }
 

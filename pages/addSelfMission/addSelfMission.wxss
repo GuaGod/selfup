@@ -1,10 +1,18 @@
 /* pages/plan/addSelfMission/addSelfMission.wxss */
 .chooseThing_container {
-   margin-top:30rpx;
+   margin-top:70rpx;
 }
 
 .inputThingName_container {
-  margin-top:30rpx;
+  margin-top:50rpx;
+}
+
+.inputThingName_title {
+  font-size: 32rpx;
+  color: rgb(137, 137, 137);
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  font-weight: 600;
 }
 
 .submit {
@@ -21,4 +29,63 @@
   box-shadow:0 8rpx 16rpx #bfcefe;
   border-radius:16rpx;
   font-size:32rpx;
+}
+
+.thingClass_container {
+   margin-top: 70rpx;
+}
+
+.thingClass_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(137, 137, 137);
+  font-size: 26rpx;
+  justify-content: center;
+  margin-top: 10rpx;
+}
+
+.thingClass_title {
+   font-size: 32rpx;
+   color: rgb(137, 137, 137);
+   padding-left: 30rpx;
+   box-sizing: border-box;
+   font-weight: 600;
+}
+
+.thingClass {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.thingClass_item_icon_con {
+  height: 86rpx;
+  width: 86rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 16rpx rgba(7, 17, 27, .3);
+  border-radius: 50%;
+  position: relative;
+}
+
+.choosed {
+   border:8rpx solid rgb(235, 235, 235);
+   box-shadow: 0;
+}
+
+.thingClass_item_name {
+  margin-top: 10rpx;
+}
+
+.thingClass_item_icon {
+  height:65rpx;
+  width: 65rpx;
+  margin-top:10rpx;
+  margin-left: 10rpx;
+  display: block;
+}
+
+ 
+.thingClass .thingClass_item {
+  flex: 1;
+  text-align: center;
 }

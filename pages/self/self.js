@@ -56,7 +56,7 @@ Page({
     }
  
     let that = this;
- 
+    
     person.getPersonImg()
       .then(data => {
         let figure = data.figure;

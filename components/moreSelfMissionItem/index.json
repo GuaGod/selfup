@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "i-icon": "../../dist/icon/index",
-    "i-swipeout": "../../dist/swipeout/index"
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-modal": "../../dist/modal/index"
   }
 }

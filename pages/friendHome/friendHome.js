@@ -1,4 +1,6 @@
 // pages/friendHome/friendHome.js
+// import Mp3 from '../../utils/js-mp3/decode'
+// import pcm from '../../utils/pcm-util'
 let globalData = getApp().globalData;
 const goodFriendsAPI = globalData.goodFriendsAPI;
 const Loader = globalData.Loader;
@@ -17,6 +19,9 @@ Page({
     backdrop: '',
     loading: true,
     powerList: [],
+    userId: null,
+    message: '',
+    isCommunicateShow: false
   },
 
   /**
@@ -25,7 +30,12 @@ Page({
   onLoad: function(options) {
     let that = this;
     let userId = options.userid;
+
     let context = {};
+    this.setData({
+      userId: userId
+    })
+    
     imageLoader.init(context);
     context.on('loadSuccess', function(loadNum, total) {
       that.loadSuccess(loadNum, total);
@@ -105,6 +115,145 @@ Page({
       wx.navigateBack({
         delta: 1
       })
+  },
+
+  leaveMessage: function() {
+    // this.getRecordAuth()
+    // // 获取录音对象
+    // const that = this;
+    // this.recorderManager = wx.getRecorderManager()
+    // this.recorderManager.onStart(() => {
+    //   console.log('recorder start')
+    // })
+    // // 录音的格式参数
+    // const options = {
+    //   duration: 11000,
+    //   sampleRate: 32000,
+    //   numberOfChannels: 1,
+    //   encodeBitRate: 64000,
+    //   format: 'mp3',
+    //   frameSize: 6
+    // }
+    // this.recorderManager.start(options)
+    // this.recorderManager.onStop(res => {
+    //   const tempFilePath = res.tempFilePath
+    //   that.duration = res.duration
+    //   const fs = wx.getFileSystemManager()
+    //   console.log('record stop')
+    //   console.log(res)
+    //   // 从临时文件中读取音频
+    //   let promise = new Promise((resolve, reject) => {
+    //     fs.readFile({
+    //       filePath: tempFilePath,
+    //       success(res) {
+    //         console.log('read success')
+    //         resolve(res.data);
+    //       },
+    //       fail(e) {
+    //         console.log('read fail')
+    //         console.log(e)
+    //       }
+    //     })
+    //   });
+
+    //   promise.then((data) => {
+    //     return that.mp3ToPcm(data);
+    //   }).then((data) => {
+    //     console.log('转文字成功');
+    //     console.log(data);
+    //   })
+
+
+    // })
+     let that = this;
+     return MyHttp.request({
+       url: goodFriendsAPI.addMessage,
+       method: 'POST',
+       header: {
+         'content-type': 'application/x-www-form-urlencoded',
+         'Cookie': getApp().globalData.LOGIN_COOKIE
+       },
+       data: {
+         hisUserId: that.data.userId,
+         messageContent: that.data.message
+       }
+     })
+     
+  },
+
+  // mp3ToPcm (mp3AB) {
+  //   var that = this
+  //   var decoder = Mp3.newDecoder(mp3AB)
+  //   var pcmArrayBuffer = decoder.decode()
+  //   // 和录音的格式一样
+  //   const fromFormat = {
+  //     channels: 1,
+  //     sampleRate: 32000,
+  //     interleaved: true,
+  //     float: false,
+  //     samplesPerFrame: 1152,
+  //     signed: true
+  //   }
+  //   // 目标音频的格式
+  //   const toFormat = {
+  //     channels: 1,
+  //     sampleRate: 16000,
+  //     bitDepth: 8,
+  //     interleaved: true,
+  //     float: false,
+  //     samplesPerFrame: 576,
+  //     signed: true
+  //   }
+  //   var pcmAB = pcm.convert(pcmArrayBuffer, fromFormat, toFormat)
+  //   const base64 = wx.arrayBufferToBase64(pcmAB)
+  //   var millTime = (new Date().setMilliseconds(0) / 1000) + ''
+  //   /** 调用科大讯飞平台的语音识别
+  //       请求参数都是自己申请应用的参数
+  //   */
+  //   return MyHttp.request({
+  //     url: 'http://api.xfyun.cn/v1/service/v1/iat',
+  //     method: 'POST',
+  //     data: {
+  //       audio: base64
+  //     },
+  //     header: {
+  //       'X-Appid': '5be4162d',    
+  //       'X-CurTime': millTime,
+  //       'X-Param': 'eyJlbmdpbmVfdHlwZSI6ICJzbXMxNmsiLCJhdWUiOiAicmF3In0=',
+  //       'X-CheckSum': md5('b243cb9e1ea9d9eb40847967a8ebeef2' + millTime + 'eyJlbmdpbmVfdHlwZSI6ICJzbXMxNmsiLCJhdWUiOiAicmF3In0='),
+  //       'content-type': 'application/x-www-form-urlencoded' // 默认值
+  //     },
+  //   })
+  // },
+  handleShowCommunicate: function() {
+    this.setData({
+      isCommunicateShow: true
+    })
+  },
+  handleSubmit: function() {
+    let that = this;
+    that.leaveMessage()
+        .then(data => {
+          if(data.success) {
+            this.setData({
+              isCommunicateShow: false
+            })
+          }
+        }); 
+  },
+
+  handleClose: function() {
+    this.setData({
+      isCommunicateShow: false,
+    })
+  },
+
+  changeText: function (e) {
+    let text = e.detail.value;
+    this.setData({
+      message: text
+    });
+
   },
 
   /**

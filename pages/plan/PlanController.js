@@ -153,12 +153,25 @@ class PlanController {
      choosedMissions.forEach((item) => {
        let obj = plan[item.y].thingList[item.x];
        if(obj.thingName !== null) {
-         obj.thingState = obj.thingState === 0 ? 1 : 0;
+         obj.thingState = 1;
        }
      })
      this.isChanged = true;
 
      this._updateView();
+  }
+
+  unCompleteChoosedMission(choosedMissions) {
+    let plan = this.plan;
+    choosedMissions.forEach((item) => {
+      let obj = plan[item.y].thingList[item.x];
+      if (obj.thingName !== null) {
+        obj.thingState = 0;
+      }
+    })
+    this.isChanged = true;
+
+    this._updateView();
   }
 
   deletePlan(choosedMissions) {

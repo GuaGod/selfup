@@ -1,7 +1,6 @@
 /* pages/plan/plan.wxss */
 page {
-   
-   
+   position: relative;
 }
 
 .header_container {
@@ -28,7 +27,7 @@ page {
   align-items:flex-start;
   height:100%;
   overflow:hidden;
-   
+  box-sizing: border-box;
 }
 
 .top_container {
@@ -45,17 +44,18 @@ page {
 }
 
 .container .middle-content {
-  width:500rpx;
+  min-width: 500rpx;
   height:100%;
   overflow-x:hidden;
   overflow-y:auto;
   -webkit-overflow-scrolling: touch;
-  
+  margin-left: 50rpx;
 }
 
 .container .right-missions {
-  width: 200rpx;
+  width: 220rpx;
   height: 100%;
+  margin-top: 50rpx;
 }
 
 .calendar {
@@ -94,8 +94,8 @@ page {
 }
 
 .editorTip {
-   height:100rpx;
-   line-height:100rpx;
+   height:114rpx;
+   line-height:114rpx;
    width:100%;
    display: flex;
    background: rgba(235, 235, 235, 0.6);
@@ -128,14 +128,6 @@ page {
   display: block;
 }
 
-.powerTable_container {
-   position:fixed;
-   right:40rpx;
-   top:200rpx;
-   width:220rpx;
-   z-index: 6;
-}
-
 @keyframes ani-demo-spin {
     from { transform: rotate(0deg);}
     50%  { transform: rotate(180deg);}
@@ -148,9 +140,56 @@ page {
 .helpStep_mask {
   height:100%;
   width:100%;
-  position: fixed;
+  position: absolute;
   background: rgba(0,0,0,.75);
-  z-index:100;
+  z-index:10000;
   top:0rpx;
   left:0rpx;
+}
+
+.mask_image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.helpStep_container {
+  z-index: 10000002;
+  position:absolute;
+}
+
+.step01_container {
+  width: 262rpx;
+  height: 58rpx;
+  right: 170rpx;
+  top: 650rpx;
+}
+
+.step02_container {
+  width: 274rpx;
+  height: 100rpx;
+  right: 220rpx;
+  top:250rpx;
+}
+
+.step1_container {
+   width: 470rpx;
+   height: 138rpx;
+   bottom: 110rpx;
+   right: 20rpx;
+}
+
+.step2_container {
+  width: 232rpx;
+  height: 138rpx;
+  bottom: 110rpx;
+  right: 150rpx;
+}
+
+
+.step3_container {
+  width: 353rpx;
+  height: 138rpx;
+  bottom: 110rpx;
+  right: -56rpx;
 }

@@ -7,10 +7,16 @@ page {
   padding-top:120rpx;
   overflow-y: auto;
   overflow-x: hidden;
-  height:1200rpx;
+  height:1300rpx;
   width:750rpx;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch
+  -webkit-overflow-scrolling: touch;
+}
+
+.missionItem_container {
+  width: 710rpx;
+  margin: auto;
+  border-radius: 10rpx;
 }
 
 .arrow {
@@ -26,10 +32,6 @@ page {
 .arrow image {
   height:40rpx;
   width:120rpx;
-}
-
-.i-swipeout-item{
-    border-bottom:#333 solid 1px;
 }
  
 .i-swipeout-item-content {

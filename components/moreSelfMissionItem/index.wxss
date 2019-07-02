@@ -1,5 +1,7 @@
 /* components/moreSelfMissionItem/index.wxss *//* components/moreSelfMission/moreSelfMissionItem/index.wxss */
-
+.container {
+  border: none !important;
+}
 
 .content {
   overflow: hidden;
@@ -7,6 +9,25 @@
   display: flex;
   align-items: center;
   padding:20rpx 30rpx 20rpx 30rpx;
+  height: 110rpx;
+  border-bottom: 2rpx solid rgb(230, 230, 230);
+}
+
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon image {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.operation {
+  width: 120rpx;
+  display: flex;
 }
 
 .thingName {
@@ -16,15 +37,21 @@
   width:620rpx;
 }
 
-.bgColor {
-  width:40rpx;
-  height:40rpx;
-  border-radius:50%;
-  background:blue;
-}
 
 .isLove {
   height:50rpx;
   width:50rpx;
 }
 
+.delete {
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.modalMask {
+  background: none !important;
+}
+
+.modalMain {
+  box-shadow: 0 8rpx 16rpx rgba(7, 17, 27, .4);
+}

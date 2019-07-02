@@ -8,7 +8,7 @@
 <view class="dairy_container">
     <view class="camera" bindtap="takePhoto">
        <image wx:if="{{!hasImage}}" src="/images/dairyCamera.png" class="camera_icon"></image>
-       <image wx:if="{{hasImage}}" src="{{image}}"  class="remote_image"/>
+       <image wx:if="{{hasImage}}" src="{{image}}"  class="remote_image" mode='aspectFill'/>
     </view>
 
     <view class="content">

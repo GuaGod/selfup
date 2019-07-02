@@ -63,7 +63,13 @@ class DairyList {
           
           tmp.emotionValue = Number(item.emotionValue) || 0;
           tmp.emotionValue = parseInt((tmp.emotionValue + 8) * 6.25);
+        if (tmp.emotionValue < 0) {
+          tmp.emotionValue = 0;
+          }
 
+        if (tmp.emotionValue > 100) {
+          tmp.emotionValue = 100;
+          }
 
           tmp.id = item.emotionId;
 

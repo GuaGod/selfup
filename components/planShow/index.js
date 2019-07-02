@@ -37,6 +37,14 @@ Component({
           planChoosedState: array
         })
       }
+    },
+    //帮助模式下，将启用某个块层叠级最高
+    helpMode: {
+      type: Boolean,
+      value: false,
+      observer: function(newValue) {
+        console.log(newValue);
+      }
     }
   },
 

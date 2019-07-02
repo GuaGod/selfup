@@ -8,9 +8,10 @@
   height:60rpx;
   font-size:32rpx;
   color: rgb(137, 137, 137);
-  text-align: center;
   line-height:60rpx;
- 
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  font-weight: 600;
 }
 
 .colorBox {

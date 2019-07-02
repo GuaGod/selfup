@@ -40,10 +40,6 @@ Page({
     })
   },
 
-  changeText: function(e) {
-
-  },
-
   back: function() {
     wx.navigateBack({
       delta: 1

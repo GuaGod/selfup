@@ -6,6 +6,7 @@ class MissionNow{
    constructor() {
      this.thingColor = "#f2a7a5";
      this.thingName;
+     this.thingClass;
    }
 
    chooseThingColor(color) {
@@ -16,7 +17,7 @@ class MissionNow{
      this.thingName = name;
    }
 
-   submit(thingClass) {
+   submit() {
       let that = this;
       if(this.thingName === undefined) {
         return false;
@@ -29,7 +30,7 @@ class MissionNow{
         "createTime": null,
         "lastEditTime": null,
         "user": null,
-        "thingClass": thingClass 
+        "thingClass": that.thingClass 
       }
 
       return MyHttp.request({

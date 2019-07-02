@@ -16,6 +16,12 @@ Component({
               percent = parseInt(percent);
               if(item.statement === '情绪') {
                  percent = Math.ceil((percent + 8) * 6.25);
+                 if(percent < 0) {
+                   percent = 0;
+                 } 
+                 if(percent > 100) {
+                   percent = 100;
+                 }
               }
               
               _obj.percent = percent; 

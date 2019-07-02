@@ -8,23 +8,36 @@ Page({
    */
   data: {
     isClassVisible: false,
-    actions: [{
-      name: '学习'
+    thingClass: '',
+    thingClassList: [{
+      name: '学习',
+      choosed: true,
+      icon: '/images/study_icon.png',
     },
     {
-      name: '运动'
+      name: '运动',
+      choosed: false,
+      icon: '/images/sport_icon.png',
     },
     {
-      name: '娱乐'
+      name: '娱乐',
+      choosed: false,
+      icon: '/images/play_icon.png',
     },
     {
       name: '杂事',
+      choosed: false,
+      icon: '/images/other_icon.png',
     },
     {
       name: '睡眠',
+      choosed: false,
+      icon: '/images/sleep_icon.png',
     },
     {
-      name: '吃饭'
+      name: '吃饭',
+      choosed: false,
+      icon: '/images/eat_icon.png',
     }
     ],
   },
@@ -38,6 +51,21 @@ Page({
       let thingColor = e.detail.thingColor;
       missionNow.chooseThingColor(thingColor);
   },
+
+  onChooseThingClass: function (e) {
+    let thingClass = e.currentTarget.dataset.thingclass;
+    let thingIndex = e.currentTarget.dataset.index;
+    let thingClassList = this.data.thingClassList;
+    for(let i = 0, len = thingClassList.length; i < len; i++) {
+      thingClassList[i].choosed = false;
+    }
+
+    thingClassList[thingIndex].choosed = true;
+    this.setData({
+      thingClassList: thingClassList
+    })
+    missionNow.thingClass = thingClass;
+  },
   
   submit: function() {
     if (!missionNow.thingName) {
@@ -47,29 +75,17 @@ Page({
       })
       return;
     }
-       this.setData({
-         isClassVisible: true
-       })
+    missionNow.submit()
+      .then(data => {
+        if (data.success) {
+          wx.showToast({
+            title: '添加成功',
+          })
+        }
+      });
   }, 
 
-  handleModal: function ({
-    detail
-  }) {
-    let index = detail.index;
-    let className = this.data.actions[index].name;
-    
-    missionNow.submit(className)
-              .then(data => {
-                if(data.success) {
-                     wx.showToast({
-                       title: '添加成功',
-                     })
-                } 
-              });
-    this.setData({
-      isClassVisible: false
-    })
-  },
+  
 
   onLoad: function (options) {
 

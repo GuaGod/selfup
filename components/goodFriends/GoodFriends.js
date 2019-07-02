@@ -8,7 +8,8 @@ const goodFriendsAPI = globalData.goodFriendsAPI;
 
 class GoodFriends {
   constructor() {
-     this.friendsLis
+     this.friendsList;
+     this.messagePageNum = 1;
   }
 
   /**
@@ -116,7 +117,43 @@ class GoodFriends {
   
   deleteFriend(userId) {
     return MyHttp.request({
-      
+      url: goodFriendsAPI.deleteFriend,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE,
+      },
+      data: {
+        hisUserId: userId
+      }
+    })
+  }
+
+  getFriendWordsList() {
+    let that = this;
+    return MyHttp.request({
+      url: goodFriendsAPI.listMessage,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE,
+      }, 
+      data: {
+        pageNum: that.messagePageNum,
+        pageSize: 6,
+      }
+    })
+  }
+
+  deleteMessage(messageId) {
+    let that = this;
+    return MyHttp.request({
+      url: goodFriendsAPI.deleteMessage,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE,
+      }, 
+      data: {
+        messageId
+      }
     })
   }
 

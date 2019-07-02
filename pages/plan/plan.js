@@ -12,6 +12,7 @@ let planController = new PlanController();
 
 let globalData = getApp().globalData;
 const MyDate = globalData.MyDate;
+const MyStorage = globalData.MyStorage;
 const createObserver = globalData.createObserver;
 
 Page({
@@ -34,8 +35,9 @@ Page({
     canChooseShow: true,
     canEditorShow: true,            //是否可以有下栏的编辑器
     completeProgress: 0,
-    isNewMan: true,
+    isNewMan: false,
     helpStep: 0,
+    finalStep: 3
   },
 
   /**
@@ -45,6 +47,19 @@ Page({
     let that = this;
     let dateStr = MyDate.createTodayDateStr();
     let view = {};
+    MyStorage.getItem('isPlanNewMan')
+             .then((res) => {
+               let isNewMan = res.data;
+               this.setData({
+                 isNewMan
+               })               
+             }, () => {
+                this.setData({
+                  isNewMan: true
+                })
+                MyStorage.setItem('isPlanNewMan', true);
+             })
+
     createObserver(view);
     view.on('updateView', (data) => {
       let plan = data.plan;
@@ -162,7 +177,8 @@ Page({
     let canEditorShow = this.data.canEditorShow;
 
     this.setData({
-      hasEditorMission: canEditorShow,
+      hasEditorMission: true,
+      canEditorShow: canEditorShow,
       chooseTime: chooseTime
     })
   },
@@ -246,6 +262,37 @@ Page({
       hasEditorMission: false,
       completeProgress: progress
     });
+  },
+
+  unCompleteChoosedMission: function() {
+    planController.unCompleteChoosedMission(this.data.choosedMissions);
+    let progress = planController.comunicateProgress();
+    this.setData({
+      clearChooseTag: !this.data.clearChooseTag,
+      hasEditorMission: false,
+      completeProgress: progress
+    });
+  },
+
+  nextHelp: function () {
+    let helpStep = this.data.helpStep;
+    let finalStep = this.data.finalStep;
+
+    if (helpStep === finalStep) {
+      this.overHelp();
+    }
+
+    this.setData({
+      helpStep: this.data.helpStep + 1,
+    })
+  },
+
+  overHelp: function() {
+     this.setData({
+       isNewMan: false
+     });
+
+     MyStorage.setItem('isPlanNewMan', false);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

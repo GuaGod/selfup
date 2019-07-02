@@ -1,24 +1,56 @@
 <scroll-view class="container" scroll-y="true">
   <block wx:for="{{plan}}" wx:key="{{index}}">
+    <view wx:if="{{index === 0}}" class="devideLine">
+       <image src="/images/morning.png" class="devideImage"></image>
+       上午
+    </view>
+    <view wx:if="{{index === 7}}" class="devideLine">
+       <image src="/images/afternoon.png" class="devideImage"></image>
+       下午
+    </view>
+    <view wx:if="{{index === 15}}" class="devideLine">
+       <image src="/images/night.png" class="devideImage"></image>
+       晚上
+    </view>
+
     <view class="mission_item">
       <view class="title">{{item.jobName || ''}}</view>
-      <view class="mission_box {{item.thingList[0].thingState === 1 ? 'completed' : 'notCompleted'}} {{planChoosedState[index][0] ? 'choosed' : ''}}"
-            style="background:{{item.thingList[0].thingColor}}"
+      <view class="mission_box {{item.thingList[0].thingState === 1 ? 'completed' : colorFactory.defineColor(index)}} {{planChoosedState[index][0] ? 'choosed' : ''}}"  
+            style="{{item.thingList[0].thingState === 1 ? 'background:' + item.thingList[0].thingColor : ''}}"
             data-y="{{index}}"
             data-x="{{0}}"
             bindtap="chooseMission"
             bindlongtap='completeAMission'
             >{{item.thingList[0].thingName || ''}}
       </view>
-      <view class="mission_box {{item.thingList[1].thingState === 1 ? 'completed' : 'notCompleted'}} {{planChoosedState[index][1] ? 'choosed' : ''}}"
-            style="background:{{item.thingList[1].thingColor}}"
+      <view class="mission_box {{item.thingList[1].thingState === 1 ? 'completed' : colorFactory.defineColor(index)}} {{planChoosedState[index][1] ? 'choosed' : ''}}"  
+            style="{{item.thingList[1].thingState === 1 ? 'background:' + item.thingList[1].thingColor : ''}};{{helpMode && item.jobName == 12 ? 'z-index:1000001;position:relative;background:rgba(189, 217, 252, 1);' : ''}}"
             data-y="{{index}}"
             data-x="{{1}}"
             bindtap="chooseMission"
             bindlongtap='completeAMission'
-            >{{item.thingList[1].thingName || ''}}
+            >{{item.thingList[1].thingName || ''}} 
       </view>
     </view>
+
   </block>
  
 </scroll-view> 
+
+<view>{{m1.message}}</view>
+
+<wxs module="colorFactory">
+   function defineColor(index) {
+      if(index >= 0 && index <= 6) {
+         return 'morningBg';
+      } else if(index > 6 && index <= 14) {
+         return 'afternoonBg';
+      } else {
+         return 'nightBg';
+      }
+   }
+
+   module.exports = {
+      defineColor: defineColor
+   }
+</wxs>

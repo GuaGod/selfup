@@ -3,6 +3,7 @@ import {
   GoodFriends
 } from './GoodFriends.js'
 let goodFriends = new GoodFriends();
+let isEditorMap = new Map();
 
 Component({
   /**
@@ -42,9 +43,11 @@ Component({
     isMyFriendsShow: true,
     isAddFriendShow: false,
     isApplyShow: false,
+    isFriendWordsShow: false,
     inputAddInfo: '',
     applyList: [], //申请加好友的列表
     myUserId: '',
+    friendWordsList: [],
   },
 
   ready: function() {
@@ -68,6 +71,8 @@ Component({
             aFriend.head = item.avatarUrl;
             aFriend.sex = item.sex;
             aFriend.userId = item.userId;
+            
+            isEditorMap.set(item.userId, false);
 
             listFriends.push(aFriend);
           })
@@ -86,13 +91,14 @@ Component({
         })
     },
 
-    //用户在搜索用户框输入内容
     applyPage: function() {
       this.setData({
         isApplyShow: !this.data.isApplyShow,
-        isMyFriendsShow: !this.data.isMyFriendsShow,
+        isMyFriendsShow: this.data.isApplyShow,
         isAddFriendShow: false,
+        isFriendWordsShow: false,
       })
+
 
       if (!this.data.isApplyShow) {
         goodFriends.findMyFriends()
@@ -104,6 +110,7 @@ Component({
               aFriend.head = item.avatarUrl;
               aFriend.sex = item.sex;
               aFriend.userId = item.userId;
+              isEditorMap.set(item.userId, false);
 
               listFriends.push(aFriend);
             })
@@ -115,8 +122,6 @@ Component({
         return;
       }
 
-
-
       goodFriends.getApplyList()
         .then(data => {
           let listFriends = data.listFriends;
@@ -126,10 +131,30 @@ Component({
         })
     },
 
+    friendWordsPage: function () {
+      this.setData({
+        isApplyShow: false,
+        isMyFriendsShow: this.data.isFriendWordsShow,
+        isAddFriendShow: false,
+        isFriendWordsShow: !this.data.isFriendWordsShow,
+      })
+
+      goodFriends.getFriendWordsList()
+        .then((data) => {
+          this.setData({
+            friendWordsList: data.listMessage
+          })
+        });
+
+    },
+
     tapFriend: function(detail) {
-
       let userId = detail.currentTarget.dataset.userid;
-
+      let isEditorMode = isEditorMap.get(userId);
+       
+      if(isEditorMode) {
+        return;
+      }
       wx.navigateTo({
         url: `../friendHome/friendHome?userid=${userId}`,
       })
@@ -147,15 +172,30 @@ Component({
         isMyFriendsShow: true,
         isAddFriendShow: false,
         isApplyShow: false,
+        isFriendWordsShow: false,
       })
     },
 
+    
+    //
+    confirmAddInfo: function(e) {
+        let info = e.detail.value;
+         
+        this._submitAddInfo(info);
+    },
 
     //用户提交搜索内容 (查找好友时)
     submitAddInfo: function() {
+       this._submitAddInfo(this.data.inputAddInfo);
+    },
+    
+    _submitAddInfo: function (info) {
       let that = this;
-      let username = this.data.inputAddInfo;
+      let username = info;
 
+      if (username === '') {
+        return;
+      }
       this.setData({
         isFindPeopleShow: true
       })
@@ -169,7 +209,7 @@ Component({
             wx.showModal({
               title: user.username,
               content: '是否加为好友',
-              success: function(e) {
+              success: function (e) {
                 let confirm = e.confirm;
                 if (confirm) {
                   that.addSomeone(user.userId);
@@ -193,7 +233,6 @@ Component({
           }
         })
     },
-
 
     addSomeone: function(userId) {
       let hisUserId = userId;
@@ -287,15 +326,37 @@ Component({
       let that = this;
       let index = data.detail.index;
       let userId = data.currentTarget.dataset.userid;
-
-      switch (index) {
-        case 0:
-          that.deleteFriend(userId);
-          break;
+      let friendsList = this.data.friendsList;
+      isEditorMap.set(userId, true);
+      if(index === 0) {
+        
+        for (let i = 0, len = friendsList.length; i < len; i++) {
+          let item = friendsList[i];
+          if (String(item.userId) === String(userId)) {
+            friendsList.splice(i, 1);
+            break;
+          }
+        }
+        goodFriends.deleteFriend(userId)
+            .then(data => {
+               if(data.success) {
+                 wx.showToast({
+                   title: '删除成功！',
+                 });
+                 this.setData({
+                   friendsList: friendsList
+                 })
+               } 
+            })
+      } else {
+         isEditorMap.set(userId, false);
       }
+ 
     },
 
-
+    catchDelete: function() {
+         
+    },
     //重置搜索
     resetSearch: function() {
       this.setData({
@@ -308,7 +369,42 @@ Component({
           isNobodayTitleShow: false
         },
       })
-    }
+    },
+
+    deleteMessage: function(e) {
+      let that = this;
+      let messageId = e.target.dataset.messageid;
+    
+      wx.showModal({
+        title: '确定删除留言',
+        success: function (e) {
+          let confirm = e.confirm;
+          if (confirm) {
+            that._deleteMessage(messageId);
+          }
+        }
+      })
+
+    },
+
+    _deleteMessage(messageId) {
+      let friendWordsList = this.data.friendWordsList;
+      for (let i = 0, len = friendWordsList.length; i < len; i++) {
+        let item = friendWordsList[i];
+        if (item.messageId === messageId) {
+          friendWordsList.splice(i, 1);
+          break;
+        }
+      }
+
+      this.setData({
+        friendWordsList
+      })
+      goodFriends.deleteMessage(messageId)
+        .then((data) => {
+          console.log(data);
+        });
+    },
 
   }
 })

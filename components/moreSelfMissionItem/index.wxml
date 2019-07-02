@@ -2,12 +2,23 @@
             wx:if="{{isShow}}">
   <view slot="content">
    <view class="content">
-    <view class="bgColor" style="background:{{thingColor}}"></view>
+    <view class="icon">
+      <image src="{{image}}" />
+    </view>
     <view class="thingName">{{thingName}}</view>
-    <view class="isLove" bindtap="onTapLove" data-thingid="{{thingId}}">
-      <i-icon wx:if="{{isLove}}" type="like_fill" size="25" color="#80848f" data-thingid="{{thingId}}" />
-      <i-icon wx:else type="like" size="25" color="#80848f" data-thingid="{{thingId}}" />
+    <view class="operation">
+        <view>
+          <image class="isLove" src="{{isLove ? '/images/shixin-icon.png' : '/images/kongxin-icon.png'}}"
+          bindtap="onTapLove"/>
+        </view>
+        <view>
+          <image class="delete" src="/images/close-circle.png" bindtap="onTapDelete"></image>
+        </view>
     </view>
     </view>
   </view>
 </i-swipeout>
+
+<i-modal title="删除确认" visible="{{ deleteVisible }}" actions="{{ actions }}" bind:click="onTapModal" i-class-mask="modalMask" i-class-main="modalMain">
+    <view>删除后无法恢复哦</view>
+</i-modal>

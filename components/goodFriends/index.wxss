@@ -47,11 +47,11 @@
 }
 
 .tip_icon {
-    width:56rpx;
-    height:56rpx;
+    width:53rpx;
+    height:38rpx;
     margin-right:24rpx;
     position: relative;
-    bottom:4rpx;
+    bottom:-6rpx;
 }
 
 .tip_text {
@@ -65,9 +65,9 @@
 }
 
 .showFriend_container {
-  margin-top:64rpx;
   height: 700rpx;
   overflow: auto;
+  margin-top: 25rpx;
 }
 
 .friendsList_item {
@@ -139,6 +139,15 @@
   color:rgb(156, 155, 155);
   margin-top:30rpx;
   justify-content: space-around;
+  align-items: center;
+}
+
+.applyList_item_head {
+   width: 30rpx;
+   height: 30rpx;
+   display: block;
+   margin-left: 40rpx;
+   margin-right: -46rpx;
 }
 
 .applyList_item_username {
@@ -147,4 +156,43 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align:center;
+}
+
+.backToMyFriend_icon {
+   width:40rpx;
+   height:40rpx;
+   display:inline-block;
+}
+
+.wordList_item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+  margin-top:20rpx;
+}
+
+.wordList_item .wordList_item_head{
+  height: 30rpx;
+  width: 30rpx;
+  display: block;
+  overflow: hidden;
+}
+
+.wordList_item .messageContent {
+  width: calc(100% - 30rpx);
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+
+.wordList_item .senderName {
+  width: 100%;
+  text-align: right;
+}
+
+.wordList_item .deleteMessage {
+  width: 100%;
+  text-align: right;
 }

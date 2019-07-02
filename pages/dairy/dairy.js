@@ -82,22 +82,22 @@ Page({
   }) {
     let dairyId = this.data.deleteId;
     let dairyData = this.data.dairyData;
-    for (let i = 0, len = dairyData.length; i < len; i++) {
-      let item = dairyData[i];
-      if (Number(item.id) === dairyId) {
-        dairyData.splice(i, 1);
-        break;
-      }
-    }
-    this.setData({
-      dairyData: dairyData
-    })
-
     if (detail.index === 0) {
+      
       this.setData({
         deleteVisible: false
       })
     } else {
+      for (let i = 0, len = dairyData.length; i < len; i++) {
+        let item = dairyData[i];
+        if (Number(item.id) === dairyId) {
+          dairyData.splice(i, 1);
+          break;
+        }
+      }
+      this.setData({
+        dairyData: dairyData
+      })
       const action = this.data.actions;
       action[1].loading = true;
 
@@ -139,22 +139,18 @@ Page({
    */
   onShow: function() {
     dairyList.init();
-
+    this.setData({
+      dairyData: []
+    })
     this.getMoreDairys();
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
 
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-       this.setData({
-         dairyData: []
-       });
+ 
   },
 
   /**

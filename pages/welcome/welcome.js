@@ -37,11 +37,12 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-
+     
     setTimeout(() => {
       that.setData({
         isCompletedLoad: true
       })
+      
     }, 4000);
      
 

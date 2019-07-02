@@ -2,6 +2,15 @@
 let globalData = getApp().globalData;
 const MyHttp = globalData.MyHttp;
 const planAPI = globalData.planAPI;
+const thingClassMap = new Map([
+  ['学习', '/images/study_icon.png'],
+  ['运动', '/images/sport_icon.png'],
+  ['娱乐', '/images/play_icon.png'],
+  ['杂事', '/images/other_icon.png'],
+  ['睡眠', '/images/sleep_icon.png'],
+  ['吃饭', '/images/eat_icon.png'],
+])
+
 
 Component({
   /**
@@ -33,16 +42,17 @@ Component({
     thingName: "",
     thingId: "",
     isLove: 0,
-    actions: [
-      {
-        name: '删除',
-        width: 100,
-        color: 'white',
-        fontsize: '25',
-        icon: 'delete',
-        background: '#ed3f14',
-      }
-    ]
+    image: "",
+    actions: [{
+      name: '取消'
+    },
+    {
+      name: '删除',
+      color: '#ed3f14',
+      loading: false
+    }
+    ],
+    deleteVisible: false
   },
 
   ready: function () {
@@ -51,7 +61,8 @@ Component({
       thingColor: dataObj.thingColor,
       thingName: dataObj.thingName,
       thingId: dataObj.thingId,
-      isLove: dataObj.isLove
+      isLove: dataObj.isLove,
+      image: thingClassMap.get(dataObj.thingClass) || thingClassMap.get('杂事')
     });
   },
 
@@ -77,24 +88,32 @@ Component({
         }
       })
     },
-    handlerSwiperButton: function(e) {
-       let that = this;
-       let index = e.detail.index;
-       if(index === 0) {
-         this.deleteSelfMission()
-             .then(res => {
-                wx.showToast({
-                  title: '删除成功！',
-                })
-                this.setData({
-                  isShow: false
-                })
-             }, (err) => {
-               wx.showToast({
-                 title: '网络拥堵，删除失败！',
-               })
-             })
-       }
+    onTapDelete: function(e) {
+        this.setData({
+          deleteVisible: true
+        });
+    },
+
+    onTapModal: function(e) {
+        let index = e.detail.index;
+        this.setData({
+          deleteVisible: false
+        })
+        if(Number(index) !== 0) {
+          this.deleteSelfMission()
+            .then(res => {
+              wx.showToast({
+                title: '删除成功！',
+              })
+              this.setData({
+                isShow: false
+              })
+            }, (err) => {
+              wx.showToast({
+                title: '网络拥堵，删除失败！',
+              })
+            })
+        }
     },
 
     deleteSelfMission() {
@@ -111,6 +130,7 @@ Component({
       })
     }
   },
+    
 
   
 })

@@ -226,7 +226,7 @@ page {
    font-size:24rpx;
    font-weight: 600;
    position: fixed;
-   bottom:100rpx;
+   bottom:400rpx;
    left: 100rpx;
    color: rgb(139, 139, 139);
  }

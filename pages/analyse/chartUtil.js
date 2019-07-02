@@ -56,7 +56,14 @@ class Emotion {
         data.emotionList.forEach((item) => {
           xAxis.push(item.createTime);
           //-8 到 8的情绪值 映射到 0 100 
-          series.push(Math.ceil((Number(item.emotionValue) + 8) * 6.25));
+          let emotion = Math.ceil((Number(item.emotionValue) + 8) * 6.25);
+          if(emotion < 0) {
+            emotion = 0;
+          } 
+          if(emotion > 100) {
+            emotion = 100
+          }
+          series.push(emotion);
         });
         series.reverse();
         xAxis = operateCreateTimeArr(xAxis);
@@ -334,6 +341,9 @@ class MostThing {
           let aSerie = {};
           aSerie.value = item.countTime;
           aSerie.name = item.thingName;
+          if(aSerie.name === '无日程') {
+            aSerie.name = '无';
+          }
 
           mostThingSeries.push(aSerie);
         })
@@ -355,13 +365,16 @@ class MostThing {
               color: '#8d8d8d'
             }
           },
+          grid: {
+             top: 70
+          },
           legend: {
             data: [{
               name: '最多做的事',
             }, {
               name: '情绪值'
             }],
-            y: '30rpx',
+             y: '30rpx',
           },
           xAxis: [{
             type: 'category',
@@ -430,7 +443,6 @@ class MostThing {
                   color: function(params) {
                     //自定义颜色
                     let thingClass = params.data.name;
-
 
                     let strategy = {
                       '学习': '#c9e7fd',
@@ -552,6 +564,17 @@ class ThingFinish {
         })
 
         let option = {
+          title: {
+            text: '任务完成度',
+            left: 'center',
+            top: 'top',
+            textStyle: {
+              color: '#8d8d8d'
+            }
+          },
+          grid: {
+            position: 'bottom',
+          },
           radar: {
             name: {
               textStyle: {
@@ -562,6 +585,8 @@ class ThingFinish {
               borderColor: '#bbb',
             },
             indicator: createTimeArr,
+            center: ['50%', '55%'],
+            radius: 80
           },
           series: [{
             name: '任务完成度',

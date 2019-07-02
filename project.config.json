@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -52,6 +52,41 @@
 					"id": -1,
 					"name": "计划",
 					"pathName": "pages/plan/plan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "事件管理",
+					"pathName": "pages/moreSelfMission/moreSelfMission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加",
+					"pathName": "pages/addSelfMission/addSelfMission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "写日记",
+					"pathName": "pages/writeDairy/writeDairy",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日程",
+					"pathName": "pages/plan/plan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "数据可视化",
+					"pathName": "pages/analyse/analyse",
 					"scene": null
 				}
 			]

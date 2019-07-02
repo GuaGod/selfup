@@ -147,11 +147,10 @@ page {
 .delete_container {
   height: 40rpx;
   width: 40rpx;
-  padding-left: 30rpx;
-  padding-bottom: 30rpx;
+  padding: 30rpx;
   position: absolute;
-  right: 60rpx;
-  top:40rpx;
+  right: 20rpx;
+  top: -5rpx;
 }
 
 .delete_container image {

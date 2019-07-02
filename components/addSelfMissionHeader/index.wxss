@@ -12,11 +12,11 @@
 
 .title {
   font-size: 30rpx;
-  font-weight: 500;
   width:280rpx;
   text-align:right;
   color:#646e89;
   margin-left:80rpx;
+  font-weight: 600;
 }
 
 .submit, .back {

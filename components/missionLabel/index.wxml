@@ -1,7 +1,9 @@
 <view class="container">
      <view class="content"
-           style="background:{{missionData.thingColor}}"
+           style="background:{{_missionData.thingColor}}"
            bindtap="onTapMission"
-           data-thingid="{{missionData.thingId}}"
-           >{{missionData.thingName}}</view>
+           data-thingid="{{_missionData.thingId}}"
+           >{{_missionData.thingName}}</view>
 </view>
+
+ 

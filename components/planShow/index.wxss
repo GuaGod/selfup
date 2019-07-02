@@ -1,6 +1,6 @@
 /* components/planShow/index.wxss */
 .container {
-  width:500rpx;
+  width:570rpx;
   height:100%;
   box-sizing: border-box;
   overflow:auto;
@@ -13,6 +13,7 @@
   box-sizing: border-box;
   overflow:auto;
   display: flex;
+  position:relative;
   justify-content: center;
 }
 
@@ -26,13 +27,12 @@
 
 
 .mission_box {
-  width:180rpx;
+  width:215rpx;
   height:60rpx;
   margin-left:6rpx;
   margin-right:6rpx;
-  background: rgb(230, 230, 230);
   border-radius: 6rpx;
-  color:white;
+  color: rgba(190, 186, 203, .5);
   line-height:60rpx;
   text-align: center;
   font-size:30rpx;
@@ -51,17 +51,40 @@
   box-shadow: 0 4rpx 8rpx rgba(7, 17, 27, .3);
 }
 
-.notCompleted {
-  background: rgb(230, 230, 230) !important;
-  color:rgba(255, 255, 255, 1);
-  box-shadow: 0 4rpx 8rpx rgba(7, 17, 27, .3);
+.morningBg {
+  background: rgba(189, 217, 252, 0.2);
+}
+
+.afternoonBg {
+  background: rgba(167, 204, 249, 0.2);
+}
+
+.nightBg {
+  background: rgba(140, 188, 255, 0.2);
 }
 
 .choosed {
-   background:#b0d6ec !important;
+   background:#c0e8ff !important;
    border-top:2rpx solid #bde4fa;
    border-left:2rpx solid #bde4fa;
    border-bottom:2rpx solid #bde4fa;
    border-right:10rpx solid #bde4fa;
+}
+
+.devideLine {
+  display: flex;
+  height: 40rpx;
+  color: rgb(190, 186, 203);
+  font-size: 28rpx;
+  margin-left: 40rpx;
+  margin-top:6rpx;
+  margin-bottom:6rpx; 
+}
+
+.devideImage {
+   height: 40rpx;
+   width: 80rpx;
+   display: block;
+   margin-right: 10rpx;
 }
 
