@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="beforeMonth" bindtap="onTapBeforeMonth">
+    <image src="/images/calendar_jiantou.png"/>
+  </view>
+  <view class="date">{{dateStr}}</view>
+  <view class="nextMonth" bindtap="onTapNextMonth">
+      <image src="/images/calendar_jiantou.png"/>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="beforeWeek" bindtap="onTapBeforeWeek">
+    <image src="/images/calendar_jiantou.png"/>
+  </view>
+  <view class="start">{{start}}</view>
+  <view>至</view>
+  <view class="end">{{end}}</view>
+  <view class="nextWeek" bindtap="onTapNextWeek">
+    <image src="/images/calendar_jiantou.png"/>
+  </view>
+</view>
+

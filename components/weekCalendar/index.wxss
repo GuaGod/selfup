@@ -1,0 +1,46 @@
+/* components/weekCalendar/index.wxss */
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: rgb(156, 156, 156);
+}
+
+.start {
+  margin-right: 10rpx;
+}
+
+.end {
+  margin-left: 10rpx;
+}
+
+.nextWeek, .beforeWeek {
+  height: 32rpx;
+  width: 20rpx;
+  padding:10rpx;
+}
+
+.beforeWeek {
+  margin-left: 100rpx;
+}
+
+.nextWeek {
+  margin-right: 100rpx;
+}
+
+.beforeWeek image {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.nextWeek image {
+  height: 100%;
+  width: 100%;
+  display: block;
+  transform: rotate(180deg);
+}

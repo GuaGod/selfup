@@ -1,0 +1,49 @@
+/* components/yearCalendar/index.wxss */
+/* components/YearCalendar/index.wxss */
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: rgb(156, 156, 156);
+}
+
+.start {
+  margin-right: 10rpx;
+}
+
+.end {
+  margin-left: 10rpx;
+}
+
+.nextYear, .beforeYear {
+  height: 32rpx;
+  width: 20rpx;
+  padding:10rpx;
+}
+
+.beforeYear {
+  margin-left: 100rpx;   
+}
+
+
+.nextYear {
+   margin-right: 100rpx;
+}
+
+
+.beforeYear image {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.nextYear image {
+  height: 100%;
+  width: 100%;
+  display: block;
+  transform: rotate(180deg);
+}

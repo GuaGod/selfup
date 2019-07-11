@@ -1,0 +1,38 @@
+/* components/monthCalendar/index.wxss */
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: rgb(156, 156, 156);
+}
+
+.nextMonth, .beforeMonth {
+  height: 32rpx;
+  width: 20rpx;
+  padding:10rpx;
+}
+
+.beforeMonth {
+  margin-left: 100rpx;
+}
+
+.nextMonth {
+  margin-right: 100rpx;
+}
+
+.beforeMonth image {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.nextMonth image {
+  height: 100%;
+  width: 100%;
+  display: block;
+  transform: rotate(180deg);
+}

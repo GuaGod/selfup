@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="beforeYear" bindtap="onTapBeforeYear">
+    <image src="/images/calendar_jiantou.png"/>
+  </view>
+  <view>{{year}}年</view>
+  <view class="nextYear" bindtap="onTapNextYear">
+    <image src="/images/calendar_jiantou.png"/>
+  </view>
+</view>
