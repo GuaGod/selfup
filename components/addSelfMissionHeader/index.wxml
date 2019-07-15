@@ -1,10 +1,9 @@
-<view class="container"> 
+<view class="container" style="padding-top:{{statusHeight}}px;"> 
    <view class="back">
     <image src="/images/back-icon.png"
            bindtap="onTapBack"/>
    </view>
    <view class="title">添加事件</view>
- 
 </view>
 
  

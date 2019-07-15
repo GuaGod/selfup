@@ -7,9 +7,9 @@ Component({
      powerList: {
        type: Array,
        value: [],
-       observer: function(newValue, oldValue ){
-          
+       observer: function(newValue, oldValue){
            let _powerList = [];
+
            newValue.forEach(item => {
               let _obj  = item;
               let percent = item.percent || 0;
@@ -26,10 +26,8 @@ Component({
               
               _obj.percent = percent; 
               _powerList.push(_obj);
-              
            })
 
-           
            this.setData({
              _powerList
            })

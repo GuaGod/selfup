@@ -1,3 +1,6 @@
+
+
+
 // pages/welcome/welcome.js
 import {
   Loader

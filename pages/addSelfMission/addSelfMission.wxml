@@ -13,10 +13,7 @@
     <view class="thingClass">
      <block wx:for="{{thingClassList}}"> 
         <view class="thingClass_item" bindtap="onChooseThingClass" data-thingclass="{{item.name}}" data-index="{{index}}">
-          <view class="thingClass_item_icon_con {{item.choosed ? 'choosed' : ''}}">
-          <image src="{{item.icon}}" class="thingClass_item_icon"></image>
-          </view>
-          <view data-thingclass="{{item.name}}" class="thingClass_item_name">{{item.name}}</view>
+          <view data-thingclass="{{item.name}}" class="thingClass_item_name {{item.choosed ? 'choosed' : ''}}">{{item.name}}</view>
         </view>
      </block>
     </view>

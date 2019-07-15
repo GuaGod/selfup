@@ -78,6 +78,7 @@ Page({
     missionNow.submit()
       .then(data => {
         if (data.success) {
+          missionNow.inputThingName('');
           wx.showToast({
             title: '添加成功',
           })

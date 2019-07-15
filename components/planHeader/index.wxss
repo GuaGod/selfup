@@ -1,14 +1,12 @@
 /* components/planHeader/index.wxss */
 .container {
-  height: 120rpx;
+  height: 100rpx;
   box-sizing: border-box;
-  padding-top:40rpx;
   padding-right:200rpx;
   background: #fcfcfc;
   width: 100%;
   display: flex;
   align-items: center;
-  
   z-index:200;
   position:relative;
 }

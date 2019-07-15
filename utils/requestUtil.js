@@ -26,11 +26,11 @@ class MyHttp {
         dataType: req.dataType || 'json',
         header: req.header || { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          // if (res.data.isLogin !== undefined && res.data.isLogin === false) {
-          //   wx.navigateTo({
-          //     url: '/pages/welcome/welcome',
-          //   })
-          // }
+          if (res.data.isLogin !== undefined && res.data.isLogin === false) {
+            wx.navigateTo({
+              url: '/pages/welcome/welcome',
+            })
+          }
 
           if (res.data.success === false) {
             console.error(`当前访问的API为${req.url},服务器返回success为false`);

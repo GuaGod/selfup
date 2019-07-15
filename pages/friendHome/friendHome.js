@@ -55,21 +55,25 @@ Page({
           statement: "体力",
           icon: '/images/HomeHuo.png',
           percent: attribute.strength,
+          className: 'strength',
         },
         {
           statement: "情绪",
           icon: '/images/HomeXin.png',
           percent: attribute.emotion,
+          className: 'emotion',
         },
         {
           statement: "能力",
           icon: '/images/HomeZuanShi.png',
           percent: attribute.skill,
+          className: 'ability',
         },
         {
           statement: "自律",
           icon: '/images/HomeLinDang.png',
           percent: attribute.selfDiscipline,
+          className: 'control',
         },
         ]});
 
@@ -166,6 +170,7 @@ Page({
 
     // })
      let that = this;
+
      return MyHttp.request({
        url: goodFriendsAPI.addMessage,
        method: 'POST',
@@ -230,15 +235,48 @@ Page({
       isCommunicateShow: true
     })
   },
+
   handleSubmit: function() {
     let that = this;
+    if (this.data.message === '') {
+      wx.showToast({
+        title: '内容不能为空',
+        duration: 1000,
+        mask: true
+      })
+      return;
+    }
+    
+    wx.showLoading({
+      title: '',
+      mask: true,
+    })
+
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 2000);
+
     that.leaveMessage()
         .then(data => {
+          wx.hideLoading();
           if(data.success) {
             this.setData({
-              isCommunicateShow: false
+              isCommunicateShow: false,
+              message: '',
             })
+            wx.showToast({
+              title: '回复成功',
+              duration: 1000,
+              mask: true
+            })
+            return ;
           }
+
+          wx.showToast({
+            title: '内容敏感',
+            duration: 1000,
+            mask: true,
+          })
         }); 
   },
 
@@ -253,7 +291,6 @@ Page({
     this.setData({
       message: text
     });
-
   },
 
   /**

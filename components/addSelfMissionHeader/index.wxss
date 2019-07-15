@@ -1,8 +1,7 @@
 /* components/addSelfMission/addSelfMissionHeader/index.wxss */
 .container {
-  height: 120rpx;
+  height: 100rpx;
   box-sizing: border-box;
-  padding-top:40rpx;
   background:  rgb(250, 250, 250);
   width: 100%;
   display: flex;
@@ -23,6 +22,7 @@
   height: 40rpx;
   width: 40rpx;
   margin-left:40rpx;
+  margin-top: 2rpx;
 }
 
 

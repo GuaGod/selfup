@@ -62,7 +62,7 @@ class DairyList {
           tmp.title = item.title || '无标题';
           
           tmp.emotionValue = Number(item.emotionValue) || 0;
-          tmp.emotionValue = parseInt((tmp.emotionValue + 8) * 6.25);
+          tmp.emotionValue = Math.ceil((tmp.emotionValue + 8) * 6.25);
         if (tmp.emotionValue < 0) {
           tmp.emotionValue = 0;
           }

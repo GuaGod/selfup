@@ -16,8 +16,7 @@
   </view>
 
 
-  <view 
-        class="day-container">
+  <view class="day-container">
     <block wx:for="{{forbidBoxs}}">
       <view class="forbidBox"></view>
     </block>

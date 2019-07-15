@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="padding-top:{{statusHeight}}px;">
     <view bindtap="back" class="home">
         <image src="/images/home_icon.png" class="home_icon"></image></view>
     <view class="title" bindtap="{{isCalendarShow ? 'onTapCalendar' : 'onTapClose'}}">{{_date}}</view>

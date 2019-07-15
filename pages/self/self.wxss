@@ -20,7 +20,7 @@
   display: block;
   margin-left: 10rpx;
   margin-right:14rpx;
-  margin-bottom:2rpx;
+  transform: scale(0.85);
 }
 
 
@@ -257,4 +257,121 @@
 
 .step3_container .name{
     color: #feac0d;
+}
+
+.communicate_input_container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 60, 60, 0.5);
+  color: #333;
+  z-index: 1000;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.communicate_box {
+  width: 585rpx;
+  height: 653rpx;
+  overflow-y: scroll;
+  border-radius: 36rpx;
+  position: absolute;
+  padding:40rpx;
+  box-sizing: border-box;
+  margin: auto;
+  top: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  background: white;
+  color: rgb(143, 134, 134);
+}
+
+.text {
+  width: 100%;
+  height: 525rpx;
+}
+
+.bottom_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 40rpx;
+  align-items: center;
+}
+
+.reply_btn, .back_btn {
+  width:132rpx;
+  height:70rpx;
+  text-align:center;
+  line-height:70rpx;
+  overflow: hidden;
+  color:white;
+  background:linear-gradient(to top right, #ffcdcb, #bfcefe);
+  box-shadow:0 8rpx 16rpx #bfcefe;
+  border-radius:16rpx;
+  font-size:32rpx;
+}
+
+.reply_btn {
+  margin-right: 30rpx;
+}
+
+.conceal_outer_container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  z-index: 999999999;
+  margin: auto;
+  background: rgba(60, 60, 60, 0.5);
+}
+
+.conceal_container {
+  width: 484rpx;
+  height: 714rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 8px 16px #bfcefe;
+  background: white;
+  padding: 20rpx;
+  box-sizing: border-box;
+  color: rgb(123, 123, 123);
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  margin: auto;
+}
+
+.conceal_container .title {
+  font-size: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+
+.conceal_container .content_container {
+  height: 580rpx;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.conceal_container .content {
+  font-size: 26rpx;
+}
+
+.closeConceal {
+  width: 136rpx;
+  height: 54rpx;
+  color: white;
+  line-height: 54rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  margin:0 auto;
+  background-color: rgb(198, 201, 250);
+  margin-top: 10rpx;
 }

@@ -29,7 +29,7 @@
 </i-spin>
 
 <i-drawer mode="left" visible="{{isDrawerShow}}" bind:close="toggleDrawer">
-  <s-goodFriends isGoodFriendShow="{{isDrawerShow}}"></s-goodFriends>
+  <s-goodFriends isGoodFriendShow="{{isDrawerShow}}" bind:handleGetMessage="handleGetMessage"></s-goodFriends>
 </i-drawer>
 
 <view class="calendar_container" style="{{isNewMan && helpStep === 2 ? 'z-index:1000' : ''}}"  bindtap="{{isNewMan ? 'nextHelp' : 'onTapCalendar'}}">
@@ -68,4 +68,43 @@
   <view wx:if="{{isNewMan && helpStep === 3}}" class="helpStep_container step3_container">
      轻按结束指引，开始你的<text class="name">绘时光</text>之旅吧！
   </view>
+</view>
+
+<view wx:if="{{isGetFriendReplyShow}}" class="communicate_input_container">
+  <view class="communicate_box">
+  <view wx:if="{{!replyMode}}" class="text">{{replyFriendWords}}</view>
+  <textarea wx:if="{{replyMode}}" value="{{message || ''}}" placeholder="请写下你想对我说的话吧......" class="text" bindinput="changeText" maxlength='{{200}}'></textarea>
+
+
+  <view class="bottom_list">
+    <view wx:if="{{!replyMode}}" bindtap="handleReply" class="reply_btn">回复</view>
+    <view wx:if="{{!replyMode}}" bindtap="handleBack" class="back_btn">返回</view>
+
+    <view wx:if="{{replyMode}}" bindtap="handleSubmit" class="reply_btn">确认</view>
+    <view wx:if="{{replyMode}}" bindtap="handleCancel" class="back_btn">取消</view>
+  </view>
+  </view>
+</view>
+
+
+<view class="conceal_outer_container" wx:if="{{isConcealShow}}">
+<view class="conceal_container">
+  <view class="title">隐私协议</view>
+  <view class="content_container">
+    <view class="content" style="margin-top:10rpx;"><text decode="{{true}}">&emsp;&emsp;本应用尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。 您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;本隐私政策将告诉您，我们将如何收集和使用关于您的信息，以及我们会如何保护这些信息的安全。请您在注册用户之前请务必仔细阅读本隐私条款，如同意，本隐私政策条款在您注册成为绘时光的用户后立即生效。</text></view>
+    <view class="content"><text decode="{{true}}">一、用户信息的收集</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;我们在为您提供服务的同时，可能会收集、存储和使用下列与您有关的信息。如果您不提供相关信息，可能无法注册成为我们的用户，也会无法享受到我们为您提供的某些服务，或无法达到相关服务拟达到的效果。</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;您在注册账户或使用我们服务的同时，我们需要您向我们提供相关的个人信息，您使用微信注册并登录，我们会采集您的微信账户头像、昵称、性别、地区等信息。您在使用我们的服务的同时，我们可能会收集如下信息：</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;日志信息，指您在使用我们服务的同时，系统可能通过cookie或其他方式自动采集的技术信息，包括：设备或软件信息，例如您的移动设备，或用于接入我们服务的其他程序所提供的配置信息、您的IP地址和移动设备所使用的版本和设备识别码；以及您在使用我们服务时要求提供的其他信息和内容详情。</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;相册信息以及摄像头权限，指您上传日志图片，需要获取相册权限与摄像头权限。</text></view>
+
+    <view class="content"><text decode="{{true}}">二、用户信息的使用</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;在我们提供服务时，用于身份验证、客户服务、安全防范、诈骗检测、存档和备份用途等，例如图片识别，文本识别，以便于反色情、反涉政、反暴恐内容，确保我们向您提供的产品和服务的安全性；</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;让您参与有关我们的产品和服务的调查，帮助我们设计新功能，改善现有服务。</text></view>
+    <view class="content"><text decode="{{true}}">三、用户信息的保护</text></view>
+    <view class="content"><text decode="{{true}}">&emsp;&emsp;我们使用各种安全技术，以防止信息的丢失、不当使用、恶意阅览或披露隐私，例如使用严格的加密算法保护您的日记内容和日程安排。但请您见谅，在互谅我行业，由于技术限制以及恶意手段的存在，我们不可能保证信息百分之百的安全。您需要了解的是，您接入我们服务所用的系统和网络，有可能会因可控范围外的因素出现问题。</text></view>
+  </view>
+  <view bindtap="onCloseConceal" class="closeConceal">确认</view>
+</view>
 </view>

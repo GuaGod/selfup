@@ -7,12 +7,24 @@
 }
 
 .bg {
-  height:100%;
-  width:100%;
+  height: 225rpx;
+  width: 225rpx;
   position:absolute;
   left:0rpx;
-  top:0rpx;
+  right: 0rpx;
+  top:384rpx;
+  margin: 0 auto;
   z-index:-100;
+}
+
+.title {
+  width: 750rpx;
+  position: absolute;
+  top: 669rpx;
+  font-size: 46rpx;
+  color: rgb(180, 176, 174);
+  text-align: center;
+  font-weight: 500;
 }
 
 .content-container {

@@ -41,7 +41,8 @@
 
     </view>
     <view class="tip" wx:if="{{questionNum === 0}}">每行都要选一个标签哦~</view>
-    <view class="answerBox" wx:if="{{questionNum === 1|| questionNum === 2}}">
+
+    <view class="answerBox" style="bottom: 440rpx;" wx:if="{{questionNum === 1|| questionNum === 2}}">
       <block wx:for="{{answerList}}">
         <view data-answer="{{item.value}}" bindtap="answerQuestion" class="quesAnswer_box">{{item.name}}</view>
       </block>

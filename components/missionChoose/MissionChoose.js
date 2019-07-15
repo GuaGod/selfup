@@ -7,7 +7,7 @@ class MissionChoose {
      this.view = null;
      this.isInit = false;
      this.pageIndex = 1;
-     this.pageSize = 12;
+     this.pageSize = 16;
      this.hasMoreLoveThing = true;
      this.missionList = [];
   }

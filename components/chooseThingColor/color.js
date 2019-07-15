@@ -1,6 +1,8 @@
 let colorArr = [
-  "#d6e9ca", "#9ba88d", "#c1d8ac", "#c8d5bb", "#a8bf93", "#71c55c", "#3daf7f", "#eaf4fc", "#eaedf7", "#ebf6f7", "#c1e4e9", "#abced8", "#76b7de","#4da9e2", 
-  "#fdeff2", "#e9dfe5", "#e4d2d8", "#e8d3d1", "#eebbcb", "#fa9fb4", "#f2708d", "#ede4cd", "#ede1a9", "#f2f2b0", "#e4dc8a", "#f8e58c", "#ffe59e", "#ffbf39"
+  "#fee3b4", "#fcdf86", "#ffed86", "#fbf787", "#eefaba", "#cbe7b2", "#dcf75c", 
+  "#fdb0b1", "#fac282", "#feb184", "#fa8080", "#f7aa47", "#f99383","#fb878a", 
+  "#95ca8d", "#7bc195", "#99dac2", "#92e1de", "#91b5d8", "#a1abd4", "#8298d0", 
+  "#e5c7ef", "#d3b8e8", "#d1a0ea", "#f6a5f5", "#f898c6", "#fc90a4", "#9b8bda",
 ]
 
 export {

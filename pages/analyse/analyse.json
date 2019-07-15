@@ -5,8 +5,11 @@
     "i-tab": "../../dist/tab/index",
     "s-header": "../../components/header/index",
     "i-spin": "../../dist/spin/index",
-    "i-icon": "../../dist/icon/index"
+    "i-icon": "../../dist/icon/index",
+    "s-weekCalendar": "../../components/weekCalendar/index",
+    "s-monthCalendar": "../../components/monthCalendar/index",
+    "s-yearCalendar": "../../components/yearCalendar/index"
   },
-  "disableScroll": false,
+  "disableScroll": true,
   "enablePullDownRefresh": true
 }

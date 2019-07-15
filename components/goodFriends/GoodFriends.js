@@ -9,7 +9,17 @@ const goodFriendsAPI = globalData.goodFriendsAPI;
 class GoodFriends {
   constructor() {
      this.friendsList;
-     this.messagePageNum = 1;
+     this.friendWordsPageNum = 1;
+     this.friendWordsPageSize = 10;
+     this.hasMoreFriendWords = true;
+
+     this.friendPageNum = 1;
+     this.friendPageSize = 10;
+     this.hasMoreFriend = true;
+
+     this.applyPageNum = 1;
+     this.applyPageSize = 10;
+     this.hasMoreApply = true;
   }
 
   /**
@@ -17,14 +27,36 @@ class GoodFriends {
    * @for GoodFriends
    * @return {Promise}
    */
-  findMyFriends() {
+  findMyFriends(isReset = false) {
+     let that = this;
+     
+     if(!isReset && !this.hasMoreFriend) {
+       return Promise.resolve([]);
+     }
 
+    if (isReset) {
+      this.friendPageNum = 1;
+      this.hasMoreFriend = true;
+    }
+       
      return MyHttp.request({
         url: goodFriendsAPI.listFriends,
-       header: {
+        header: {
          'content-type': 'application/x-www-form-urlencoded',
          'Cookie': getApp().globalData.LOGIN_COOKIE
        },
+       data: {
+         pageNum: that.friendPageNum,
+         pageSize: that.friendPageSize,
+       }
+     }).then(data => {
+        let length = data.listFriends.length;
+        this.friendPageNum++;
+        if(length < that.friendPageSize) {
+          that.hasMoreFriend = false;
+        }
+
+        return data.listFriends;
      })
   }
 
@@ -71,13 +103,36 @@ class GoodFriends {
    * 获取申请加好友的列表
    */
 
-  getApplyList() {
+  getApplyList(isReset = false) {
+    let that = this;
+    if(!isReset && !this.hasMoreApply) {
+      return Promise.resolve([]);
+    }
+
+    if(isReset) {
+      this.applyPageNum = 1;
+      this.hasMoreApply = true;
+    }
+
     return MyHttp.request({
       url: goodFriendsAPI.isFriendAdd,
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'Cookie': getApp().globalData.LOGIN_COOKIE,
+      },
+      data: {
+        pageNum: that.applyPageNum,
+        pageSize: that.applyPageSize
       }
+    }).then(data => {
+      let length = data.listFriends.length;
+      this.applyPageNum++;
+
+      if(length < that.applyPageSize) {
+        that.hasMoreApply = false;
+      }
+
+      return data.listFriends;
     })
   }
 
@@ -128,8 +183,17 @@ class GoodFriends {
     })
   }
 
-  getFriendWordsList() {
-    let that = this;
+  getFriendWordsList(isReset = false) {
+    let that = this; 
+    if(!isReset && !this.hasMoreFriendWords) {
+      return Promise.resolve([]);
+    }
+
+    if(isReset) {
+      this.friendWordsPageNum = 1;
+      this.hasMoreFriendWords = true;
+    }
+
     return MyHttp.request({
       url: goodFriendsAPI.listMessage,
       header: {
@@ -137,9 +201,20 @@ class GoodFriends {
         'Cookie': getApp().globalData.LOGIN_COOKIE,
       }, 
       data: {
-        pageNum: that.messagePageNum,
-        pageSize: 6,
+        pageNum: that.friendWordsPageNum,
+        pageSize: that.friendWordsPageSize,
       }
+    }).then((data) => {
+      let length = data.listMessage.length;
+      
+      that.friendWordsPageNum++;
+      if(length < that.friendWordsPageSize) {
+        that.hasMoreFriendWords = false;
+      } 
+
+      return data.listMessage;
+    }, (err) => {
+      console.log(err);
     })
   }
 

@@ -7,14 +7,13 @@
 </s-header>
 </view>
 
- 
 <scroll-view class="container" 
              id="container"
              lower-threhold="50"
              scroll-y="true"
              scroll-x="false"
              bindscrolltoupper="onScrollTop"
-            bindscrolltolower="onScrollLower">
+             bindscrolltolower="onScrollLower">
 
       <view class="wrap">
        <view class="box add_container"

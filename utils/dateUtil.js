@@ -96,6 +96,33 @@ class MyDate {
       week
     }
   }
+  
+  static calculateMondayAndSunday(myDate) {
+    let week = myDate.getDay();
+    let minus = week ? week - 1 : 6; 
+
+    let mondayDate = new Date();
+    mondayDate.setDate(myDate.getDate() - minus);
+    
+    let sundayDate = new Date();
+    sundayDate.setDate(myDate.getDate() + 7 - week);
+    
+    return {
+      mondayDate,
+      sundayDate,
+    }
+  }
+
+  static parseStandard(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = month < 10 ? '0' + month : String(month);
+    day = day < 10 ? '0' + day : String(day);
+
+    return `${year}-${month}-${day}`;
+  }
 }
 
 export {

@@ -1,6 +1,7 @@
 <view class="container">
   <image src="../../images/welcome_bg.png" class="bg" mode="aspectFill"/>
-
+  
+  <view class="title">今天也要努力成长呢</view>
   <view class="content-container">
     <view class="loading_icon">
 
@@ -14,7 +15,6 @@
     </view>
 
     <view>
-
     <button open-type="getUserInfo"
             bindgetuserinfo="bindGetUserInfo"
             class="button {{isCompletedLoad ? 'animation-fade' : 'button-hide'}}">进入</button> 

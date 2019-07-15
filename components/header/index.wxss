@@ -1,11 +1,10 @@
 /* components/header/index.wxss */
 .container {
-  height:150rpx;
+  height: 80rpx;
   width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   box-sizing: border-box;
-  padding-bottom:14rpx;
   font-weight:500;
   color:rgb(137, 137, 137);
 }

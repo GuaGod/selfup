@@ -1,5 +1,5 @@
 page {
-  overflow-y: auto !important;
+  overflow-y: hidden;
 }
 
 s-header {
@@ -15,8 +15,8 @@ s-header {
 }
 
 .home_icon {
-  height:42rpx;
-  width:42rpx;
+  height:40rpx;
+  width:45rpx;
   display: block;
   margin-left:10rpx;
   margin-right:14rpx;
@@ -29,55 +29,136 @@ s-header {
    font-size:38rpx;
 }
 
+.nav {
+  width: 625rpx;
+  border-bottom: 2rpx solid rgb(235, 235, 235);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  font-size: 37rpx;
+  color: rgb(187, 187, 187);
+  margin: 10rpx auto 0rpx;
+  height: 78rpx;
+}
+
+.nav view {
+  width: 84rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.nav .active {
+  color: rgb(143, 134, 134);
+  border-bottom: 6rpx solid rgb(249, 206, 224);
+}
+
 .container {
-   height:auto;
-   width:100%;
+   width:750rpx;
    box-sizing: border-box;
-   overflow: auto;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   -webkit-overflow-scrolling: touch
+   overflow-x: hidden;
+   height: 940rpx;
+   position: relative;
+   -webkit-overflow-scrolling: touch;
+}
+
+.page_container {
+   width: 572rpx;
+   height: 900rpx;
+   border-radius: 40rpx;
+   box-shadow: 0 16rpx 32rpx #bfcefe;
+   position: absolute;
+   top: 0rpx;
 }
  
  .chart_container {
-   width:92%;
-   height: 567rpx;
- }
-
-
-
- .emotion_container {
-   margin-top: 40rpx;
-   height:547rpx;
- }
-
- .mostThing_container {
-   margin-top:46rpx;
+   width: 572rpx;
    height: 547rpx;
  }
  
- .thingFinish_title {
-   width:100%;
-   font-size: 34rpx;
-   text-align: center;
-   color: #8d8d8d;
- }
+.bottom_nav {
+    height:20rpx;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    margin-top: 30rpx;
+}
 
- .thingFinish_container  {
-   height: 600rpx;
- } 
- 
+.bottom_nav view {
+  height: 14rpx;
+  width: 14rpx;
+  margin-left:16rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  background: rgba(196, 196, 196, .5);
+}
+
+.bottom_nav .active {
+  background: rgba(196, 196, 196, 1);
+}
 
 @keyframes ani-demo-spin {
     from { transform: rotate(0deg);}
     50%  { transform: rotate(180deg);}
     to   { transform: rotate(360deg);}
 }
+
 .icon-load{
     animation: ani-demo-spin 5s linear infinite;
     height:80rpx;
     width:80rpx;
     margin:0 auto;
     display:block;
+}
+
+.suggest {
+  color: rgb(143, 134, 134);
+  text-indent: 60rpx;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  height: 240rpx;
+  overflow-y: scroll;
+}
+
+.switch_btn_container {
+  height: 54rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.beforeChart {
+  width: 70rpx;
+  height: 54rpx;
+  display: block;
+  margin-left: 20rpx
+}
+
+.nextChart {
+  width: 70rpx;
+  height: 54rpx;
+  display: block;
+  transform: rotate(180deg);
+  margin-right: 20rpx;
+}
+
+@media screen and (min-height: 810px) {
+   .container {
+     height: 1240rpx;
+   }
+  
+   .chart_container {
+      width: 572rpx;
+      height: 600rpx;
+   }
+
+   .suggest {
+      height: 480rpx;
+   }
+    
+   .page_container {
+        height: 1200rpx; 
+    }      
 }

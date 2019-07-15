@@ -43,6 +43,21 @@
   font-size: 26rpx;
   justify-content: center;
   margin-top: 10rpx;
+  text-align: center;
+}
+
+.thingClass_item_name {
+  margin-top: 10rpx;
+  width: 175rpx;
+  height: 65rpx;
+  border: 2rpx solid rgb(228, 237, 254);
+  line-height: 65rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 1px 2px rgba(191, 222, 254, 0.5);
+}
+
+.thingClass_item_name.choosed {
+  box-shadow: 0 8px 16px rgba(191, 222, 254, 0.75);
 }
 
 .thingClass_title {
@@ -56,6 +71,9 @@
 .thingClass {
    display: flex;
    flex-wrap: wrap;
+   justify-content: space-between;
+   padding-left: 30rpx;
+   padding-right: 30rpx;
 }
 
 .thingClass_item_icon_con {
@@ -67,25 +85,4 @@
   position: relative;
 }
 
-.choosed {
-   border:8rpx solid rgb(235, 235, 235);
-   box-shadow: 0;
-}
 
-.thingClass_item_name {
-  margin-top: 10rpx;
-}
-
-.thingClass_item_icon {
-  height:65rpx;
-  width: 65rpx;
-  margin-top:10rpx;
-  margin-left: 10rpx;
-  display: block;
-}
-
- 
-.thingClass .thingClass_item {
-  flex: 1;
-  text-align: center;
-}

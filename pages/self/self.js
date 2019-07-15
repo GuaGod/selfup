@@ -34,13 +34,19 @@ Page({
     head: '',
     background: '',
     isDrawerShow: false,
-    loading: true, //记得改回true
+    loading: true,
     isInit: false,
     helpStep: 0,
     finalStep: 3,
     isNewMan: false,
-    isCommunicateShow: true, //会时光
-    communicateWord: '',
+    isGetFriendReplyShow: false,
+    replyFriendWords: '', 
+    isCommunicateShow: true,
+    communicateWords: '',
+    replyMode: false,
+    message: '',
+    sender: null,
+    isConcealShow: false,
   },
 
   /**
@@ -56,7 +62,7 @@ Page({
     }
  
     let that = this;
-    
+
     person.getPersonImg()
       .then(data => {
         let figure = data.figure;
@@ -84,20 +90,24 @@ Page({
           powerList: [{
             statement: "体力",
             icon: '/images/HomeHuo.png',
+            className: 'strength',
             percent: attribute.strength,
           },
           {
             statement: "情绪",
+            className: 'emotion',
             icon: '/images/HomeXin.png',
             percent: attribute.emotion,
           },
           {
             statement: "能力",
+            className: 'ability',
             icon: '/images/HomeZuanShi.png',
             percent: attribute.skill,
           },
           {
             statement: "自律",
+            className: 'control',
             icon: '/images/HomeLinDang.png',
             percent: attribute.selfDiscipline,
           },
@@ -106,8 +116,110 @@ Page({
       })
   },
 
+  showConceal: function() {
+    this.setData({
+      isConcealShow: true
+    })
+  },
 
+  onCloseConceal: function() {
+    this.setData({
+      isConcealShow: false
+    })
+  },
+  
+  changeText: function (e) {
+    let text = e.detail.value;
+    this.setData({
+      message: text
+    });
+  },
 
+  handleGetMessage: function({ detail }) {
+    let message = detail.message;
+    let sender = detail.sender;
+
+    this.setData({
+      isGetFriendReplyShow: true,
+      replyFriendWords: message,
+      sender: sender
+    })
+  },
+
+  handleSubmit: function () {
+    let message = this.data.message;
+    let sender = this.data.sender;
+
+    if(message === '') {
+      wx.showToast({
+        title: '内容不能为空',
+        duration: 1000,
+        mask: true,
+      })
+      return ;
+    }
+
+    wx.showLoading({
+      title: '',
+      mask: true,
+    })
+
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 2000);
+
+    MyHttp.request({
+      url: goodFriendsAPI.addMessage,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': getApp().globalData.LOGIN_COOKIE
+      },
+      data: {
+        hisUserId: sender,
+        messageContent: message,
+      }
+    }).then(data => {
+      wx.hideLoading();
+      if(data.success) {
+        wx.showToast({
+          title: '回复成功',
+          duration: 600,
+          mask: true,
+        })
+
+        this.setData({
+          replyMode: false,
+          message: '',
+        })
+      } else {
+        wx.showToast({
+          title: '内容敏感',
+          duration: 1000,
+          mask: true,
+        })
+      }
+    })
+  },
+
+  handleCancel: function() {
+    this.setData({
+      replyMode: false
+    })
+  },
+
+  handleReply: function(){
+    this.setData({
+      replyMode: true
+    })
+  },
+
+  handleBack: function () {
+    this.setData({
+      isGetFriendReplyShow: false,
+      replyFriendWords: '',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -212,21 +324,25 @@ Page({
               statement: "体力",
               icon: '/images/HomeHuo.png',
               percent: attribute.strength,
+              className: 'strength',
             },
             {
               statement: "情绪",
               icon: '/images/HomeXin.png',
               percent: attribute.emotion,
+              className: 'emotion',
             },
             {
               statement: "能力",
               icon: '/images/HomeZuanShi.png',
               percent: attribute.skill,
+              className: 'ability',
             },
             {
               statement: "自律",
               icon: '/images/HomeLinDang.png',
               percent: attribute.selfDiscipline,
+              className: 'control',
             },
           ]
         })
@@ -272,8 +388,11 @@ Page({
         this.setData({
           isNewMan
         })
+        
+        if(isNewMan) {
+         this.showConceal();
+        }
       })
-    
   },
 
   

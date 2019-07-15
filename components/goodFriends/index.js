@@ -2,7 +2,7 @@
 import {
   GoodFriends
 } from './GoodFriends.js'
-let goodFriends = new GoodFriends();
+let goodFriends = null;
 let isEditorMap = new Map();
 
 Component({
@@ -16,7 +16,9 @@ Component({
       observer: function(newValue) {
         if (newValue === true) {
           this.init();
-        }
+        } else {
+          this.destory();
+        }       
       }
     }
   },
@@ -62,29 +64,49 @@ Component({
   methods: {
     //获取好友列表数据
     init: function() {
-      goodFriends.findMyFriends()
-        .then(data => {
-          let listFriends = []
-          data.listFriends.forEach(item => {
-            let aFriend = {};
-            aFriend.username = item.username;
-            aFriend.head = item.avatarUrl;
-            aFriend.sex = item.sex;
-            aFriend.userId = item.userId;
-            
-            isEditorMap.set(item.userId, false);
+      goodFriends = new GoodFriends();
+      this.getMoreFriendsList();
+    },
 
-            listFriends.push(aFriend);
-          })
+    destory: function() {
+      goodFriends = null;
+      this.setData({
+        isMyFriendsShow: true,
+        isAddFriendShow: false,
+        isApplyShow: false,
+        isFriendWordsShow: false,
+        friendsList: [],
+        applyList: [],
+        friendWordsList: [], 
+      });
+    },
 
-          this.setData({
-            friendsList: listFriends
-          })
+    onTapBackToFriendList: function() {
+      this.setData({
+        isApplyShow: false,
+        isMyFriendsShow: true,
+        isAddFriendShow: false,
+        isFriendWordsShow: false,
+      });
 
+      this.getMoreFriendsList(true);
+    },
+
+    handleScrollToApplyBottom: function() {
+      this.getMoreApply();
+    },
+     
+    getMoreApply: function(isReset = false) {
+      if(isReset) {
+        this.setData({
+          applyList: []
         })
-      goodFriends.getApplyList()
-        .then(data => {
-          let listFriends = data.listFriends;
+      }
+      goodFriends.getApplyList(isReset)
+        .then(list => {
+          let listFriends = this.data.applyList;
+          
+          listFriends = listFriends.concat(list);
           this.setData({
             applyList: listFriends
           })
@@ -99,34 +121,59 @@ Component({
         isFriendWordsShow: false,
       })
 
-
       if (!this.data.isApplyShow) {
-        goodFriends.findMyFriends()
-          .then(data => {
-            let listFriends = []
-            data.listFriends.forEach(item => {
-              let aFriend = {};
-              aFriend.username = item.username;
-              aFriend.head = item.avatarUrl;
-              aFriend.sex = item.sex;
-              aFriend.userId = item.userId;
-              isEditorMap.set(item.userId, false);
-
-              listFriends.push(aFriend);
-            })
-
-            this.setData({
-              friendsList: listFriends
-            })
-          })
+        this.getMoreFriendsList(true);
         return;
       }
+      
+      this.getMoreApply(true);
+    },
 
-      goodFriends.getApplyList()
-        .then(data => {
-          let listFriends = data.listFriends;
+    handleScrollToFriendsBottom: function() {
+      this.getMoreFriendsList();
+    },
+    
+    resetFriendsList: function() {
+      goodFriends.findMyFriends()
+        .then(list => {
+          let listFriends = [];
+          list.forEach(item => {
+            let aFriend = {};
+            aFriend.username = item.username;
+            aFriend.head = item.avatarUrl;
+            aFriend.sex = item.sex;
+            aFriend.userId = item.userId;
+            isEditorMap.set(item.userId, false);
+            listFriends.push(aFriend);
+          })
+
           this.setData({
-            applyList: listFriends
+            friendsList: listFriends
+          })
+        })
+    },
+
+    getMoreFriendsList: function(isReset = false) {
+      if(isReset) {
+        this.setData({
+          friendsList: []
+        })
+      }
+      goodFriends.findMyFriends(isReset)
+        .then(list => {
+          let listFriends = this.data.friendsList;
+          list.forEach(item => {
+            let aFriend = {};
+            aFriend.username = item.username;
+            aFriend.head = item.avatarUrl;
+            aFriend.sex = item.sex;
+            aFriend.userId = item.userId;
+            isEditorMap.set(item.userId, false);
+            listFriends.push(aFriend);
+          })
+
+          this.setData({
+            friendsList: listFriends
           })
         })
     },
@@ -138,14 +185,37 @@ Component({
         isAddFriendShow: false,
         isFriendWordsShow: !this.data.isFriendWordsShow,
       })
+      
+      if(this.data.isMyFriendsShow) {
+        this.getMoreFriendsList(true);
+        return;
+      } 
 
-      goodFriends.getFriendWordsList()
-        .then((data) => {
+      this.getMoreFriendWordsList(true);
+    },
+
+    handleScrollToFriendWordsBottom() {
+      this.getMoreFriendWordsList();
+    },
+    
+    getMoreFriendWordsList(isReset = false) {
+      if(isReset) {
+        this.setData({
+          friendWordsList: []
+        })
+      }
+      
+      return goodFriends.getFriendWordsList(isReset)
+        .then((list) => {
+          if(list && list.length === 0) {
+            return ;
+          }
+          let friendWordsList = this.data.friendWordsList;
+          friendWordsList = friendWordsList.concat(list);
           this.setData({
-            friendWordsList: data.listMessage
+            friendWordsList
           })
         });
-
     },
 
     tapFriend: function(detail) {
@@ -405,6 +475,18 @@ Component({
           console.log(data);
         });
     },
+    
+    handleGetMessage: function({ target }) {
+       let message = target.dataset.message;
+       let sender = target.dataset.sender;
 
+       this.triggerEvent('handleGetMessage', {
+         message,
+         sender,
+       }, {
+         bubbles: true,
+         composed: true
+       })
+    },
   }
 })

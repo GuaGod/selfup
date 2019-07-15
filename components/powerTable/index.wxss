@@ -25,8 +25,8 @@
 }
 
 .item .statement image {
-  height:40rpx;
   width: 40rpx;
+  height: 40rpx;
   display: block;
 }
 
@@ -51,3 +51,23 @@
   line-height:54rpx;
   border-radius: 10rpx;
 }
+
+.strength {
+  transform: scale(1.05);
+}
+
+.emotion {
+  transform: scale(0.95);
+  margin-top: 2rpx;
+}
+
+.ability {
+  transform: scale(0.95);
+  margin-top: 2rpx;
+}
+
+.control {
+  transform: scale(0.95);
+  margin-top: 2rpx;
+}
+

@@ -15,7 +15,12 @@
       暂无好友
     </view>
 
-    <scroll-view class="showFriend_container">
+    <scroll-view class="showFriend_container"
+                 lower-threhold="50"
+                 scroll-y="true"
+                 scroll-x="false"
+                 bindscrolltolower="handleScrollToFriendsBottom"
+                 >
       <block wx:for="{{friendsList}}">
         <view class="friendsList_item" bindtap="tapFriend" data-userid="{{item.userId}}">
           <i-swipeout actions="{{friendsActions}}" catchchange="swiperFriendItem" i-class="swipeout" data-userid="{{item.userId}}">
@@ -31,14 +36,19 @@
     </scroll-view>
   </view>
 
-  <scroll-view wx:if="{{isApplyShow}}">
-  <view class="tip">
+  <view wx:if="{{isApplyShow}}">
+  <view class="tip" bindtap="onTapBackToFriendList">
       <image src="/images/friends_icon.png" class="tip_icon"></image>
       <text class="tip_text">申请列表</text>
     </view>
     <view wx:if="{{applyList.length === 0}}" class="notice_tip">
         暂无好友申请
     </view>
+  <scroll-view wx:if="{{isApplyShow}}" 
+               lower-threhold="50"
+               scroll-y="true"
+               scroll-x="false"
+               bindscrolltolower="handleScrollToApplyBottom">
     <block wx:for="{{applyList}}">
       <view class="applyList_item">
         <image src="{{item.avatarUrl}}" class="applyList_item_head"/>
@@ -48,28 +58,38 @@
       </view>
     </block>
   </scroll-view>
+  </view>
 
-  <scroll-view wx:if="{{isFriendWordsShow}}">
-    <view class="tip">
+
+  
+  <view wx:if="{{isFriendWordsShow}}">
+    <view class="tip" bindtap="onTapBackToFriendList">
       <image src="/images/friends_icon.png" class="tip_icon"></image>
       <text class="tip_text">好友留言</text>
     </view>
     <view wx:if="{{friendWordsList.length === 0}}" class="notice_tip">
       暂无好友留言
     </view>
-    <block wx:for="{{friendWordsList}}">
+
+     <scroll-view class="friendWords_container"
+               wx:if="{{isFriendWordsShow}}"
+               lower-threhold="50"
+               scroll-y="true"
+               scroll-x="false"
+               bindscrolltolower="handleScrollToFriendWordsBottom">
+    
+    <block wx:for="{{friendWordsList}}" wx:key="index">
       <view class="wordList_item">
           <image src="{{item.senderUrl}}" class="wordList_item_head"/>
-          <view class="messageContent">{{item.messageContent}}</view>
-          <view class="senderName">{{item.senderName}}</view>
-          <view class="deleteMessage" bindtap="deleteMessage" data-messageid="{{item.messageId}}">删除</view>
+          <view class="messageContent" bindtap="handleGetMessage" data-message="{{item.messageContent}}" data-sender="{{item.sender}}">{{item.messageContent}}</view>
+          <image src="/images/goodFriend_delete.png" class="deleteMessage" bindtap="deleteMessage" data-messageid="{{item.messageId}}"></image>
       </view>
     </block>
   </scroll-view>
-
+  </view>
   <view class="notice_container" >
-    <image src="/images/lingdang.png" class="notice_icon" bindtap="applyPage"/>
-    <image src="/images/liuyan.png" class="notice_icon" bindtap="friendWordsPage" />
+    <image src="/images/message_icon.png" class="notice_icon message_icon" bindtap="applyPage"/>
+    <image src="/images/liuyan.png" class="notice_icon liuyan_icon" bindtap="friendWordsPage" />
     <view class="myId">我的ID：{{myUserId}}</view>
   </view>
 </view>

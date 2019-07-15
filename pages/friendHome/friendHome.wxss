@@ -19,13 +19,12 @@ page {
 }
 
 .home_icon {
-  height:42rpx;
-  width:42rpx;
+  height:40rpx;
+  width:45rpx;
   display: block;
   margin-left:10rpx;
   margin-right:14rpx;
 }
-
 
 .header_title {
    height:38rpx;
@@ -51,14 +50,10 @@ page {
 
 .person_container {
    width: 626rpx;
-   height: 883rpx;
+   height: 883rpx; 
    position: absolute;
-   top:0rpx;
-   left:0rpx;
-   bottom:0rpx;
-   right:0rpx;
-   margin: auto;
-   transform: translate(-30rpx, 186rpx);
+   left:40rpx;
+   bottom:40rpx;
    z-index: 2;
 }
 
@@ -96,6 +91,7 @@ page {
     50%  { transform: rotate(180deg);}
     to   { transform: rotate(360deg);}
 }
+
 .icon-load{
     animation: ani-demo-spin 5s linear infinite;
     height:80rpx;
@@ -145,7 +141,52 @@ page {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgb(60, 60, 60);
-  color: white;
+  background: rgba(60, 60, 60, 0.5);
+  color: #333;
   z-index: 1000;
+}
+
+.communicate_box {
+  width: 652rpx;
+  height: 460rpx;
+  border-radius: 36rpx;
+  position: absolute;
+  padding:40rpx;
+  box-sizing: border-box;
+  margin: auto;
+  top: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  background: white;
+}
+
+.text {
+  width: 100%;
+  height: 340rpx;
+}
+
+.bottom_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 40rpx;
+  align-items: center;
+}
+
+.submit_btn, .cancel_btn {
+  width:132rpx;
+  height:70rpx;
+  text-align:center;
+  line-height:70rpx;
+  overflow: hidden;
+  color:white;
+  background:linear-gradient(to top right, #ffcdcb, #bfcefe);
+  box-shadow:0 8rpx 16rpx #bfcefe;
+  border-radius:16rpx;
+  font-size:32rpx;
+}
+
+.submit_btn {
+  margin-right: 30rpx;
 }

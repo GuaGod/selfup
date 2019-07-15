@@ -35,14 +35,19 @@ Component({
    * 组件的初始数据
    */
   data: {
-    _date: MyDate.createTodayDateStr().replace(/-/g, '/')
+    _date: MyDate.createTodayDateStr().replace(/-/g, '/'),
+    statusHeight: 0,
   },
 
   ready: function () {
     let that = this;
     let view = {};
+     
     createObserver(view);
     
+    this.setData({
+      statusHeight: globalData.phoneInfo.statusBarHeight
+    })
     //接收子级传输的数据
     view.on('switchState', (tapWhich, data) => {
         that.setData({

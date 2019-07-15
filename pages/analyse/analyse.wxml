@@ -5,28 +5,84 @@
   </view>
 </s-header>
 
+<view class="nav">
+  <view class="{{showRangeSize === 'week' ? 'active' : ''}}" bindtap="onSwitchRangeSize" data-range="week">周</view>
+  <view class="{{showRangeSize === 'month' ? 'active' : ''}}" bindtap="onSwitchRangeSize" data-range="month">月</view>
+  <view class="{{showRangeSize === 'year' ? 'active' : ''}}" bindtap="onSwitchRangeSize" data-range="year">年</view>
+</view>
+
+<s-weekCalendar wx:if="{{showRangeSize === 'week'}}"
+                bind:onTapBeforeWeek="onTapBeforeWeek"
+                bind:onTapNextWeek="onTapNextWeek"></s-weekCalendar>
+<s-monthCalendar wx:if="{{showRangeSize === 'month'}}"
+                 bind:onTapBeforeMonth="onTapBeforeMonth"
+                 bind:onTapNextMonth="onTapNextMonth"></s-monthCalendar>
+<s-yearCalendar wx:if="{{showRangeSize === 'year'}}"
+                 bind:onTapBeforeYear="onTapBeforeYear"
+                 bind:onTapNextYear="onTapNextYear"></s-yearCalendar>
+
 <view class="container">
-<view class="thingData_container chart_container">
-  <ec-canvas id="thingData-dom" canvas-id="thingData" ec="{{ thingData }}"></ec-canvas>
+  <view class="page_container" style="left:{{lefts[0]}}rpx;margin-left:89rpx;">
+      <view class="thingData_container chart_container"  wx:if="{{!(imageShow['thingData'])}}">
+        <ec-canvas id="thingData-dom" canvas-id="thingData" ec="{{ thingData }}"></ec-canvas>
+      </view>
+      <view class="suggest">
+          {{thingDataSuggest}}
+      </view>
+      <view class="switch_btn_container">
+         <image style="visibility:hidden;" src="/images/anaylse_switchChart.png" class="beforeChart" bindtap="beforeChart"/>
+         <image src="/images/anaylse_switchChart.png" class="nextChart" bindtap="nextChart"/>
+      </view>
+  </view>
+
+  <view class="page_container" style="left:{{lefts[1]}}rpx;margin-left:89rpx;">
+      <view class="emotion_container chart_container">
+        <ec-canvas id="emotion-dom" canvas-id="emotion" ec="{{ emotion }}"></ec-canvas>
+      </view>
+            <view class="suggest">
+          {{emotionSuggest}}
+      </view>
+        <view class="switch_btn_container">
+         <image src="/images/anaylse_switchChart.png" class="beforeChart" bindtap="beforeChart"/>
+         <image src="/images/anaylse_switchChart.png" class="nextChart" bindtap="nextChart"/>
+      </view>
+  </view>
+
+  <view class="page_container" style="left:{{lefts[2]}}rpx;margin-left:89rpx;">
+      <view class="mostThing_container chart_container">
+        <ec-canvas id="mostThing-dom" canvas-id="mostThing" ec="{{ mostThing }}"></ec-canvas>
+      </view>
+      <view class="suggest">
+          {{mostThingSuggest}}
+      </view>
+            <view class="switch_btn_container">
+         <image src="/images/anaylse_switchChart.png" class="beforeChart" bindtap="beforeChart"/>
+         <image src="/images/anaylse_switchChart.png" class="nextChart" bindtap="nextChart"/>
+      </view>
+  </view>
+
+  <view class="page_container" style="left:{{lefts[3]}}rpx;margin-left:89rpx;">
+      <view class="thingFinish_container chart_container">
+        <ec-canvas id="thingFinish-dom" canvas-id="thingFinish" ec="{{thingFinish}}"></ec-canvas>
+      </view>
+      <view class="suggest">
+          {{thingFinishSuggest}}
+      </view>
+        <view class="switch_btn_container">
+         <image src="/images/anaylse_switchChart.png" class="beforeChart" bindtap="beforeChart"/>
+      </view>
+  </view>
 </view>
-<view class="emotion_container chart_container">
-  <ec-canvas id="emotion-dom" canvas-id="emotion" ec="{{ emotion }}"></ec-canvas>
-</view>
-<view class="mostThing_container chart_container">
-  <ec-canvas id="mostThing-dom" canvas-id="mostThing" ec="{{ mostThing }}"></ec-canvas>
-</view>
-<!-- <view class="thingFinish_title">任务完成度</view> -->
-<view class="thingFinish_container chart_container">
-  <ec-canvas id="thingFinish-dom" canvas-id="thingFinish" ec="{{thingFinish}}"></ec-canvas>
-</view>
+
+<view class="bottom_nav">
+  <view class="{{showChartIndex === 0 ? 'active' : ''}}"></view>
+  <view class="{{showChartIndex === 1 ? 'active' : ''}}"></view>
+  <view class="{{showChartIndex === 2 ? 'active' : ''}}"></view>
+  <view class="{{showChartIndex === 3 ? 'active' : ''}}"></view>
 </view>
 
 <i-spin custom fix wx:if="{{loading}}">
-   <image src="/images/loading.png" class="icon-load"/>
- 
+  <image src="/images/loading.png" class="icon-load" />
+
   <view>Loading</view>
 </i-spin>
-
-<!--遮罩层 1.定义父元素，阻止捕获，就可以阻止子元素的事件
-          2.定义元素覆盖上去
-          3.微信小程序canvas层级极高。。。-->

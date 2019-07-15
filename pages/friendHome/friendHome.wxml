@@ -20,16 +20,19 @@
 <view class="communicate_container" bindtap="handleShowCommunicate">
   <image src="/images/communicate.png" />
   <view class="communicate_content">
-    「点击这里可以和我说悄悄话...」
+    点击这里可以和我说悄悄话...
   </view>
 </view>
 
 <view wx:if="{{isCommunicateShow}}" class="communicate_input_container">
-  <textarea value="{{message || ''}}" placeholder="请输入正文" class="text" bindinput="changeText" maxlength='{{200}}'></textarea>
-  <view bindtap="handleSubmit">提交</view>
-  <view bindtap="handleClose">取消</view>
+  <view class="communicate_box">
+  <textarea value="{{message || ''}}" placeholder="请写下你想对我说的话吧......" class="text" bindinput="changeText" maxlength='{{200}}'></textarea>
+  <view class="bottom_list">
+    <view bindtap="handleSubmit" class="submit_btn">提交</view>
+    <view bindtap="handleClose" class="cancel_btn">取消</view>
+  </view>
+  </view>
 </view>
-
 
 <view class="powerTable_container">
   <s-powerTable powerList="{{powerList}}" isFriend="{{true}}"></s-powerTable>

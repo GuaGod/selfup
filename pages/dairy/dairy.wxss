@@ -22,8 +22,8 @@ page {
 }
 
 .home_icon {
-  height: 42rpx;
-  width: 42rpx;
+  height:40rpx;
+  width:45rpx;
   display: block;
   margin-left: 10rpx;
   margin-right: 14rpx;

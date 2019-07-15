@@ -2,7 +2,8 @@
   <block wx:for="{{_powerList}}">
     <view class="item">
       <view class="statement">
-        <image src="{{item.icon}}" wx:if="{{isImageShow}}"/>
+        <image src="{{item.icon}}" wx:if="{{isImageShow}}" class="{{item.className}}"/>
+        
         <view wx:else class="text">{{item.statement}}</view>
       </view>
 

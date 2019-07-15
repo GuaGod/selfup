@@ -4,5 +4,6 @@
     "i-icon": "../../dist/icon/index",
     "s-header": "../../components/header/index",
     "s-powerTable": "../../components/powerTable/index"
-  }
+  },
+  "disableScroll": true
 }

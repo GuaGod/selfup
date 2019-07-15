@@ -51,7 +51,7 @@
     height:38rpx;
     margin-right:24rpx;
     position: relative;
-    bottom:-6rpx;
+    bottom:-8rpx;
 }
 
 .tip_text {
@@ -65,8 +65,9 @@
 }
 
 .showFriend_container {
-  height: 700rpx;
-  overflow: auto;
+  height: 900rpx;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 25rpx;
 }
 
@@ -122,8 +123,8 @@
 }
 
 .notice_icon {
-   height:50rpx;
-   width:56rpx;
+   width:40rpx;
+   height: 40rpx;
    display: block;
 }
 
@@ -167,11 +168,13 @@
 .wordList_item {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+  margin-left: 58rpx;
+  margin-right: 20rpx;
+  width: calc(100% - 78rpx);
   box-sizing: border-box;
   margin-top:20rpx;
+  height: 70rpx;
+  border-bottom: 2rpx solid rgb(218, 218, 218);
 }
 
 .wordList_item .wordList_item_head{
@@ -182,17 +185,23 @@
 }
 
 .wordList_item .messageContent {
-  width: calc(100% - 30rpx);
+  width: calc(100% - 50rpx);
   box-sizing: border-box;
   padding-left: 20rpx;
-}
-
-.wordList_item .senderName {
-  width: 100%;
-  text-align: right;
+  font-size: 28rpx;
+  color: rgb(196, 196, 196);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .wordList_item .deleteMessage {
-  width: 100%;
+  width: 24rpx;
+  height: 24rpx;
   text-align: right;
+  padding: 12rpx;
+}
+
+.friendWords_container {
+  height: 900rpx;
 }

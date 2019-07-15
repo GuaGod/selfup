@@ -12,7 +12,6 @@ page {
    padding:20rpx;
 }
 
-
 .header_title {
    height:38rpx;
    margin-top:4rpx;
