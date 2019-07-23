@@ -69,6 +69,7 @@ class DevidePage {
           this.hasMore = false;
         }
         this.pageIndex += list.length;
+
         return Promise.resolve({ hasMore: false, [this.dataName]: list, fullData: data });
       }, (error) => {
         if(this.lockMode) {

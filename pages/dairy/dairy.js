@@ -5,7 +5,6 @@ import {
 let dairyList = new DairyList();
 const globalData = getApp().globalData;
 
-
 Page({
 
   /**
@@ -29,6 +28,10 @@ Page({
     windowHeight: 1334,
   },
 
+  onShow: function() {
+    console.log(dairyList);
+  },
+
   onLoad: function() {
     let windowHeight = globalData.phoneInfo.windowHeight;
     let ratio = globalData.phoneInfo.pixelRatio;
@@ -37,13 +40,20 @@ Page({
     this.setData({
       windowHeight,
     })
-  },
 
-  onShow: function () {
-    if(!dairyList.isInit) {
+    if (!dairyList.isInit) {
       this.getMoreDairys();
       dairyList.isInit = true;
+      return;
     }
+
+    this.setData({
+      dairyData: dairyList.emotionList
+    })
+
+    this.setData({
+      loading: false
+    })
   },
 
   add: function() {
@@ -56,11 +66,10 @@ Page({
     dairyList.setCookie(getApp().globalData.LOGIN_COOKIE);
     dairyList.getMore()
       .then(({emotionList}) => {
-        let operatedData = dairyList.operateData(emotionList);
         let dairyData = this.data.dairyData;
-                                           
+                                  
         this.setData({
-          dairyData: dairyData.concat(operatedData),
+          dairyData: dairyData.concat(emotionList),
           loading: false
         })
       })
@@ -84,10 +93,6 @@ Page({
 
   onReachBottom: function() {
     this.getMoreDairys();
-  },
-
-  onScrollLower: function() {
-      this.getMoreDairys();
   },
 
   getDetail: function(e) {
