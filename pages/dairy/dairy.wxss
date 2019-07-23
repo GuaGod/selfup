@@ -1,9 +1,8 @@
 /* pages/dairy/dairy.wxss */
-
-page {
-  height: 100%;
-  overflow: auto;
+.outer_container {
+  border-top:1rpx solid transparent;
 }
+
 
 .header_container_outer {
   /* position: fixed;
@@ -11,6 +10,8 @@ page {
   width: 100%;
   z-index: 10;
   background: white;
+  position:fixed;
+  top: 0rpx;
 }
 
 .header_container {
@@ -39,9 +40,9 @@ page {
 .container {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 1350rpx;
   width: 750rpx;
   box-sizing: border-box;
+  margin-top:100rpx;
   -webkit-overflow-scrolling: touch;
 }
 

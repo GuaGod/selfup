@@ -20,7 +20,7 @@
                   placeholder="请输入正文"
                   class="text"
                   bindinput="changeText"
-                  maxlength='{{200}}'></textarea>
+                  maxlength='{{1000}}'></textarea>
               <view>
               <view class="bottom">
                <view class="time">{{emotionTime}}</view>

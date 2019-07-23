@@ -3,6 +3,8 @@ import {
   DairyList
 } from './DairyList.js'
 let dairyList = new DairyList();
+const globalData = getApp().globalData;
+
 
 Page({
 
@@ -23,14 +25,25 @@ Page({
       }
     ],
     deleteId: 0,
-    deleteVisible: false
+    deleteVisible: false,
+    windowHeight: 1334,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    
+  onLoad: function() {
+    let windowHeight = globalData.phoneInfo.windowHeight;
+    let ratio = globalData.phoneInfo.pixelRatio;
+
+    windowHeight *= ratio;
+    this.setData({
+      windowHeight,
+    })
+  },
+
+  onShow: function () {
+    if(!dairyList.isInit) {
+      this.getMoreDairys();
+      dairyList.isInit = true;
+    }
   },
 
   add: function() {
@@ -40,11 +53,12 @@ Page({
   },
 
   getMoreDairys: function() {
-    dairyList.getMoreDairys()
-      .then((emotionList) => {
+    dairyList.setCookie(getApp().globalData.LOGIN_COOKIE);
+    dairyList.getMore()
+      .then(({emotionList}) => {
         let operatedData = dairyList.operateData(emotionList);
         let dairyData = this.data.dairyData;
-
+                                           
         this.setData({
           dairyData: dairyData.concat(operatedData),
           loading: false
@@ -57,10 +71,23 @@ Page({
       })
   },
 
+
+  onPullDownRefresh: function() {
+    dairyList.reset();
+    this.setData({
+      dairyData: [],
+      loading: true
+    })
+    this.getMoreDairys();
+    wx.stopPullDownRefresh();
+  },
+
+  onReachBottom: function() {
+    this.getMoreDairys();
+  },
+
   onScrollLower: function() {
-    if (dairyList.hasMoreDairy) {
       this.getMoreDairys();
-    }
   },
 
   getDetail: function(e) {
@@ -127,61 +154,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    dairyList.init();
-    this.setData({
-      dairyData: []
-    })
-    this.getMoreDairys();
-  },
-
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
- 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-     
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-    this.setData({
-      loading: true
-    })
-
-    dairyList.init();
-    this.setData({
-      dairyData: []
-    })
-    this.getMoreDairys();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
 
   /**
    * 用户点击右上角分享

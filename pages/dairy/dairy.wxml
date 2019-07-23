@@ -1,3 +1,4 @@
+<view class="outer_container" style="height:{{windowHeight}}rpx;">
 <view class="header_container_outer">
 <s-header>
     <view class="header_container" bindtap="back">
@@ -7,13 +8,45 @@
 </s-header>
 </view>
 
-<scroll-view class="container" 
+<view class="container">
+  <view class="wrap">
+       <view class="box add_container"
+             bindtap="add">
+          <image src="/images/dairyAdd.png"
+                 class="add"></image>
+       </view>
+      </view>
+
+      <block wx:for="{{dairyData}}" wx:key="{{item.id}}">
+      <view class="wrap">
+       <view class="box"
+             data-dairyid="{{item.id}}"
+             bindtap="getDetail">
+           <view catchtap="handleDelete" data-dairyid="{{item.id}}" class="delete_container">
+             <image src="/images/delete_icon.png"></image>
+           </view>
+           <view class="title">{{item.title}}</view>
+           <view class="content">{{item.content}}</view>
+
+           <view class="statement">
+            <view class="emotion"><text style="color:{{item.emotionValue < 50 ? '#bfcefe': '#ffcdcb'}};">情绪值：{{item.emotionValue}}</text></view>
+            <view class="time">{{item.time}}</view>
+           </view>
+       </view>
+      </view>
+       </block>
+</view>
+
+
+<!-- <scroll-view class="container" 
              id="container"
              lower-threhold="50"
+             upper-threhold="-100"
              scroll-y="true"
              scroll-x="false"
              bindscrolltoupper="onScrollTop"
-             bindscrolltolower="onScrollLower">
+             bindscrolltolower="onScrollLower"
+             style="height:{{windowHeight - 100}}rpx;">
 
       <view class="wrap">
        <view class="box add_container"
@@ -41,9 +74,8 @@
        </view>
       </view>
        </block>
-</scroll-view>
+</scroll-view> -->
  
-
 <i-spin custom fix wx:if="{{loading}}">
   <image src="/images/loading.png" class="icon-load"/>
   <view>Loading</view>
@@ -56,3 +88,4 @@
 <i-modal title="删除确认" visible="{{ deleteVisible }}" actions="{{ actions }}" bind:click="deleteDairy">
     <view>删除后无法恢复哦</view>
 </i-modal>
+</view>

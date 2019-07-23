@@ -1,12 +1,11 @@
-
-
-
 // pages/welcome/welcome.js
 import {
   Loader
 } from './loader.js'
 
 let globalData = getApp().globalData;
+let loginLock = false;
+
 const MyStorage = globalData.MyStorage;
 const MyHttp = globalData.MyHttp;
 const createObserver = globalData.createObserver;
@@ -93,9 +92,13 @@ Page({
   bindGetUserInfo: function({
     detail
   }) {
+    if(loginLock) {
+      return ;
+    }
     if(!detail.rawData) {
         return ;
     }
+    loginLock = true;
     wx.showLoading({
       title: '登录中，请稍等',
       mask: true
@@ -132,6 +135,8 @@ Page({
         wx.showToast({
           title: '出错啦，重新点击试试',
         })
+
+        loginLock = false;
         wx.hideLoading();
         wx.hideToast();
       })

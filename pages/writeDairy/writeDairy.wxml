@@ -21,7 +21,7 @@
                   placeholder="请输入正文"
                   class="text"
                   bindinput="changeText"
-                  maxlength='{{200}}'></textarea>
+                  maxlength='{{1000}}'></textarea>
               
               <view bindtap="submit"
                     class="submit">保存</view>

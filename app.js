@@ -4,6 +4,7 @@ import {MyDate} from './utils/dateUtil.js'
 import {MyStorage} from './utils/storageUtil.js'
 import {MyDownload} from './utils/downloadUtil.js'
 import {Loader} from './utils/Loader.js'
+import {DevidePage} from './utils/devidePage.js'
 import {createObserver} from './utils/observerUtil.js'
 import imgPathMap from './static/imgPath.js'
 import selfAPI from './static/API/selfAPI.js'
@@ -35,6 +36,7 @@ App({
     MyDate: MyDate,
     MyStorage: MyStorage,
     MyDownload: MyDownload,
+    DevidePage: DevidePage,
     selfAPI: selfAPI,
     planAPI: planAPI,
     analyseAPI: analyseAPI,

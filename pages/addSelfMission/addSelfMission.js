@@ -75,10 +75,15 @@ Page({
       })
       return;
     }
+
+    
     missionNow.submit()
       .then(data => {
         if (data.success) {
           missionNow.inputThingName('');
+          wx.navigateBack({
+            delta: 1
+          })
           wx.showToast({
             title: '添加成功',
           })
