@@ -1,0 +1,20 @@
+{
+  "name": "painttime",
+  "version": "1.9.26",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Okabe",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "jest": "^24.8.0"
+  }
+}

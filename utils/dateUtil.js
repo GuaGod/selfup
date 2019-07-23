@@ -75,13 +75,15 @@ class MyDate {
    * @return {Object} {year, month, day, week}
    */
   static parseDateStr(date) {
-    if (date === null || date === undefined || date.match(/^[0-9]{4}/) === null) {
-      console.error(`使用MyDate的parseDate方法时传入的日期字符串不符合规范，你传入的值为${date}`);
+    if (date === null || date === undefined) {
       return;
     }
 
     date = date.replace(/-/g, '');
-    
+    if(date.length !== 8) {
+      return ;
+    }
+
     let year = date.slice(0, 4);
     let month = date.slice(4, 6);
     let day = date.slice(6, 8);
@@ -100,12 +102,13 @@ class MyDate {
   static calculateMondayAndSunday(myDate) {
     let week = myDate.getDay();
     let minus = week ? week - 1 : 6; 
-
+    
     let mondayDate = new Date();
-    mondayDate.setDate(myDate.getDate() - minus);
+    let aDayTime = 24 * 60 * 60 * 1000;
+    mondayDate.setTime(myDate.getTime() - minus * aDayTime);
     
     let sundayDate = new Date();
-    sundayDate.setDate(myDate.getDate() + 7 - week);
+    sundayDate.setTime(myDate.getTime() + (7 - week) * aDayTime);
     
     return {
       mondayDate,
