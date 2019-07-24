@@ -159,7 +159,7 @@ Page({
 
     if (!hasImage) {
 <<<<<<< HEAD
-      MyDownload.download('http://www.steins.club/selfup/imgs/element/dairyDefault.png')
+      MyDownload.download('http://www.steins.club/imgs/element/dairyDefault.png')
 =======
       MyDownload.download('http://localhost/imgs/element/dairyDefault.png')
 >>>>>>> 2277f20d51406ddc6d12ecfc99e4caaf5063ba76

@@ -3,7 +3,7 @@
  */
 
 <<<<<<< HEAD
-let publicPath = 'http://www.steins.club/selfup'
+let publicPath = 'http://www.steins.club'
 =======
 let publicPath = 'http://localhost'
 >>>>>>> 2277f20d51406ddc6d12ecfc99e4caaf5063ba76
