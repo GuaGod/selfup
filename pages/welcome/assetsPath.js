@@ -2,11 +2,8 @@
  * 存储了要预加载的图片名及路径的map
  */
 
-<<<<<<< HEAD
 let publicPath = 'http://www.steins.club'
-=======
-let publicPath = 'http://localhost'
->>>>>>> 2277f20d51406ddc6d12ecfc99e4caaf5063ba76
+
 let assetsPath = new Map([
   ['chooseSex_bg', `${publicPath}/imgs/background/chooseSex_bg.png`],
   ['female', `${publicPath}/imgs/element/female.png`],
