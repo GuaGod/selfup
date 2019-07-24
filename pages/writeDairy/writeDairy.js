@@ -158,7 +158,7 @@ Page({
     }
 
     if (!hasImage) {
-      MyDownload.download('https://www.steins.club/selfup/imgs/element/dairyDefault.png')
+      MyDownload.download('http://localhost/imgs/element/dairyDefault.png')
                 .then(res => {
                   let imagePath = res.tempFilePath;
                   this.setData({

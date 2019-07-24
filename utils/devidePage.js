@@ -9,11 +9,13 @@ function isValidString(property) {
 class DevidePage {
   constructor({ url, dataName, pageIndex = 1, pageSize = 6, lockMode = true, method = 'GET'}) {
     if(!isValidString(url)) {
-      throw new Error('分页的url是一个非空的字符串');
+      console.error('分页的url是一个非空的字符串');
+      return null;
     }
 
     if(!isValidString(dataName)) {
-      throw new Error('分页的dataName是一个非空的字符串');
+      console.error('分页的dataName是一个非空的字符串');
+      return null;
     }
 
     this.pageIndex = pageIndex;
