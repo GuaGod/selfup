@@ -43,7 +43,7 @@ Page({
           emotionText: emotion.content || "",
           emotionTitle: emotion.title || "",
           emotionTime: emotion.createTime.slice(0, 10) || "",
-          image: 'https://www.steins.club' + emotion.emotionImg.replace(/\\/g, '\/')
+          image: 'http://www.steins.club' + emotion.emotionImg.replace(/\\/g, '\/')
         })
       })
   },

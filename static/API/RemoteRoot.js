@@ -1,6 +1,6 @@
 //api根路径
 const REMOTE_ROOT = {
-  selfup: 'https://www.steins.club'
+  selfup: 'http://www.steins.club'
 }
 
 export {

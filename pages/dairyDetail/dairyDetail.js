@@ -37,7 +37,7 @@ Page({
            content: emotion.content || "",
            title: emotion.title || "",
            time: emotion.createTime.slice(0, 10) || "",
-           image: 'https://www.steins.club' + emotion.emotionImg.replace(/\\/g, '\/')
+           image: 'http://www.steins.club' + emotion.emotionImg.replace(/\\/g, '\/')
          })
       })
   },
