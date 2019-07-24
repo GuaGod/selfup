@@ -2,7 +2,7 @@
  * 存储了所有的图片名，以及它的远程路径的map
  */
 
-let publicPath = 'https://www.steins.club/selfup'
+let publicPath = 'http://www.steins.club/selfup'
 let assetsPath = new Map([
   ['chooseSex_bg', `${publicPath}/imgs/background/chooseSex_bg.png`],
   ['female', `${publicPath}/imgs/element/female.png`],
